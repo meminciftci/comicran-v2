@@ -1,1 +1,0 @@
-# comicran-v2
