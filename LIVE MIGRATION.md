@@ -17,9 +17,10 @@ Clean, Centralized processing, Collaborative radio, and a real-time Cloud Radio 
 **Distinction of C-RAN**
 1. Large scale centralized deployment: Allows many RRHs to connect to a centralized BBU pool.
 2. Native support to Collaborative Radio technologies: Any BBU can talk with any other BBU within the BBU pool with very high bandwidth (10 Gbit/s and above) and low latency (10 μs level). 
-3. Real time virtualization capability: A C-RAN BBU pool is built on open hardware, like x86/ARM CPU based servers, and interface cards that handle fiber links to RRHs and inter-connections in the pool.Real-time virtualization ensures that resources in the pool can be allocated dynamically to base station software stacks, say 4G/3G/2G function modules from different vendors, according to network load. However, to satisfy the strict timing requirements of wireless communication systems, the real-time performance for C-RAN is at the level of tens of microseconds, which is two orders of magnitude better than the millisecond level 'real-time' performance usually seen in Cloud Computing environments.
+3. Real time virtualization capability: A C-RAN BBU pool is built on open hardware, like x86/ARM CPU based servers, and interface cards that handle fiber links to RRHs and inter-connections in the pool. Real-time virtualization ensures that resources in the pool can be allocated dynamically to base station software stacks, say 4G/3G/2G function modules from different vendors, according to network load. However, to satisfy the strict timing requirements of wireless communication systems, the real-time performance for C-RAN is at the level of tens of microseconds, which is two orders of magnitude better than the millisecond level 'real-time' performance usually seen in Cloud Computing environments.
 
 ## Migrating Server Processes: 
+
 
 ## Custom Containarization / Sandboxing Tool:
 
