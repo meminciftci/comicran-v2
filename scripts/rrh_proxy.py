@@ -1,4 +1,5 @@
 from http.server import BaseHTTPRequestHandler, HTTPServer
+from collections import defaultdict
 import threading
 import requests
 import os
@@ -8,6 +9,9 @@ import sys
 default_vbbu_address = "10.0.0.10:8080"
 
 # Per-UE routing table (UE IP → target vBBU address)
+
+# ue_target = defaultdict(lambda: default_vbbu_address)
+
 ue_target = {
     "10.0.0.1": default_vbbu_address,  # ue1 → vbbu1
     "10.0.0.2": default_vbbu_address,  # ue2 → vbbu1 (initially)
@@ -54,11 +58,10 @@ class ProxyHandler(BaseHTTPRequestHandler):
 def control_loop():
     while True:
         raw = input("Handover> ").strip()               # Error var 
-        print("komut:", raw, ":end")
         if raw.startswith("set"):
             try:
-                log_rrh(f"Starting handover of {ue}...")
                 _, ue, vbbu = raw.split()
+                log_rrh(f"Starting handover of {ue}...")
                 if ue == "ue1":
                     ip = "10.0.0.1"
                 elif ue == "ue2":
