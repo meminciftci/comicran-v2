@@ -3,11 +3,22 @@ import urllib.parse
 import sys
 import json
 import time
+import threading
+import socket
 
+# Config from arguments
 port = int(sys.argv[1])
-# vbbu_id = "vbbu1" if port == 8080 else "vbbu2"
 vbbu_id = f"vbbu{port - 8080 + 1}"
-print(vbbu_id)
+# vbbu_id = "vbbu1" if port == 8080 else "vbbu2"
+print(f"vBBU server running on port {port} as {vbbu_id}")
+
+# Orchestrator address
+ORCH_IP = "10.0.0.200"
+ORCH_PORT = 9100
+
+# Track active UE IDs
+active_ues = set()
+lock = threading.Lock()
 
 class Handler(BaseHTTPRequestHandler):
     def do_GET(self):
@@ -17,7 +28,10 @@ class Handler(BaseHTTPRequestHandler):
         value = int(params.get('value', [0])[0])
         ue_id = int(params.get('ue_id', [0])[0])
 
-        # response = f"{vbbu_id}, recieved: {value}, returning: {result}"
+        # Track UE ID
+        with lock:
+            active_ues.add(ue_id)
+
         response = json.dumps({
             "vbbu_id": vbbu_id[-1],
             "acknowledgement": f"Acknowledgement #{value}"
@@ -27,11 +41,37 @@ class Handler(BaseHTTPRequestHandler):
 
         self.send_response(200)
         self.end_headers()
-        self.wfile.write(str(response).encode())
-        
-    def log_message(self, format, *args):
-        return        
+        self.wfile.write(response.encode())
 
+    def log_message(self, format, *args):
+        return  # Suppress default logging
+
+# Background thread to report load
+def report_load_periodically():
+    while True:
+        try:
+            with lock:
+                ue_count = len(active_ues)
+
+            report = {
+                "command": "report_load",
+                "cpu": ue_count*4,           # Simulated load
+                "connections": ue_count    # Also treated as connection count
+            }
+
+            with socket.create_connection((ORCH_IP, ORCH_PORT), timeout=3) as sock:
+                sock.sendall(json.dumps(report).encode())
+                _ = sock.recv(1024)
+            print(f"[REPORT] Sent load to orchestrator: {ue_count} UEs")
+
+        except Exception as e:
+            print(f"[ERROR] Failed to report load: {e}")
+        time.sleep(5)
+
+# Launch reporting in background
+threading.Thread(target=report_load_periodically, daemon=True).start()
+
+# Start HTTP server
 if __name__ == '__main__':
     print(f"vBBU server running on port {port} as {vbbu_id}")
     HTTPServer(('', port), Handler).serve_forever()
