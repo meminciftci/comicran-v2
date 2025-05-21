@@ -1,3 +1,5 @@
+1. comicran_mininet_demo.py isleri var
+
 UE RELATED
 
 1. UE id retrieval

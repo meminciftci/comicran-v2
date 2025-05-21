@@ -16,8 +16,8 @@ class ComicranTopo(Topo):
 
         # Core components
         rrh = self.addHost('rrh', ip='10.0.0.100')
-        vbbu1 = self.addHost('vbbu1', ip='10.0.0.10')
-        vbbu2 = self.addHost('vbbu2', ip='10.0.0.20')
+        vbbu1 = self.addHost('vbbu1', ip='10.0.1.10')
+        vbbu2 = self.addHost('vbbu2', ip='10.0.1.20')
         orch = self.addHost('orch', ip='10.0.0.200')
 
         self.addLink(s1, rrh)
@@ -50,19 +50,19 @@ def deploy_http_services(net):
     orch = net.get('orch')
 
     print("[INFO] Starting vBBU HTTP servers...")
-    vbbu1.cmd('python3 /home/mininet/vbbu_server.py 8080 > /tmp/vbbu1.log 2>&1 &')
-    vbbu2.cmd('python3 /home/mininet/vbbu_server.py 8081 > /tmp/vbbu2.log 2>&1 &')
+    vbbu1.cmd('python3 /home/mininet/vbbu_server.py 8080')
+    vbbu2.cmd('python3 /home/mininet/vbbu_server.py 8081')
 
     print("[INFO] Starting RRH HTTP proxy with dynamic routing control...")
-    rrh.cmd('python3 /home/mininet/rrh_proxy.py > /tmp/rrh.log 2>&1 &')
+    rrh.cmd('python3 /home/mininet/rrh_proxy.py')
 
     print("[INFO] Starting Orchestrator for command-based migration and handover...")
-    orch.cmd('python3 /home/mininet/orchestrator.py > /tmp/orch.log 2>&1 &')
+    orch.cmd('python3 /home/mininet/orchestrator.py')
 
     print(f"[INFO] Launching {UE_COUNT} dynamic UE agents...")
     for i in range(1, UE_COUNT + 1):
         ue = net.get(f"ue{i}")
-        ue.cmd(f'python3 /home/mininet/ue_client.py 10.0.0.100 > /tmp/ue{i}.log 2>&1 &')
+        ue.cmd(f'python3 /home/mininet/ue_client.py 10.0.0.100')
 
     print("\n[INFO] ✅ All components launched")
     print("[INFO] 🧪 Dynamic UE traffic is active")

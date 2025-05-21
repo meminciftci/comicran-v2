@@ -105,7 +105,7 @@ def handle_full_migration(message, conn):
     VB_BU_COUNTER += 1
 
     # Launch new vBBU via shell
-    launch_cmd = f"mnexec -a 1 xterm -e 'python3 /home/mininet/vbbu_server.py {new_port} > /tmp/{vbbu_name}.log 2>&1 &'"
+    launch_cmd = f"mnexec -a 1 xterm -e 'python3 vbbu_server.py {new_port}'"
     os.system(launch_cmd)
     logging.info(f"[SPAWN] Started {vbbu_name} at {new_vbbu}")
 

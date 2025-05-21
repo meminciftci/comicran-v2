@@ -9,7 +9,7 @@ import json
 import random
 
 # === Initial Setup ===
-vbbu_choices = ["10.0.0.10:8080", "10.0.0.20:8081"]
+vbbu_choices = ["10.0.1.10:8080", "10.0.1.20:8081"]
 ue_target = {
     f"10.0.0.{i}": random.choice(vbbu_choices)
     for i in range(1, 51)
