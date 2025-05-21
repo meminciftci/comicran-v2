@@ -1,10 +1,10 @@
-from http.server import BaseHTTPRequestHandler, HTTPServer
-import urllib.parse
+from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 import sys
 import json
 import time
 import threading
 import socket
+import urllib
 
 # Config from arguments
 port = int(sys.argv[1])
@@ -17,8 +17,16 @@ ORCH_IP = "10.0.0.200"
 ORCH_PORT = 9100
 
 # Track active UE IDs
-active_ues = set()
+ue_last_seen = {}  # ue_id → timestamp
 lock = threading.Lock()
+
+vbbu_log_path = f"../outputs/vbbu{port - 8079}_output.txt"
+
+def log_vbbu(msg):
+    timestamp = time.strftime('%Y-%m-%d %H:%M:%S')
+    with open(vbbu_log_path, "a") as f:
+        f.write(f"[{timestamp}] {msg}\n")
+    print(f"[{timestamp}] {msg}")
 
 class Handler(BaseHTTPRequestHandler):
     def do_GET(self):
@@ -30,14 +38,14 @@ class Handler(BaseHTTPRequestHandler):
 
         # Track UE ID
         with lock:
-            active_ues.add(ue_id)
+            ue_last_seen[ue_id] = time.time()
 
         response = json.dumps({
             "vbbu_id": vbbu_id[-1],
             "acknowledgement": f"Acknowledgement #{value}"
         })
         log_line = f"[{timestamp}] Value {value}: Recieved from UE #{ue_id}"
-        print(log_line)
+        log_vbbu(log_line)
 
         self.send_response(200)
         self.end_headers()
@@ -50,8 +58,12 @@ class Handler(BaseHTTPRequestHandler):
 def report_load_periodically():
     while True:
         try:
+            now = time.time()
             with lock:
-                ue_count = len(active_ues)
+                ue_last_seen_filtered = {k: t for k, t in ue_last_seen.items() if now - t < 15}
+                ue_last_seen.clear()
+                ue_last_seen.update(ue_last_seen_filtered)
+                ue_count = len(ue_last_seen)
 
             report = {
                 "command": "report_load",
@@ -62,10 +74,10 @@ def report_load_periodically():
             with socket.create_connection((ORCH_IP, ORCH_PORT), timeout=3) as sock:
                 sock.sendall(json.dumps(report).encode())
                 _ = sock.recv(1024)
-            print(f"[REPORT] Sent load to orchestrator: {ue_count} UEs")
+            log_vbbu(f"[REPORT] Sent load to orchestrator: {ue_count} UEs")
 
         except Exception as e:
-            print(f"[ERROR] Failed to report load: {e}")
+            log_vbbu(f"[ERROR] Failed to report load: {e}")
         time.sleep(5)
 
 # Launch reporting in background
@@ -73,5 +85,5 @@ threading.Thread(target=report_load_periodically, daemon=True).start()
 
 # Start HTTP server
 if __name__ == '__main__':
-    print(f"vBBU server running on port {port} as {vbbu_id}")
-    HTTPServer(('', port), Handler).serve_forever()
+    log_vbbu(f"vBBU server running on port {port} as {vbbu_id}")
+    ThreadingHTTPServer(('', port), Handler).serve_forever()

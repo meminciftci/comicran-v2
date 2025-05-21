@@ -1,4 +1,4 @@
-from http.server import BaseHTTPRequestHandler, HTTPServer
+from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 import threading
 import requests
 import os
@@ -9,7 +9,7 @@ import json
 import random
 
 # === Initial Setup ===
-vbbu_choices = ["10.0.0.10:8080", "10.0.0.20:8081"]
+vbbu_choices = ["10.0.1.10:8080", "10.0.1.20:8081"]
 ue_target = {
     f"10.0.0.{i}": random.choice(vbbu_choices)
     for i in range(1, 51)
@@ -31,7 +31,7 @@ class ProxyHandler(BaseHTTPRequestHandler):
         client_ip = self.client_address[0]
         target = ue_target.get(client_ip)
 
-
+        # If mapped but vBBU is deprecated
         if target in redirected_vbbus:
             new_vbbu = redirected_vbbus[target]
             ue_target[client_ip] = new_vbbu
@@ -48,7 +48,7 @@ class ProxyHandler(BaseHTTPRequestHandler):
 
         url = f"http://{target}{self.path}"
         try:
-            resp = requests.get(url)
+            resp = requests.get(url, timeout=3)
             log_rrh(f"Response from {target}: {resp.text.strip()}")
             self.send_response(resp.status_code)
             self.end_headers()
@@ -57,41 +57,10 @@ class ProxyHandler(BaseHTTPRequestHandler):
             self.send_response(502)
             self.end_headers()
             self.wfile.write(f"Forwarding failed: {e}".encode())
+            log_rrh(f"[ERROR] Failed forwarding to {target}: {e}")
 
     def log_message(self, format, *args):
         return
-
-# === Manual CLI Control ===
-def control_loop():
-    while True:
-        raw = input("Handover> ").strip()
-        if raw.startswith("set"):
-            try:
-                _, ue, vbbu = raw.split()
-                log_rrh(f"Manual handover command: {ue} → {vbbu}")
-                if ue.startswith("ue") and ue[2:].isdigit():
-                    ip = f"10.0.0.{int(ue[2:])}"
-                else:
-                    print("Unknown UE.")
-                    continue
-
-                if vbbu == "vbbu1":
-                    ue_target[ip] = "10.0.0.10:8080"
-                elif vbbu == "vbbu2":
-                    ue_target[ip] = "10.0.0.20:8081"
-                else:
-                    print("Unknown vBBU.")
-                    continue
-
-                print(f"{ue} now routes to {vbbu}")
-                log_rrh(f"Manual handover complete: {ue} → {ue_target[ip]}")
-            except:
-                print("Usage: set ueX vbbu1|vbbu2")
-        elif raw == "show":
-            for k, v in ue_target.items():
-                print(f"{k} → {v}")
-        else:
-            print("Commands: set <ueX> <vbbuX>, show")
 
 # === TCP Listener for Orchestrator ===
 def orchestrator_listener():
@@ -119,7 +88,7 @@ def handle_orchestrator_command(conn, addr):
             new_ip = message.get("new_vbbu_ip")
             new_port = message.get("new_vbbu_port")
 
-            if ue_id.startswith("UE") and ue_id[2:].isdigit():
+            if ue_id.upper().startswith("UE") and ue_id[2:].isdigit():
                 ue_ip = f"10.0.0.{int(ue_id[2:])}"
             else:
                 error_msg = {
@@ -133,7 +102,7 @@ def handle_orchestrator_command(conn, addr):
 
             new_target = f"{new_ip}:{new_port}"
             ue_target[ue_ip] = new_target
-            log_rrh(f"[ORCH {orchestrator_ip}] Handover: {ue_id} ({ue_ip}) → {new_target}")
+            log_rrh(f"[ORCH] Handover: {ue_id} ({ue_ip}) → {new_target}")
 
             conn.sendall(json.dumps({
                 "status": "ok",
@@ -148,7 +117,7 @@ def handle_orchestrator_command(conn, addr):
             new = message.get("to_vbbu")
             if old and new:
                 redirected_vbbus[old] = new
-                log_rrh(f"[ORCH {orchestrator_ip}] Redirect rule: {old} → {new}")
+                log_rrh(f"[ORCH] Redirect rule: {old} → {new}")
                 conn.sendall(b"[OK] Redirect rule updated\n")
             else:
                 conn.sendall(b"[ERROR] Missing fields in update_redirect\n")
@@ -160,7 +129,7 @@ def handle_orchestrator_command(conn, addr):
             }).encode())
             log_rrh(f"[REJECTED] Unknown command from {orchestrator_ip}: {message}")
     except Exception as e:
-        log_rrh(f"[ERROR] From {orchestrator_ip}: {e}")
+        log_rrh(f"[ERROR] From orchestrator {orchestrator_ip}: {e}")
         conn.sendall(json.dumps({
             "status": "error",
             "reason": str(e),
@@ -171,10 +140,9 @@ def handle_orchestrator_command(conn, addr):
 
 # === Main Entry ===
 if __name__ == '__main__':
-    threading.Thread(target=control_loop, daemon=True).start()
     threading.Thread(target=orchestrator_listener, daemon=True).start()
     print("RRH proxy running on port 8000 (per-UE forwarding)")
     log_rrh("RRH proxy started on port 8000")
     log_rrh(f"Initial UE mapping: {ue_target}")
-    server = HTTPServer(('', 8000), ProxyHandler)
+    server = ThreadingHTTPServer(('', 8000), ProxyHandler)
     server.serve_forever()
