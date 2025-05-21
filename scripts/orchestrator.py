@@ -24,6 +24,7 @@ orch_log_path = "../outputs/orch_output.txt"
 def log_orch(msg):
     timestamp = time.strftime('%Y-%m-%d %H:%M:%S')
     with open(orch_log_path, "a") as f:
+      
         f.write(f"[{timestamp}] {msg}\n")
 
 def handle_client(conn, addr):
@@ -111,7 +112,9 @@ def handle_full_migration(message, conn):
 
     VBBU_COUNTER += 1
 
-    launch_cmd = f"mnexec -a 1 xterm -e 'python3 /home/mininet/vbbu_server.py {new_port} > /tmp/{vbbu_name}.log 2>&1 &'"
+
+    launch_cmd = f"mnexec -a 1 xterm -e 'python3 vbbu_server.py {new_port}'"
+
     os.system(launch_cmd)
     log_orch(f"[SPAWN] Started {vbbu_name} at {new_vbbu}")
 

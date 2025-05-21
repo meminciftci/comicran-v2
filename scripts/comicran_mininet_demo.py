@@ -50,6 +50,7 @@ def deploy_http_services(net):
     orch = net.get('orch')
 
     print("[INFO] Starting vBBU HTTP servers...")
+
     vbbu1.cmd('python3 vbbu_server.py 8080 &')
     vbbu2.cmd('python3 vbbu_server.py 8081 &')
 
@@ -59,10 +60,13 @@ def deploy_http_services(net):
     print("[INFO] Opening orchestrator terminal...")
     orch.cmd('xterm -T orchestrator -e python3 orchestrator.py &')
 
+
     print(f"[INFO] Launching {UE_COUNT} dynamic UE agents...")
     for i in range(1, UE_COUNT + 1):
         ue = net.get(f"ue{i}")
+
         ue.cmd(f'python3 ue_client.py 10.0.0.100 &')
+
 
     print("\n[INFO] ✅ All components launched")
     print("[INFO] 🧪 Dynamic UE traffic is active")
@@ -86,3 +90,4 @@ def run():
 if __name__ == '__main__':
     setLogLevel('info')
     run()
+    
