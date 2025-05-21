@@ -42,6 +42,17 @@ def handle_client(conn, addr):
             conn.sendall(json.dumps(ue_assignments, indent=2).encode())
         elif cmd == 'get_loads':
             conn.sendall(json.dumps(vbbu_loads, indent=2).encode())
+        elif cmd == 'report_assignments':
+            count = 0
+            for item in message.get('assignments', []):
+                ue_id = item.get("ue_id")
+                ip = item.get("vbbu_ip")
+                port = item.get("vbbu_port")
+                if ue_id and ip and port:
+                    ue_assignments[ue_id] = {"vbbu_ip": ip, "vbbu_port": port}
+                    count += 1
+            conn.sendall(b"[OK] Assignments received\n")
+            log_orch(f"[ASSIGN] Received {count} UE assignments from RRH")
         elif cmd == 'migrate':
             handle_full_migration(message, conn)
         else:
@@ -104,7 +115,7 @@ def handle_full_migration(message, conn):
         conn.sendall(b"[ERROR] from_vbbu is required.\n")
         return
 
-    new_ip = f"10.0.1.{VBBU_COUNTER*10}"
+    new_ip = f"10.0.0.{200+VBBU_COUNTER}"
     new_port = 8080 + VBBU_COUNTER
     new_vbbu = f"{new_ip}:{new_port}"
     vbbu_name = f"vbbu{VBBU_COUNTER}"
@@ -155,8 +166,8 @@ def cli_loop():
             if raw.startswith("handover"):
                 _, ue, vbbu = raw.split()
                 vbbu_map = {
-                    "vbbu1": ("10.0.1.10", 8080),
-                    "vbbu2": ("10.0.1.20", 8081)
+                    "vbbu1": ("10.0.0.201", 8080),
+                    "vbbu2": ("10.0.0.202", 8081)
                 }
                 if vbbu not in vbbu_map:
                     print("[ERROR] Unknown vBBU name.")

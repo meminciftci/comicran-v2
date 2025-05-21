@@ -16,8 +16,8 @@ class ComicranTopo(Topo):
 
         # Core components
         rrh = self.addHost('rrh', ip='10.0.0.100')
-        vbbu1 = self.addHost('vbbu1', ip='10.0.1.10')
-        vbbu2 = self.addHost('vbbu2', ip='10.0.1.20')
+        vbbu1 = self.addHost('vbbu1', ip='10.0.0.201')
+        vbbu2 = self.addHost('vbbu2', ip='10.0.0.202')
         orch = self.addHost('orch', ip='10.0.0.200')
 
         self.addLink(s1, rrh)
