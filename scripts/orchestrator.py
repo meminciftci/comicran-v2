@@ -4,6 +4,10 @@ import json
 import time
 import random
 import os
+from mininet.node import Host
+from mininet.net import Mininet
+from mininet.util import pmonitor
+from mininet.cli import CLI
 
 ORCH_HOST = '0.0.0.0'
 ORCH_PORT = 9100
@@ -14,7 +18,7 @@ ue_assignments = {}
 vbbu_loads = {}
 redirected_vbbus = {}
 
-
+net = None
 VBBU_COUNTER = 3  # for naming new vBBUs
 
 orch_log_path = "../outputs/orch_output.txt"
@@ -107,35 +111,44 @@ def forward_to_rrh(message):
 
 def handle_full_migration(message, conn):
     global VBBU_COUNTER
-
+    global net
     from_vbbu = message.get('from_vbbu')
     if not from_vbbu:
         conn.sendall(b"[ERROR] from_vbbu is required.\n")
         return
 
-    new_ip = f"10.0.0.{200+VBBU_COUNTER}"
+    # Create new vBBU IP/port
+    new_ip = f"10.0.0.{200 + VBBU_COUNTER}"
     new_port = 8080 + VBBU_COUNTER
     new_vbbu = f"{new_ip}:{new_port}"
     vbbu_name = f"vbbu{VBBU_COUNTER}"
 
     VBBU_COUNTER += 1
 
-    launch_cmd = f"mnexec -a 1 xterm -e 'python3 /home/mininet/vbbu_server.py {new_port} > /tmp/{vbbu_name}.log 2>&1 &'"
-    os.system(launch_cmd)
+    # Launch new vBBU (adjust path if needed)
+    vbbu_host = net.get(vbbu_name)
+    launch_cmd = f"python3 /home/mininet/vbbu_server.py {new_port} &"
+    vbbu_host.cmd(launch_cmd)
     log_orch(f"[SPAWN] Started {vbbu_name} at {new_vbbu}")
+    log_orch(f"[SPAWN CMD] {launch_cmd}")
 
-    redirected_vbbus[from_vbbu] = new_vbbu
+    # Inform RRH about redirect
+    forward_to_rrh({
+        "command": "update_redirect",
+        "from_vbbu": from_vbbu,
+        "to_vbbu": new_vbbu
+    })
 
+    # Reassign UEs to new vBBU
     migrated = []
     for ue_id, assignment in list(ue_assignments.items()):
         current = f"{assignment['vbbu_ip']}:{assignment['vbbu_port']}"
         if current == from_vbbu:
-            ip, port = new_ip, new_port
             cmd = {
                 "command": "handover",
                 "ue_id": ue_id,
-                "new_vbbu_ip": ip,
-                "new_vbbu_port": port
+                "new_vbbu_ip": new_ip,
+                "new_vbbu_port": new_port
             }
             handle_handover_command(cmd)
             migrated.append(ue_id)
@@ -161,6 +174,7 @@ def cli_loop():
     while True:
         try:
             raw = input("Orchestrator> ").strip()
+
             if raw.startswith("handover"):
                 _, ue, vbbu = raw.split()
                 vbbu_map = {
@@ -181,31 +195,32 @@ def cli_loop():
                 print(f"[OK] Sent handover: {ue} → {vbbu}")
 
             elif raw.startswith("migrate"):
-                _, src, dst = raw.split()
+                _, vbbu_name = raw.split()
                 vbbu_map = {
-                    "vbbu1": "10.0.0.10:8080",
-                    "vbbu2": "10.0.0.20:8081"
+                    "vbbu1": "10.0.0.201:8080",
+                    "vbbu2": "10.0.0.202:8081"
                 }
-                if src not in vbbu_map or dst not in vbbu_map:
+                from_vbbu = vbbu_map.get(vbbu_name)
+                if not from_vbbu:
                     print("[ERROR] Unknown vBBU name.")
                     continue
-                from_vbbu = vbbu_map[src]
-                to_ip, to_port = vbbu_map[dst].split(":")
-                redirected_vbbus[from_vbbu] = vbbu_map[dst]
 
-                migrated = []
-                for ue_id, assignment in list(ue_assignments.items()):
-                    current = f"{assignment['vbbu_ip']}:{assignment['vbbu_port']}"
-                    if current == from_vbbu:
-                        cmd = {
-                            "command": "handover",
-                            "ue_id": ue_id,
-                            "new_vbbu_ip": to_ip,
-                            "new_vbbu_port": int(to_port)
-                        }
-                        handle_handover_command(cmd)
-                        migrated.append(ue_id)
-                print(f"[OK] Migrated {len(migrated)} UEs from {src} → {dst}")
+                msg = {
+                    "command": "migrate",
+                    "from_vbbu": from_vbbu
+                }
+
+                # Create dummy socket-like object to capture JSON output
+                class DummyConn:
+                    def sendall(self, data):
+                        try:
+                            parsed = json.loads(data)
+                            print("[OK] Migration completed:")
+                            print(json.dumps(parsed, indent=2))
+                        except Exception:
+                            print(data.decode())
+
+                handle_full_migration(msg, DummyConn())
 
             elif raw == "show assignments":
                 if not ue_assignments:
@@ -213,7 +228,7 @@ def cli_loop():
                 else:
                     for ue, vbbu in ue_assignments.items():
                         vbbu_str = f"{vbbu['vbbu_ip']}:{vbbu['vbbu_port']}"
-                        print(f"{ue} → vBBU{vbbu_str.split(":")[0].split(".")[-1][-1]}")
+                        print(f"{ue} → vBBU{vbbu_str.split(':')[0].split('.')[-1][-1]}")
 
             elif raw == "show loads":
                 for ip, info in vbbu_loads.items():
@@ -226,7 +241,7 @@ def cli_loop():
             else:
                 print("Commands:")
                 print("  handover UE9 vbbu1")
-                print("  migrate vbbu1 vbbu2")
+                print("  migrate vbbu1")
                 print("  show assignments")
                 print("  show loads")
                 print("  quit")

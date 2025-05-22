@@ -7,6 +7,7 @@ from mininet.cli import CLI
 from mininet.link import TCLink
 from mininet.log import setLogLevel
 import os
+import orchestrator
 
 UE_COUNT = 10  # total UEs
 
@@ -16,13 +17,21 @@ class ComicranTopo(Topo):
 
         # Core components
         rrh = self.addHost('rrh', ip='10.0.0.100')
-        vbbu1 = self.addHost('vbbu1', ip='10.0.0.201')
-        vbbu2 = self.addHost('vbbu2', ip='10.0.0.202')
         orch = self.addHost('orch', ip='10.0.0.200')
 
+        vbbu_ips = {
+            "vbbu1": "10.0.0.201",
+            "vbbu2": "10.0.0.202",
+            "vbbu3": "10.0.0.203",
+            "vbbu4": "10.0.0.204",
+            "vbbu5": "10.0.0.205"
+        }
+
+        for name, ip in vbbu_ips.items():
+            vbbu = self.addHost(name, ip=ip)
+            self.addLink(s1, vbbu)
+
         self.addLink(s1, rrh)
-        self.addLink(s1, vbbu1)
-        self.addLink(s1, vbbu2)
         self.addLink(s1, orch)
 
         # Add dynamic UEs
@@ -48,6 +57,7 @@ def deploy_http_services(net):
     vbbu2 = net.get('vbbu2')
     rrh = net.get('rrh')
     orch = net.get('orch')
+    orchestrator.net = net
 
     print("[INFO] Starting vBBU HTTP servers...")
     vbbu1.cmd('python3 vbbu_server.py 8080 &')
@@ -76,7 +86,7 @@ def run():
     net = Mininet(topo=topo, controller=DefaultController,
                   switch=OVSSwitch, link=TCLink, autoSetMacs=True)
     net.start()
-
+    orchestrator.net = net 
     print("\n[INFO] COMIC-RAN HTTP application-layer demo started")
     deploy_http_services(net)
 
