@@ -1,19 +1,11 @@
-UE RELATED
+- Should RRH show value and acks? 
 
-1. UE id retrieval
-2. Log files
-3. Populate UE 
+- Error start
 
-RRH RELATED
-1. Mapping of UEs to vBBUs
-2. Log file
+- Add time to handover
 
-VBBU RELATED
-1. Log files
-2. Capacity calculations 
+- Migrate
 
-OTHERS
-1. Orchestrator
-2. Environment variables?
-3. Random number generation
+- UI (graph)
 
+- dynamic UE
