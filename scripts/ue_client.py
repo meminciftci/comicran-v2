@@ -30,7 +30,6 @@ def log_ue(message):
     line = f"[{timestamp}] {message}"
     with open(log_path, "a") as f:
         f.write(line + "\n")
-    print(line)
 
 # === Entry point ===
 if len(sys.argv) < 2:
@@ -48,40 +47,33 @@ rrh_status = True
 vbbu_status = True
 
 # === UE agent lifecycle ===
+
+
 while True:
-    active_time = random.uniform(10, 30)  # active for 10–30 seconds
-    sleep_time = random.uniform(10, 25)   # inactive for 10–25 seconds
-    session_start = time.time()
+    timestamp = time.strftime("%Y-%m-%d %H:%M:%S")
+    payload = {
+        "ue_id": ue_id,
+        "value": value
+    }
 
-    log_ue(f"[UE{ue_id}] Becoming ACTIVE for {active_time:.1f}s")
+    try:
+        response = requests.get(f"http://{rrh_ip}:8000/", params=payload, timeout=3)
+        rrh_status = True
+        if response.status_code != 200:
+            if vbbu_status:
+                vbbu_status = False
+                log_ue(f"Error: Connected vBBU unavailable. Value: {value}")
+                raise Exception(f"Unexpected status code: {response.status_code}")
+        result = response.json()
+        acknowledgement = result.get("acknowledgement")
+        vbbu_id = result.get("vbbu_id")
+        log_ue(f"    [RESPONSE] Ack#{value} from vBBU{vbbu_id} to UE{ue_id}")
+        value += 1
 
-    while time.time() - session_start < active_time:
-        timestamp = time.strftime("%Y-%m-%d %H:%M:%S")
-        payload = {
-            "ue_id": ue_id,
-            "value": value
-        }
+    except Exception as e:
+        if rrh_status:
+            log_ue(f"Error: RRH unreachable. Value: {value}")
+            rrh_status = False
 
-        try:
-            response = requests.get(f"http://{rrh_ip}:8000/", params=payload, timeout=3)
-            rrh_status = True
-            if response.status_code != 200:
-                if vbbu_status:
-                    vbbu_status = False
-                    log_ue(f"Error: Connected vBBU unavailable. Value: {value}")
-                    raise Exception(f"Unexpected status code: {response.status_code}")
-            result = response.json()
-            acknowledgement = result.get("acknowledgement")
-            vbbu_id = result.get("vbbu_id")
-            log_ue(f"UE{ue_id} Ack#{value} from vBBU {vbbu_id}: {acknowledgement}")
-            value += 1
+    time.sleep(random.uniform(1.5, 3.0))
 
-        except Exception as e:
-            if rrh_status:
-                log_ue(f"Error: RRH unreachable. Value: {value}")
-                rrh_status = False
-
-        time.sleep(random.uniform(1.5, 3.0))
-
-    log_ue(f"[UE{ue_id}] Going to SLEEP for {sleep_time:.1f}s")
-    time.sleep(sleep_time)

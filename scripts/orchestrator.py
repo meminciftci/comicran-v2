@@ -14,8 +14,6 @@ ue_assignments = {}
 vbbu_loads = {}
 redirected_vbbus = {}
 
-CPU_OVERLOAD = 8
-MAX_CONNECTIONS = 10
 
 VBBU_COUNTER = 3  # for naming new vBBUs
 
@@ -215,7 +213,7 @@ def cli_loop():
                 else:
                     for ue, vbbu in ue_assignments.items():
                         vbbu_str = f"{vbbu['vbbu_ip']}:{vbbu['vbbu_port']}"
-                        print(f"{ue} → {vbbu_str}")
+                        print(f"{ue} → vBBU{vbbu_str.split(":")[0].split(".")[-1][-1]}")
 
             elif raw == "show loads":
                 for ip, info in vbbu_loads.items():

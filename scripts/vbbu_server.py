@@ -26,7 +26,6 @@ def log_vbbu(msg):
     timestamp = time.strftime('%Y-%m-%d %H:%M:%S')
     with open(vbbu_log_path, "a") as f:
         f.write(f"[{timestamp}] {msg}\n")
-    print(f"[{timestamp}] {msg}")
 
 class Handler(BaseHTTPRequestHandler):
     def do_GET(self):
@@ -44,7 +43,7 @@ class Handler(BaseHTTPRequestHandler):
             "vbbu_id": vbbu_id[-1],
             "acknowledgement": f"Acknowledgement #{value}"
         })
-        log_line = f"[{timestamp}] Value {value}: Recieved from UE #{ue_id}"
+        log_line = f"    [REQUEST] Value {value} Recieved from UE{ue_id}"
         log_vbbu(log_line)
 
         self.send_response(200)
@@ -60,7 +59,7 @@ def report_load_periodically():
         try:
             now = time.time()
             with lock:
-                ue_last_seen_filtered = {k: t for k, t in ue_last_seen.items() if now - t < 15}
+                ue_last_seen_filtered = {k: t for k, t in ue_last_seen.items() if now - t < 5}
                 ue_last_seen.clear()
                 ue_last_seen.update(ue_last_seen_filtered)
                 ue_count = len(ue_last_seen)

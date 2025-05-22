@@ -36,9 +36,9 @@ class ProxyHandler(BaseHTTPRequestHandler):
             new_vbbu = redirected_vbbus[target]
             ue_target[client_ip] = new_vbbu
             target = new_vbbu
-            log_rrh(f"[REDIRECT] {client_ip} was mapped to deprecated {target}, now → {new_vbbu}")
+            log_rrh(f"[REDIRECT] UE{client_ip.split(".")[-1]} was mapped to deprecated vBBU{target.split(":")[0][-1]}, now redirected to {new_vbbu}")
 
-        log_rrh(f"Received request from {client_ip} → forwarding to {target}")
+        log_rrh(f"    [REQUEST] from UE{client_ip.split(".")[-1]} forwarding to vBBU{target.split(":")[0][-1]}")
 
         if not target:
             self.send_response(403)
@@ -49,7 +49,7 @@ class ProxyHandler(BaseHTTPRequestHandler):
         url = f"http://{target}{self.path}"
         try:
             resp = requests.get(url, timeout=3)
-            log_rrh(f"Response from {target}: {resp.text.strip()}")
+            log_rrh(f"    [RESPONSE] from vBBU{target.split(":")[0][-1]} forwarding to UE{client_ip.split(".")[-1]}")
             self.send_response(resp.status_code)
             self.end_headers()
             self.wfile.write(resp.content)
@@ -102,7 +102,7 @@ def handle_orchestrator_command(conn, addr):
 
             new_target = f"{new_ip}:{new_port}"
             ue_target[ue_ip] = new_target
-            log_rrh(f"[ORCH] Handover: {ue_id} ({ue_ip}) → {new_target}")
+            log_rrh(f"[ORCH] Handover: {ue_id} → vBBU{new_target.split(":")[0][-1]}")
 
             conn.sendall(json.dumps({
                 "status": "ok",
