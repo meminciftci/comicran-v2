@@ -7,7 +7,7 @@ from mininet.cli import CLI
 from mininet.link import TCLink
 from mininet.log import setLogLevel
 import os
-import orchestrator
+
 
 UE_COUNT = 10  # total UEs
 
@@ -19,17 +19,17 @@ class ComicranTopo(Topo):
         rrh = self.addHost('rrh', ip='10.0.0.100')
         orch = self.addHost('orch', ip='10.0.0.200')
 
-        vbbu_ips = {
-            "vbbu1": "10.0.0.201",
-            "vbbu2": "10.0.0.202",
-            "vbbu3": "10.0.0.203",
-            "vbbu4": "10.0.0.204",
-            "vbbu5": "10.0.0.205"
+        self.vbbu_config = {
+            "vbbu1": {"ip": "10.0.0.201", "port": 8080},
+            "vbbu2": {"ip": "10.0.0.202", "port": 8081},
+            "vbbu3": {"ip": "10.0.0.203", "port": 8082}, 
+            "vbbu4": {"ip": "10.0.0.204", "port": 8083}, 
+            "vbbu5": {"ip": "10.0.0.205", "port": 8084}, 
         }
 
-        for name, ip in vbbu_ips.items():
-            vbbu = self.addHost(name, ip=ip)
-            self.addLink(s1, vbbu)
+        for name, info in self.vbbu_config.items():
+            vbbu_host = self.addHost(name, ip=info["ip"])
+            self.addLink(s1, vbbu_host)
 
         self.addLink(s1, rrh)
         self.addLink(s1, orch)
@@ -52,16 +52,16 @@ def clear_previous_logs():
     else:
         os.makedirs(output_dir)
 
-def deploy_http_services(net):
-    vbbu1 = net.get('vbbu1')
-    vbbu2 = net.get('vbbu2')
+def deploy_http_services(net, topo_vbbu_config):
+
     rrh = net.get('rrh')
     orch = net.get('orch')
-    orchestrator.net = net
+
 
     print("[INFO] Starting vBBU HTTP servers...")
-    vbbu1.cmd('python3 vbbu_server.py 8080 &')
-    vbbu2.cmd('python3 vbbu_server.py 8081 &')
+    for name, info in topo_vbbu_config.items():
+        vbbu_node = net.get(name)
+        vbbu_node.cmd(f'python3 vbbu_server.py {info["port"]} &')
 
     print("[INFO] Starting RRH HTTP proxy with dynamic routing control...")
     rrh.cmd('python3 rrh_proxy.py &')
@@ -86,9 +86,9 @@ def run():
     net = Mininet(topo=topo, controller=DefaultController,
                   switch=OVSSwitch, link=TCLink, autoSetMacs=True)
     net.start()
-    orchestrator.net = net 
+
     print("\n[INFO] COMIC-RAN HTTP application-layer demo started")
-    deploy_http_services(net)
+    deploy_http_services(net, topo.vbbu_config)
 
     CLI(net)
     net.stop()
