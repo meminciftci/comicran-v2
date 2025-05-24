@@ -69,6 +69,9 @@ class OrchClient:
         r = requests.get(f'http://{ip}:{port}/control?deactivate=1', timeout=1)
         return r.status_code == 200
     
+    def get_vbbus(self) -> dict:
+        return self._send({"command": "get_vbbus"})
+    
 
 
 class DummyConn:
@@ -116,6 +119,21 @@ def handle_client(conn, addr):
             log_orch(f"[ASSIGN] Received {count} UE assignments from RRH")
         elif cmd == 'migrate':
             handle_full_migration(message, conn)
+        elif cmd == 'get_vbbus':
+            vbbus = {}
+            for name, info in PREDEFINED_VBBUS.items():
+                ip   = info['ip']
+                port = info['port']
+                active = info.get('is_active', False)
+                load_info = vbbu_loads.get(ip, {})
+                vbbus[name] = {
+                    'ip': ip,
+                    'port': port,
+                    'is_active': active,
+                    'cpu': load_info.get('cpu', 0),
+                    'connections': load_info.get('connections', 0)
+                }
+            conn.sendall(json.dumps(vbbus).encode())
         else:
             if conn: conn.sendall(b"[ERROR] Unknown command.\n")
     except Exception as e:
