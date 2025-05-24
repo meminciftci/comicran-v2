@@ -9,3 +9,5 @@
 - UI (graph)
 
 - dynamic UE
+
+- Redirection rules should be reviewed
