@@ -29,6 +29,47 @@ orch_log_path = "../outputs/orch_output.txt"
 if not os.path.exists("../outputs"):
     os.makedirs("../outputs")
 
+class OrchClient:
+    def __init__(self, host='10.0.0.200', port=9100, timeout=2):
+        self.host = host
+        self.port = port
+        self.timeout = timeout
+
+    def _send(self, msg: dict) -> dict:
+
+        with socket.create_connection((self.host, self.port), timeout=self.timeout) as sock:
+            sock.sendall(json.dumps(msg).encode())
+            data = sock.recv(65536)
+        return json.loads(data.decode())
+
+    def get_assignments(self) -> dict:
+        return self._send({"command": "get_assignments"})
+
+    def get_loads(self) -> dict:
+        return self._send({"command": "get_loads"})
+
+    def handover(self, ue_id: str, new_ip: str, new_port: int) -> dict:
+        return self._send({
+            "command": "handover",
+            "ue_id": ue_id,
+            "new_vbbu_ip": new_ip,
+            "new_vbbu_port": new_port
+        })
+
+    def migrate(self, from_vbbu: str) -> dict:
+        return self._send({
+            "command": "migrate",
+            "from_vbbu": from_vbbu
+        })
+    def activate_vbbu(self, ip: str, port: int) -> bool:
+        r = requests.get(f'http://{ip}:{port}/control?activate=1', timeout=1)
+        return r.status_code == 200
+
+    def deactivate_vbbu(self, ip: str, port: int) -> bool:
+        r = requests.get(f'http://{ip}:{port}/control?deactivate=1', timeout=1)
+        return r.status_code == 200
+    
+
 
 class DummyConn:
     def sendall(self, data):
@@ -210,7 +251,6 @@ def start_orchestrator():
         log_orch(f"[ORCH_SERVER] Listening on {ORCH_HOST}:{ORCH_PORT}")
         while True:
             conn, addr = server.accept()
-            log_orch(f"[ORCH_SERVER] Accepted connection from {addr}")
             threading.Thread(target=handle_client, args=(conn, addr), daemon=True).start()
 
 

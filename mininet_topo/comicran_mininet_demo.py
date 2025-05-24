@@ -7,6 +7,7 @@ from mininet.cli import CLI
 from mininet.link import TCLink
 from mininet.log import setLogLevel
 import os
+import time
 
 
 UE_COUNT = 10  # total UEs
@@ -73,6 +74,29 @@ def deploy_http_services(net, topo_vbbu_config):
     print("[INFO] Opening orchestrator terminal...")
     orch.cmd('xterm -T orchestrator -e python3 orchestrator.py &')
 
+    time.sleep(5)
+    
+    orch.cmd(
+    'xterm -hold -T DashboardServer -geometry 80x24+100+100 -e '
+    'bash -lc "'
+      'source dashboard-venv/bin/activate && '
+      'python3 app.py'
+    '" &'
+    )
+
+    orch.cmd('sleep 2')
+
+    orch.cmd(
+        'xterm -hold -T DashboardBrowser -geometry 100x30+500+100 -e '
+        'bash -lc "'
+          'export DISPLAY=:0; '
+          'export XAUTHORITY=/root/.Xauthority; '
+          'MOZ_ALLOW_ROOT=1 firefox http://localhost:8085'
+        '" &'
+    )
+
+
+
     print(f"[INFO] Launching {UE_COUNT} dynamic UE agents...")
     for i in range(1, UE_COUNT + 1):
         ue = net.get(f"ue{i}")
@@ -81,7 +105,7 @@ def deploy_http_services(net, topo_vbbu_config):
     print("\n[INFO] ✅ All components launched")
     print("[INFO] 🧪 Dynamic UE traffic is active")
     print("[INFO] 🛰️  Use orchestrator to issue `handover` or `migrate` commands")
-    print("[INFO] 🔍 Logs are in /tmp/ and ../outputs/")
+    print("[INFO] 🔍 Logs are in ../outputs/")
 
 def run():
     clear_previous_logs()
