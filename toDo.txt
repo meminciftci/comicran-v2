@@ -11,3 +11,5 @@
 - dynamic UE
 
 - Redirection rules should be reviewed
+
+- Dashboard chart deactivated vBBUs should disappear
