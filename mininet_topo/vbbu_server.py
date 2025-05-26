@@ -81,7 +81,6 @@ class Handler(BaseHTTPRequestHandler):
                 return
 
         # Normal UE GET handling
-        timestamp = time.strftime("%Y-%m-%d %H:%M:%S")
         query = urllib.parse.urlparse(self.path).query
         params = urllib.parse.parse_qs(query)
         value = int(params.get('value', [0])[0])

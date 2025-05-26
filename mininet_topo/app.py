@@ -212,4 +212,4 @@ ui.label().bind_text_from(
 ).classes('q-mt-md')
 
 # ─── 8) Launch the Dashboard ─────────────────────────────────────────────────
-ui.run(title='COMIC-RAN Dashboard', port=8085)
+ui.run(host='0.0.0.0', title='COMIC-RAN Dashboard', port=8085)

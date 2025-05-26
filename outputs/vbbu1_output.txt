@@ -1,0 +1,73 @@
+[2025-05-26 19:41:02] vBBU server running on port 8080 as vbbu1
+[2025-05-26 19:41:02] [ERROR] Failed to report load: [Errno 111] Connection refused
+[2025-05-26 19:41:07] [REPORT] Sent load to orchestrator: 0 UEs
+[2025-05-26 19:41:09]     [REQUEST] Value 0 received from UE1
+[2025-05-26 19:41:09]     [REQUEST] Value 0 received from UE9
+[2025-05-26 19:41:09]     [REQUEST] Value 0 received from UE2
+[2025-05-26 19:41:09]     [REQUEST] Value 0 received from UE3
+[2025-05-26 19:41:11]     [REQUEST] Value 1 received from UE3
+[2025-05-26 19:41:11]     [REQUEST] Value 1 received from UE9
+[2025-05-26 19:41:12]     [REQUEST] Value 1 received from UE1
+[2025-05-26 19:41:12] [REPORT] Sent load to orchestrator: 4 UEs
+[2025-05-26 19:41:12]     [REQUEST] Value 1 received from UE2
+[2025-05-26 19:41:14]     [REQUEST] Value 2 received from UE3
+[2025-05-26 19:41:14]     [REQUEST] Value 2 received from UE9
+[2025-05-26 19:41:14]     [REQUEST] Value 2 received from UE1
+[2025-05-26 19:41:15]     [REQUEST] Value 2 received from UE2
+[2025-05-26 19:41:15]     [REQUEST] Value 3 received from UE3
+[2025-05-26 19:41:16]     [REQUEST] Value 3 received from UE9
+[2025-05-26 19:41:16]     [REQUEST] Value 3 received from UE1
+[2025-05-26 19:41:17]     [REQUEST] Value 3 received from UE2
+[2025-05-26 19:41:17] [REPORT] Sent load to orchestrator: 4 UEs
+[2025-05-26 19:41:18]     [REQUEST] Value 4 received from UE3
+[2025-05-26 19:41:18]     [REQUEST] Value 4 received from UE9
+[2025-05-26 19:41:18]     [REQUEST] Value 4 received from UE1
+[2025-05-26 19:41:20]     [REQUEST] Value 4 received from UE2
+[2025-05-26 19:41:20]     [REQUEST] Value 5 received from UE3
+[2025-05-26 19:41:20]     [REQUEST] Value 5 received from UE1
+[2025-05-26 19:41:21]     [REQUEST] Value 5 received from UE9
+[2025-05-26 19:41:22] [REPORT] Sent load to orchestrator: 4 UEs
+[2025-05-26 19:41:22]     [REQUEST] Value 6 received from UE3
+[2025-05-26 19:41:23]     [REQUEST] Value 6 received from UE9
+[2025-05-26 19:41:23]     [REQUEST] Value 5 received from UE2
+[2025-05-26 19:41:23]     [REQUEST] Value 6 received from UE1
+[2025-05-26 19:41:24]     [REQUEST] Value 7 received from UE9
+[2025-05-26 19:41:25]     [REQUEST] Value 7 received from UE3
+[2025-05-26 19:41:25]     [REQUEST] Value 6 received from UE2
+[2025-05-26 19:41:25]     [REQUEST] Value 7 received from UE1
+[2025-05-26 19:41:27]     [REQUEST] Value 8 received from UE9
+[2025-05-26 19:41:27] [REPORT] Sent load to orchestrator: 4 UEs
+[2025-05-26 19:41:27]     [REQUEST] Value 8 received from UE3
+[2025-05-26 19:41:27]     [REQUEST] Value 7 received from UE2
+[2025-05-26 19:41:28]     [REQUEST] Value 8 received from UE1
+[2025-05-26 19:41:29]     [REQUEST] Value 9 received from UE9
+[2025-05-26 19:41:29]     [REQUEST] Value 9 received from UE3
+[2025-05-26 19:41:30]     [REQUEST] Value 8 received from UE2
+[2025-05-26 19:41:30]     [REQUEST] Value 9 received from UE1
+[2025-05-26 19:41:31]     [REQUEST] Value 10 received from UE9
+[2025-05-26 19:41:32]     [REQUEST] Value 10 received from UE3
+[2025-05-26 19:41:32]     [REQUEST] Value 10 received from UE1
+[2025-05-26 19:41:32] [REPORT] Sent load to orchestrator: 4 UEs
+[2025-05-26 19:41:33]     [REQUEST] Value 9 received from UE2
+[2025-05-26 19:41:33]     [REQUEST] Value 11 received from UE9
+[2025-05-26 19:41:34]     [REQUEST] Value 11 received from UE3
+[2025-05-26 19:41:34]     [REQUEST] Value 11 received from UE1
+[2025-05-26 19:41:34]     [REQUEST] Value 10 received from UE2
+[2025-05-26 19:41:36]     [REQUEST] Value 12 received from UE3
+[2025-05-26 19:41:36]     [REQUEST] Value 12 received from UE9
+[2025-05-26 19:41:37]     [REQUEST] Value 11 received from UE2
+[2025-05-26 19:41:37] [REPORT] Sent load to orchestrator: 4 UEs
+[2025-05-26 19:41:38]     [REQUEST] Value 13 received from UE9
+[2025-05-26 19:41:38]     [REQUEST] Value 13 received from UE3
+[2025-05-26 19:41:39]     [REQUEST] Value 12 received from UE2
+[2025-05-26 19:41:40]     [REQUEST] Value 14 received from UE9
+[2025-05-26 19:41:41]     [REQUEST] Value 14 received from UE3
+[2025-05-26 19:41:41]     [REQUEST] Value 15 received from UE9
+[2025-05-26 19:41:41]     [REQUEST] Value 13 received from UE2
+[2025-05-26 19:41:42] [REPORT] Sent load to orchestrator: 3 UEs
+[2025-05-26 19:41:47] [REPORT] Sent load to orchestrator: 0 UEs
+[2025-05-26 19:41:52] [REPORT] Sent load to orchestrator: 0 UEs
+[2025-05-26 19:41:57] [REPORT] Sent load to orchestrator: 0 UEs
+[2025-05-26 19:42:02] [REPORT] Sent load to orchestrator: 0 UEs
+[2025-05-26 19:42:07] [REPORT] Sent load to orchestrator: 0 UEs
+[2025-05-26 19:42:11] [CONTROL] Deactivation command received; shutting down service.

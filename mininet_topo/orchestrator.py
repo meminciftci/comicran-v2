@@ -72,6 +72,8 @@ class OrchClient:
     def get_vbbus(self) -> dict:
         return self._send({"command": "get_vbbus"})
     
+     
+    
 
 
 class DummyConn:
