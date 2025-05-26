@@ -11,10 +11,11 @@ import random
 # === Initial Setup ===
 vbbu_choices = ["10.0.0.201:8080", "10.0.0.202:8081"]
 ue_target = {
-    f"10.0.0.{i}": random.choice(vbbu_choices)
+    f"10.0.0.{i}": "10.0.0.201:8080"
     for i in range(1, 11)
 }
 redirected_vbbus = {}  # e.g., "10.0.0.201:8080" → "10.0.0.202:8082"
+active_ues = set()  # Track which UEs are currently active
 
 log_path = "../outputs/rrh_output.txt"
 os.makedirs(os.path.dirname(log_path), exist_ok=True)
@@ -53,11 +54,15 @@ class ProxyHandler(BaseHTTPRequestHandler):
             self.send_response(resp.status_code)
             self.end_headers()
             self.wfile.write(resp.content)
+            # Mark UE as active when it successfully communicates
+            active_ues.add(client_ip)
         except Exception as e:
             self.send_response(502)
             self.end_headers()
             self.wfile.write(f"Forwarding failed: {e}".encode())
             log_rrh(f"[ERROR] Failed forwarding to {target}: {e}")
+            # Mark UE as inactive on communication failure
+            active_ues.discard(client_ip)
 
     def log_message(self, format, *args):
         return
@@ -102,6 +107,7 @@ def handle_orchestrator_command(conn, addr):
 
             new_target = f"{new_ip}:{new_port}"
             ue_target[ue_ip] = new_target
+            active_ues.add(ue_ip)  # Mark UE as active
             log_rrh(f"[ORCH] Handover: {ue_id} → vBBU{new_target.split(":")[0][-1]}")
 
             conn.sendall(json.dumps({
@@ -146,13 +152,14 @@ def report_assignments_periodically():
         try:
             assignments = []
             for ip, vbbu in ue_target.items():
-                ue_id = f"UE{ip.split('.')[-1]}"
-                vbbu_ip, vbbu_port = vbbu.split(":")
-                assignments.append({
-                    "ue_id": ue_id,
-                    "vbbu_ip": vbbu_ip,
-                    "vbbu_port": int(vbbu_port)
-                })
+                if ip in active_ues:  # Only report active UEs
+                    ue_id = f"UE{ip.split('.')[-1]}"
+                    vbbu_ip, vbbu_port = vbbu.split(":")
+                    assignments.append({
+                        "ue_id": ue_id,
+                        "vbbu_ip": vbbu_ip,
+                        "vbbu_port": int(vbbu_port)
+                    })
 
             message = {
                 "command": "report_assignments",
@@ -162,12 +169,12 @@ def report_assignments_periodically():
             with socket.create_connection((ORCH_IP, ORCH_PORT), timeout=3) as sock:
                 sock.sendall(json.dumps(message).encode())
                 _ = sock.recv(1024)  # optional response
-            log_rrh(f"[REPORT] Sent {len(assignments)} UE assignments to orchestrator")
+            log_rrh(f"[REPORT] Sent {len(assignments)} active UE assignments to orchestrator")
 
         except Exception as e:
             log_rrh(f"[ERROR] Failed to report assignments: {e}")
 
-        time.sleep(10)  # every 10 secon
+        time.sleep(10)  # every 10 seconds
 
 # === Main Entry ===
 if __name__ == '__main__':

@@ -6,6 +6,7 @@ from mininet.node import OVSSwitch, DefaultController
 from mininet.cli import CLI
 from mininet.link import TCLink
 from mininet.log import setLogLevel
+import time
 import os
 
 UE_COUNT = 10  # total UEs
@@ -59,15 +60,28 @@ def deploy_http_services(net):
     print("[INFO] Opening orchestrator terminal...")
     orch.cmd('xterm -T orchestrator -e python3 orchestrator.py &')
 
+    print("[INFO] Opening user manager terminal...")
+    orch.cmd('xterm -T user_manager -e python3 user_manager.py &')
+
+    time.sleep(2)
+
     print(f"[INFO] Launching {UE_COUNT} dynamic UE agents...")
     for i in range(1, UE_COUNT + 1):
         ue = net.get(f"ue{i}")
         ue.cmd(f'python3 ue_client.py 10.0.0.100 &')
 
     print("\n[INFO] ✅ All components launched")
-    print("[INFO] 🧪 Dynamic UE traffic is active")
+    print("[INFO] 🧪 Use user_manager to add/remove UEs")
     print("[INFO] 🛰️  Use orchestrator to issue `handover` or `migrate` commands")
     print("[INFO] 🔍 Logs are in /tmp/ and ../outputs/")
+
+def cleanup():
+    print("[INFO] Cleaning up processes...")
+    # Kill orchestrator process
+    os.system('pkill -f "python3 orchestrator.py"')
+    # Kill user manager process
+    os.system('pkill -f "python3 user_manager.py"')
+    print("[INFO] All processes terminated")
 
 def run():
     clear_previous_logs()
@@ -80,8 +94,11 @@ def run():
     print("\n[INFO] COMIC-RAN HTTP application-layer demo started")
     deploy_http_services(net)
 
-    CLI(net)
-    net.stop()
+    try:
+        CLI(net)
+    finally:
+        cleanup()
+        net.stop()
 
 if __name__ == '__main__':
     setLogLevel('info')
