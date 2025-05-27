@@ -5,6 +5,7 @@ import time
 import random
 import os
 import requests
+import subprocess
 
 ORCH_HOST = '0.0.0.0'
 ORCH_PORT = 9100
@@ -28,6 +29,12 @@ NEXT_VBBU_INDEX = 3
 orch_log_path = "../outputs/orch_output.txt"
 if not os.path.exists("../outputs"):
     os.makedirs("../outputs")
+
+# === Configuration ===
+VALID_UE_IDS = set(range(1, 11))
+UE_PORT = 5000
+# Track UE state: 'rrh' or 'disconnected'
+ue_states = {uid: 'disconnected' for uid in VALID_UE_IDS}
 
 class OrchClient:
     def __init__(self, host='10.0.0.200', port=9100, timeout=2):
@@ -273,7 +280,66 @@ def start_orchestrator():
             conn, addr = server.accept()
             threading.Thread(target=handle_client, args=(conn, addr), daemon=True).start()
 
+def send_ue_cmd(uid: int, cmd: str):
+    """Send GET request to the UE's management endpoint."""
+    ue_ip = f'10.0.0.{uid}'
+    url = f'http://{ue_ip}:{UE_PORT}/{cmd}'
+    try:
+        resp = requests.get(url, timeout=2)
+        if resp.status_code == 200:
+            log_orch(f"[UE_MANAGER] UE{uid} acknowledged '{cmd}'.")
+            return True
+        else:
+            log_orch(f"[UE_MANAGER_ERROR] UE{uid} returned status {resp.status_code} for '{cmd}'")
+    except requests.RequestException as e:
+        log_orch(f"[UE_MANAGER_ERROR] Failed to reach UE{uid} at {url}: {e}")
+    return False
 
+def add_ue(uid: int):
+    if ue_states[uid] == 'connected':
+        log_orch(f"[UE_MANAGER_WARN] UE{uid} already on RRH.")
+        print(f"[WARN] UE{uid} is already connected to RRH.")
+        return False
+    
+    # Send 'add' command to UE's terminal
+    if send_ue_cmd(uid, 'add'):
+        ue_states[uid] = 'connected'
+        print(f"[SUCCESS] Command sent to connect UE{uid} to RRH.")
+        return True
+    
+    print(f"[FAILED] Failed to send connect command to UE{uid}.")
+    return False
+
+def remove_ue(uid: int):
+    if ue_states[uid] == 'disconnected':
+        log_orch(f"[UE_MANAGER_WARN] UE{uid} already disconnected.")
+        print(f"[WARN] UE{uid} is already disconnected.")
+        return False
+    
+    # Send 'remove' command to UE's terminal
+    if send_ue_cmd(uid, 'remove'):
+        ue_states[uid] = 'disconnected'
+        print(f"[SUCCESS] Command sent to disconnect UE{uid} from RRH.")
+        return True
+    
+    print(f"[FAILED] Failed to send disconnect command to UE{uid}.")
+    return False
+
+def process_multiple_ues(cmd: str, uids: list[int]):
+    """Process multiple user IDs for add or remove command."""
+    for uid in uids:
+        if cmd == 'add':
+            add_ue(uid)
+        else:
+            remove_ue(uid)
+
+def list_ue_status():
+    print("\nCurrent UE Status:")
+    print("-----------------")
+    for uid in sorted(VALID_UE_IDS):
+        status = "Connected" if ue_states[uid] == 'connected' else "Disconnected"
+        print(f"UE{uid}: {status}")
+    print("-----------------")
 
 def cli_loop():
     cli_vbbu_map_to_fqdn = {
@@ -285,6 +351,49 @@ def cli_loop():
         try:
             raw_input_str = input("Orchestrator> ").strip()
 
+            # UE Management Commands
+            if raw_input_str.startswith("ue add"):
+                parts = raw_input_str.split()
+                if len(parts) < 3:
+                    print("[ERROR] Usage: ue add <id> [id2 id3 ...]")
+                    continue
+                try:
+                    uids = [int(uid) for uid in parts[2:]]
+                    invalid_ids = [uid for uid in uids if uid not in VALID_UE_IDS]
+                    if invalid_ids:
+                        print(f"[ERROR] Invalid UE IDs: {invalid_ids}. Use 1–10.")
+                        continue
+                    process_multiple_ues('add', uids)
+                except ValueError:
+                    print("[ERROR] Invalid UE ID format. Use numbers 1-10.")
+                continue
+
+            if raw_input_str.startswith("ue remove"):
+                parts = raw_input_str.split()
+                if len(parts) < 3:
+                    print("[ERROR] Usage: ue remove <id> [id2 id3 ...] or ue remove all")
+                    continue
+                
+                if parts[2].lower() == 'all':
+                    process_multiple_ues('remove', list(VALID_UE_IDS))
+                    continue
+                
+                try:
+                    uids = [int(uid) for uid in parts[2:]]
+                    invalid_ids = [uid for uid in uids if uid not in VALID_UE_IDS]
+                    if invalid_ids:
+                        print(f"[ERROR] Invalid UE IDs: {invalid_ids}. Use 1–10.")
+                        continue
+                    process_multiple_ues('remove', uids)
+                except ValueError:
+                    print("[ERROR] Invalid UE ID format. Use numbers 1-10.")
+                continue
+
+            if raw_input_str == "ue list":
+                list_ue_status()
+                continue
+
+            # Existing commands...
             if raw_input_str.startswith("handover"):
                 parts = raw_input_str.split()
                 if len(parts) != 3:
@@ -439,13 +548,19 @@ def cli_loop():
 
             elif raw_input_str == "help":
                 print("Available Commands:")
-                print("  handover <UE_ID> <TARGET_VBBU_NAME>  - Manually handover a UE (e.g., handover UE1 vbbu2)")
-                print("  migrate <SOURCE_VBBU_NAME>         - Migrate UEs from a source vBBU to a new one (e.g., migrate vbbu1)")
-                print("  show assignments                   - Show current UE to vBBU assignments")
-                print("  show loads                         - Show reported loads from vBBUs")
-                print("  show vbbus                         - Show status of predefined vBBUs")
-                print("  help                               - Show this help message")
-                print("  quit / exit                        - Exit the orchestrator CLI")
+                print("  UE Management:")
+                print("    ue add <id> [id2 id3 ...]    - Add UE(s) to RRH")
+                print("    ue remove <id> [id2 id3 ...] - Remove UE(s) from RRH")
+                print("    ue remove all                - Remove all UEs from RRH")
+                print("    ue list                      - Show UE connection status")
+                print("  vBBU Management:")
+                print("    handover <UE_ID> <TARGET_VBBU_NAME>  - Manually handover a UE")
+                print("    migrate <SOURCE_VBBU_NAME>         - Migrate UEs from a source vBBU")
+                print("    show assignments                   - Show current UE to vBBU assignments")
+                print("    show loads                         - Show reported loads from vBBUs")
+                print("    show vbbus                         - Show status of predefined vBBUs")
+                print("    help                               - Show this help message")
+                print("    quit / exit                        - Exit the orchestrator CLI")
             elif raw_input_str in ["quit", "exit"]:
                 print("Exiting orchestrator CLI.")
                 break

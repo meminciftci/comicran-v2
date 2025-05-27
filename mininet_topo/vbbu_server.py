@@ -43,7 +43,6 @@ def log_vbbu(msg):
     timestamp = time.strftime('%Y-%m-%d %H:%M:%S')
     with open(vbbu_log_path, "a") as f:
         f.write(f"[{timestamp}] {msg}\n")
-    print(f"[{timestamp}] {msg}")
 
 class Handler(BaseHTTPRequestHandler):
     def do_GET(self):

@@ -9,9 +9,9 @@ import json
 import random
 
 # === Initial Setup ===
-vbbu_choices = ["10.0.0.201:8080", "10.0.0.202:8081"]
+vbbu_choices = ["10.0.0.201:8080", "10.0.0.203:8082"]
 ue_target = {
-    f"10.0.0.{i}": random.choice(vbbu_choices)
+    f"10.0.0.{i}": "10.0.0.201:8080"
     for i in range(1, 11)
 }
 redirected_vbbus = {}  # e.g., "10.0.0.201:8080" → "10.0.0.202:8082"

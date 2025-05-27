@@ -107,6 +107,13 @@ def deploy_http_services(net, topo_vbbu_config):
     print("[INFO] 🛰️  Use orchestrator to issue `handover` or `migrate` commands")
     print("[INFO] 🔍 Logs are in ../outputs/")
 
+
+def cleanup():
+
+    print("[INFO] Cleaning up processes...")
+    os.system('pkill -f "python3 orchestrator.py"')
+    print("[INFO] All processes terminated")
+
 def run():
     clear_previous_logs()
     
@@ -118,8 +125,11 @@ def run():
     print("\n[INFO] COMIC-RAN HTTP application-layer demo started")
     deploy_http_services(net, topo.vbbu_config)
 
-    CLI(net)
-    net.stop()
+    try:
+        CLI(net)
+    finally:
+        cleanup()
+        net.stop()
 
 if __name__ == '__main__':
     setLogLevel('info')
