@@ -9,12 +9,18 @@ import json
 import random
 
 # === Initial Setup ===
-vbbu_choices = ["10.0.0.201:8080", "10.0.0.203:8082"]
+vbbu_choices = ["10.0.0.201:8080", "10.0.0.202:8081"]
 ue_target = {
     f"10.0.0.{i}": "10.0.0.201:8080"
     for i in range(1, 11)
 }
 redirected_vbbus = {}  # e.g., "10.0.0.201:8080" → "10.0.0.202:8082"
+
+# Track UE connection status
+ue_connection_status = {
+    f"10.0.0.{i}": "disconnected"
+    for i in range(1, 11)
+}
 
 log_path = "../outputs/rrh_output.txt"
 os.makedirs(os.path.dirname(log_path), exist_ok=True)
@@ -50,13 +56,14 @@ class ProxyHandler(BaseHTTPRequestHandler):
             target = old_target
 
         # Log exactly one line showing where we actually forward
-        log_rrh(f"    [REQUEST] UE{ue_id} → forwarding to vBBU{target.split(':')[0].split('.')[-1][-1]} ({target})")
+        vBBU_id = '1' if target.split(':')[0].split('.')[-1][-1] == '1' else '1-prime'
+        log_rrh(f"    [REQUEST] UE{ue_id} → forwarding to vBBU{vBBU_id} ({target})")
 
         # Perform the HTTP GET
         url = f"http://{target}{self.path}"
         try:
             resp = requests.get(url, timeout=3)
-            log_rrh(f"    [RESPONSE] vBBU{target.split(':')[0].split('.')[-1][-1]} → UE{ue_id} ({resp.status_code})")
+            log_rrh(f"    [RESPONSE] vBBU{vBBU_id} → UE{ue_id} ({resp.status_code})")
             self.send_response(resp.status_code)
             self.end_headers()
             self.wfile.write(resp.content)
@@ -109,7 +116,7 @@ def handle_orchestrator_command(conn, addr):
 
             new_target = f"{new_ip}:{new_port}"
             ue_target[ue_ip] = new_target
-            log_rrh(f"[ORCH] Handover: {ue_id} → vBBU{new_target.split(":")[0][-1]}")
+            log_rrh(f"[ORCH] Handover: {ue_id} → vBBU1-prime")
 
             conn.sendall(json.dumps({
                 "status": "ok",
@@ -128,6 +135,24 @@ def handle_orchestrator_command(conn, addr):
                 conn.sendall(b"[OK] Redirect rule updated\n")
             else:
                 conn.sendall(b"[ERROR] Missing fields in update_redirect\n")
+        elif cmd == "ue_connect":
+            ue_id = message.get("ue_id")
+            if ue_id.upper().startswith("UE") and ue_id[2:].isdigit():
+                ue_ip = f"10.0.0.{int(ue_id[2:])}"
+                ue_connection_status[ue_ip] = "connected"
+                log_rrh(f"[ORCH] UE{ue_id} connected")
+                conn.sendall(b"[OK] UE connected\n")
+            else:
+                conn.sendall(b"[ERROR] Invalid UE ID\n")
+        elif cmd == "ue_disconnect":
+            ue_id = message.get("ue_id")
+            if ue_id.upper().startswith("UE") and ue_id[2:].isdigit():
+                ue_ip = f"10.0.0.{int(ue_id[2:])}"
+                ue_connection_status[ue_ip] = "disconnected"
+                log_rrh(f"[ORCH] UE{ue_id} disconnected")
+                conn.sendall(b"[OK] UE disconnected\n")
+            else:
+                conn.sendall(b"[ERROR] Invalid UE ID\n")
         else:
             conn.sendall(json.dumps({
                 "status": "error",
@@ -146,8 +171,6 @@ def handle_orchestrator_command(conn, addr):
         conn.close()
 
 def report_assignments_periodically():
-
-
     # send one immediately
     send_assignments()
 
@@ -163,13 +186,15 @@ def send_assignments():
     try:
         assignments = []
         for ip, vbbu in ue_target.items():
-            ue_id = f"UE{ip.split('.')[-1]}"
-            vbbu_ip, vbbu_port = vbbu.split(":")
-            assignments.append({
-                "ue_id": ue_id,
-                "vbbu_ip": vbbu_ip,
-                "vbbu_port": int(vbbu_port)
-            })
+            # Only include connected UEs in assignments
+            if ue_connection_status[ip] == "connected":
+                ue_id = f"UE{ip.split('.')[-1]}"
+                vbbu_ip, vbbu_port = vbbu.split(":")
+                assignments.append({
+                    "ue_id": ue_id,
+                    "vbbu_ip": vbbu_ip,
+                    "vbbu_port": int(vbbu_port)
+                })
         message = {"command":"report_assignments",
                    "assignments": assignments}
         with socket.create_connection((ORCH_IP, ORCH_PORT), timeout=3) as sock:
@@ -186,5 +211,6 @@ if __name__ == '__main__':
     print("RRH proxy running on port 8000 (per-UE forwarding)")
     log_rrh("RRH proxy started on port 8000")
     log_rrh(f"Initial UE mapping: {ue_target}")
+    log_rrh(f"Initial UE connection status: {ue_connection_status}")
     server = ThreadingHTTPServer(('', 8000), ProxyHandler)
     server.serve_forever()

@@ -20,10 +20,7 @@ redirected_vbbus = {}
 
 PREDEFINED_VBBUS = {
     "vbbu1": {"ip": "10.0.0.201", "port": 8080, "is_active": True},
-    "vbbu2": {"ip": "10.0.0.202", "port": 8081, "is_active": True},
-    "vbbu3": {"ip": "10.0.0.203", "port": 8082, "is_active": False},
-    "vbbu4": {"ip": "10.0.0.204", "port": 8083, "is_active": False},
-    "vbbu5": {"ip": "10.0.0.205", "port": 8084, "is_active": False},
+    "vbbu2": {"ip": "10.0.0.202", "port": 8081, "is_active": False},
 }
 
 NEXT_VBBU_INDEX = 3
@@ -246,7 +243,7 @@ def handle_full_migration(message, conn):
             log_orch(f"[ERROR] Activate HTTP failed: {e}")
     else:
         pass
-    NEXT_VBBU_INDEX += 1
+    # NEXT_VBBU_INDEX += 1
 
     forward_to_rrh({
         "command": "update_redirect",
@@ -319,6 +316,17 @@ def add_ue(uid: int):
     # Send 'add' command to UE's terminal
     if send_ue_cmd(uid, 'add'):
         ue_states[uid] = 'connected'
+        # Notify RRH about UE connection
+        try:
+            with socket.create_connection((RRH_CONTROL_IP, RRH_CONTROL_PORT), timeout=2) as sock:
+                sock.sendall(json.dumps({
+                    "command": "ue_connect",
+                    "ue_id": f"UE{uid}"
+                }).encode())
+                _ = sock.recv(1024)
+            log_orch(f"[UE_MANAGER] Notified RRH about UE{uid} connection")
+        except Exception as e:
+            log_orch(f"[UE_MANAGER_ERROR] Failed to notify RRH about UE{uid} connection: {e}")
         print(f"[SUCCESS] Command sent to connect UE{uid} to RRH.")
         return True
     
@@ -334,6 +342,17 @@ def remove_ue(uid: int):
     # Send 'remove' command to UE's terminal
     if send_ue_cmd(uid, 'remove'):
         ue_states[uid] = 'disconnected'
+        # Notify RRH about UE disconnection
+        try:
+            with socket.create_connection((RRH_CONTROL_IP, RRH_CONTROL_PORT), timeout=2) as sock:
+                sock.sendall(json.dumps({
+                    "command": "ue_disconnect",
+                    "ue_id": f"UE{uid}"
+                }).encode())
+                _ = sock.recv(1024)
+            log_orch(f"[UE_MANAGER] Notified RRH about UE{uid} disconnection")
+        except Exception as e:
+            log_orch(f"[UE_MANAGER_ERROR] Failed to notify RRH about UE{uid} disconnection: {e}")
         print(f"[SUCCESS] Command sent to disconnect UE{uid} from RRH.")
         return True
     

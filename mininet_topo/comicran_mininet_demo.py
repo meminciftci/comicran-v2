@@ -23,9 +23,6 @@ class ComicranTopo(Topo):
         self.vbbu_config = {
             "vbbu1": {"ip": "10.0.0.201", "port": 8080},
             "vbbu2": {"ip": "10.0.0.202", "port": 8081},
-            "vbbu3": {"ip": "10.0.0.203", "port": 8082}, 
-            "vbbu4": {"ip": "10.0.0.204", "port": 8083}, 
-            "vbbu5": {"ip": "10.0.0.205", "port": 8084}, 
         }
 
         for name, info in self.vbbu_config.items():
@@ -37,7 +34,7 @@ class ComicranTopo(Topo):
 
         root = self.addHost(
             'root', 
-            ip='10.0.0.31/24',       # pick a subnet that doesn’t conflict
+            ip='10.0.0.31/24',       # pick a subnet that doesn't conflict
             inNamespace=False
         )
 
@@ -84,32 +81,11 @@ def deploy_http_services(net, topo_vbbu_config):
     # orch.cmd('xterm -T orchestrator -e python3 orchestrator.py &')
     orch.cmd(
         'xterm -T orchestrator -e bash -lc "'
-        'source ../venv/bin/activate && '
+        'source ./venv/bin/activate && '
         'python3 orchestrator.py" &'
     )
-
-    # time.sleep(5)
     
-    # orch.cmd(
-    # 'xterm -hold -T DashboardServer -geometry 80x24+100+100 -e '
-    # 'bash -lc "'
-    #   'source dashboard-venv/bin/activate && '
-    #   'python3 app.py'
-    # '" &'
-    # )
-
     orch.cmd('sleep 2')
-
-    # orch.cmd(
-    #     'xterm -hold -T DashboardBrowser -geometry 100x30+500+100 -e '
-    #     'bash -lc "'
-    #       'export DISPLAY=:0; '
-    #       'export XAUTHORITY=/root/.Xauthority; '
-    #       'MOZ_ALLOW_ROOT=1 firefox http://localhost:8085'
-    #     '" &'
-    # )
-
-
 
     print(f"[INFO] Launching {UE_COUNT} dynamic UE agents...")
     for i in range(1, UE_COUNT + 1):

@@ -1,4 +1,3 @@
-
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 import sys
 import json
@@ -25,8 +24,10 @@ port = args.port
 ACTIVE = args.active
 active_lock = threading.Lock()
 
-vbbu_id = f"vbbu{port - 8080 + 1}"
-print(f"vBBU server running on port {port} as {vbbu_id}, initial ACTIVE={ACTIVE}")
+vbbu_id = "vbbu1" if port == 8080 else "vbbu1-prime"
+# Set capacity based on vBBU type
+CAPACITY = 10 if vbbu_id == "vbbu1" else 20
+print(f"vBBU server running on port {port} as {vbbu_id}, initial ACTIVE={ACTIVE}, CAPACITY={CAPACITY}")
 
 
 # Orchestrator address
@@ -121,19 +122,21 @@ def report_load_periodically():
             }
             ue_last_seen.clear()
             ue_last_seen.update(ue_last_seen_filtered)
-            ue_count = len(ue_last_seen)
+            current_users = len(ue_last_seen)
+            utilization = (current_users / CAPACITY) * 100  # Calculate utilization percentage
 
         report = {
             "command": "report_load",
-            "cpu": ue_count * 4,
-            "connections": ue_count
+            "current_users": current_users,
+            "utilization": utilization,
+            "connections": current_users
         }
 
         try:
             with socket.create_connection((ORCH_IP, ORCH_PORT), timeout=3) as sock:
                 sock.sendall(json.dumps(report).encode())
                 _ = sock.recv(1024)
-            log_vbbu(f"[REPORT] Sent load to orchestrator: {ue_count} UEs")
+            log_vbbu(f"[REPORT] Sent load to orchestrator: {current_users}/{CAPACITY} users ({utilization:.1f}% utilization)")
         except Exception as e:
             log_vbbu(f"[ERROR] Failed to report load: {e}")
 
@@ -144,5 +147,5 @@ if __name__ == '__main__':
     threading.Thread(target=report_load_periodically, daemon=True).start()
 
     # Start HTTP server
-    log_vbbu(f"vBBU server running on port {port} as {vbbu_id}")
+    log_vbbu(f"vBBU server running on port {port} as {vbbu_id} with capacity {CAPACITY}")
     ThreadingHTTPServer(('', port), Handler).serve_forever()
