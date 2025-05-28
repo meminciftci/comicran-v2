@@ -35,6 +35,15 @@ class ComicranTopo(Topo):
         self.addLink(s1, rrh)
         self.addLink(s1, orch)
 
+        root = self.addHost(
+            'root', 
+            ip='10.0.0.31/24',       # pick a subnet that doesn’t conflict
+            inNamespace=False
+        )
+
+        # link that host into your main switch
+        self.addLink(root, s1)
+
         # Add dynamic UEs
         for i in range(1, UE_COUNT + 1):
             ue = self.addHost(f'ue{i}', ip=f'10.0.0.{i}')
@@ -72,28 +81,33 @@ def deploy_http_services(net, topo_vbbu_config):
     rrh.cmd('python3 rrh_proxy.py &')
 
     print("[INFO] Opening orchestrator terminal...")
-    orch.cmd('xterm -T orchestrator -e python3 orchestrator.py &')
-
-    time.sleep(5)
-    
+    # orch.cmd('xterm -T orchestrator -e python3 orchestrator.py &')
     orch.cmd(
-    'xterm -hold -T DashboardServer -geometry 80x24+100+100 -e '
-    'bash -lc "'
-      'source dashboard-venv/bin/activate && '
-      'python3 app.py'
-    '" &'
+        'xterm -T orchestrator -e bash -lc "'
+        'source ../venv/bin/activate && '
+        'python3 orchestrator.py" &'
     )
+
+    # time.sleep(5)
+    
+    # orch.cmd(
+    # 'xterm -hold -T DashboardServer -geometry 80x24+100+100 -e '
+    # 'bash -lc "'
+    #   'source dashboard-venv/bin/activate && '
+    #   'python3 app.py'
+    # '" &'
+    # )
 
     orch.cmd('sleep 2')
 
-    orch.cmd(
-        'xterm -hold -T DashboardBrowser -geometry 100x30+500+100 -e '
-        'bash -lc "'
-          'export DISPLAY=:0; '
-          'export XAUTHORITY=/root/.Xauthority; '
-          'MOZ_ALLOW_ROOT=1 firefox http://localhost:8085'
-        '" &'
-    )
+    # orch.cmd(
+    #     'xterm -hold -T DashboardBrowser -geometry 100x30+500+100 -e '
+    #     'bash -lc "'
+    #       'export DISPLAY=:0; '
+    #       'export XAUTHORITY=/root/.Xauthority; '
+    #       'MOZ_ALLOW_ROOT=1 firefox http://localhost:8085'
+    #     '" &'
+    # )
 
 
 

@@ -6,6 +6,8 @@ import random
 import os
 import requests
 import subprocess
+from flask import Flask, request, jsonify
+from flask_cors import CORS
 
 ORCH_HOST = '0.0.0.0'
 ORCH_PORT = 9100
@@ -35,6 +37,19 @@ VALID_UE_IDS = set(range(1, 11))
 UE_PORT = 5000
 # Track UE state: 'rrh' or 'disconnected'
 ue_states = {uid: 'disconnected' for uid in VALID_UE_IDS}
+
+# === Flask App Setup ===
+app = Flask(__name__)
+CORS(app)  # Enable CORS for all routes
+
+# === Standard Response Format ===
+def make_response(data=None, status="ok", message=None):
+    response = {"status": status}
+    if data is not None:
+        response["data"] = data
+    if message is not None:
+        response["message"] = message
+    return jsonify(response)
 
 class OrchClient:
     def __init__(self, host='10.0.0.200', port=9100, timeout=2):
@@ -578,10 +593,198 @@ def cli_loop():
             print(f"[CLI_ERROR] An unexpected error occurred: {e}")
             log_orch(f"[CLI_ERROR_DETAIL] {e}")
 
+# === REST API Endpoints ===
+@app.route('/api/ue/add', methods=['POST'])
+def api_ue_add():
+    data = request.get_json()
+    if not data or 'uids' not in data:
+        return make_response(status="error", message="Missing uids in request body")
+    
+    uids = data['uids']
+    if not isinstance(uids, list):
+        return make_response(status="error", message="uids must be a list")
+    
+    invalid_ids = [uid for uid in uids if uid not in VALID_UE_IDS]
+    if invalid_ids:
+        return make_response(status="error", message=f"Invalid UE IDs: {invalid_ids}. Use 1-10.")
+    
+    success = []
+    failed = []
+    for uid in uids:
+        if add_ue(uid):
+            success.append(uid)
+        else:
+            failed.append(uid)
+    
+    return make_response(data={
+        "success": success,
+        "failed": failed
+    })
+
+@app.route('/api/ue/remove', methods=['POST'])
+def api_ue_remove():
+    data = request.get_json()
+    if not data or 'uids' not in data:
+        return make_response(status="error", message="Missing uids in request body")
+    
+    uids = data['uids']
+    if uids == 'all':
+        uids = list(VALID_UE_IDS)
+    elif not isinstance(uids, list):
+        return make_response(status="error", message="uids must be a list or 'all'")
+    
+    invalid_ids = [uid for uid in uids if uid not in VALID_UE_IDS]
+    if invalid_ids:
+        return make_response(status="error", message=f"Invalid UE IDs: {invalid_ids}. Use 1-10.")
+    
+    success = []
+    failed = []
+    for uid in uids:
+        if remove_ue(uid):
+            success.append(uid)
+        else:
+            failed.append(uid)
+    
+    return make_response(data={
+        "success": success,
+        "failed": failed
+    })
+
+@app.route('/api/ue/list', methods=['GET'])
+def api_ue_list():
+    return make_response(data=ue_states)
+
+@app.route('/api/handover', methods=['POST'])
+def api_handover():
+    data = request.get_json()
+    if not data or not all(k in data for k in ['ue_id', 'target_vbbu']):
+        return make_response(status="error", message="Missing required fields: ue_id and target_vbbu")
+    
+    ue_id = data['ue_id'].upper()
+    target_vbbu = data['target_vbbu']
+    
+    if target_vbbu not in PREDEFINED_VBBUS:
+        return make_response(status="error", message=f"Unknown target vBBU: {target_vbbu}")
+    
+    target_info = PREDEFINED_VBBUS[target_vbbu]
+    current = ue_assignments.get(ue_id)
+    
+    if current and current["vbbu_ip"] == target_info["ip"] and current["vbbu_port"] == target_info["port"]:
+        return make_response(message=f"UE {ue_id} is already served by {target_vbbu}")
+    
+    cmd = {
+        "command": "handover",
+        "ue_id": ue_id,
+        "new_vbbu_ip": target_info["ip"],
+        "new_vbbu_port": target_info["port"]
+    }
+    
+    handle_handover_command(cmd)
+    return make_response(message=f"Handover initiated: {ue_id} -> {target_vbbu}")
+
+@app.route('/api/migrate', methods=['POST'])
+def api_migrate():
+    data = request.get_json()
+    if not data or 'source_vbbu' not in data:
+        return make_response(status="error", message="Missing source_vbbu in request body")
+    
+    source = data['source_vbbu']
+    deactivate = data.get('deactivate', False)
+    
+    if source not in PREDEFINED_VBBUS:
+        return make_response(status="error", message=f"Unknown vBBU: {source}")
+    
+    fqdn = f"{PREDEFINED_VBBUS[source]['ip']}:{PREDEFINED_VBBUS[source]['port']}"
+    response = handle_full_migration({"command": "migrate", "from_vbbu": fqdn}, DummyConn())
+    
+    if deactivate:
+        info = PREDEFINED_VBBUS[source]
+        try:
+            requests.get(f"http://{info['ip']}:{info['port']}/control?deactivate=1", timeout=2)
+            info["is_active"] = False
+            log_orch(f"[DEACTIVATE] {source} marked inactive via API.")
+        except Exception as e:
+            log_orch(f"[ERROR] Deactivate HTTP failed: {e}")
+    
+    return make_response(data=response)
+
+@app.route('/api/vbbu/activate', methods=['POST'])
+def api_activate_vbbu():
+    data = request.get_json()
+    if not data or 'vbbu' not in data:
+        return make_response(status="error", message="Missing vbbu in request body")
+    
+    name = data['vbbu']
+    if name not in PREDEFINED_VBBUS:
+        return make_response(status="error", message=f"Unknown vBBU: {name}")
+    
+    info = PREDEFINED_VBBUS[name]
+    if info["is_active"]:
+        return make_response(message=f"{name} is already active")
+    
+    try:
+        resp = requests.get(f"http://{info['ip']}:{info['port']}/control?activate=1", timeout=2)
+        info["is_active"] = True
+        log_orch(f"[ACTIVATE] {name} marked active via API.")
+        return make_response(message=f"{name} has been activated")
+    except Exception as e:
+        return make_response(status="error", message=f"Activation failed: {str(e)}")
+
+@app.route('/api/vbbu/deactivate', methods=['POST'])
+def api_deactivate_vbbu():
+    data = request.get_json()
+    if not data or 'vbbu' not in data:
+        return make_response(status="error", message="Missing vbbu in request body")
+    
+    name = data['vbbu']
+    if name not in PREDEFINED_VBBUS:
+        return make_response(status="error", message=f"Unknown vBBU: {name}")
+    
+    info = PREDEFINED_VBBUS[name]
+    if not info["is_active"]:
+        return make_response(message=f"{name} is already inactive")
+    
+    try:
+        resp = requests.get(f"http://{info['ip']}:{info['port']}/control?deactivate=1", timeout=2)
+        info["is_active"] = False
+        log_orch(f"[DEACTIVATE] {name} marked inactive via API.")
+        return make_response(message=f"{name} has been deactivated")
+    except Exception as e:
+        return make_response(status="error", message=f"Deactivation failed: {str(e)}")
+
+@app.route('/api/assignments', methods=['GET'])
+def api_assignments():
+    return make_response(data=ue_assignments)
+
+@app.route('/api/loads', methods=['GET'])
+def api_loads():
+    return make_response(data=vbbu_loads)
+
+@app.route('/api/vbbus', methods=['GET'])
+def api_vbbus():
+    vbbus = {}
+    for name, info in PREDEFINED_VBBUS.items():
+        load = vbbu_loads.get(info['ip'], {})
+        vbbus[name] = {
+            'ip': info['ip'],
+            'port': info['port'],
+            'is_active': info['is_active'],
+            'cpu': load.get('cpu', 'N/A'),
+            'connections': load.get('connections', 'N/A')
+        }
+    return make_response(data=vbbus)
+
+def run_flask():
+    app.run(host='0.0.0.0', port=5006)
+
 if __name__ == "__main__":
     log_orch("[INIT] Orchestrator process started.")
     server_thread = threading.Thread(target=start_orchestrator, daemon=True)
     server_thread.start()
+    
+    flask_thread = threading.Thread(target=run_flask, daemon=True)
+    flask_thread.start()
+    
     time.sleep(5)
     cli_loop()
     log_orch("[EXIT] Orchestrator process finished.")
