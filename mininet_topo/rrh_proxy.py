@@ -9,9 +9,9 @@ import json
 import random
 
 # === Initial Setup ===
-vbbu_choices = ["10.0.0.201:8080", "10.0.0.202:8081"]
+vbbu_choices = ["10.0.0.201:8080", "10.0.0.203:8082"]
 ue_target = {
-    f"10.0.0.{i}": random.choice(vbbu_choices)
+    f"10.0.0.{i}": "10.0.0.201:8080"
     for i in range(1, 11)
 }
 redirected_vbbus = {}  # e.g., "10.0.0.201:8080" → "10.0.0.202:8082"
@@ -29,27 +29,34 @@ def log_rrh(message):
 class ProxyHandler(BaseHTTPRequestHandler):
     def do_GET(self):
         client_ip = self.client_address[0]
-        target = ue_target.get(client_ip)
+        ue_id = client_ip.split('.')[-1]               # e.g. "5" for 10.0.0.5
 
-        # If mapped but vBBU is deprecated
-        if target in redirected_vbbus:
-            new_vbbu = redirected_vbbus[target]
-            ue_target[client_ip] = new_vbbu
-            target = new_vbbu
-            log_rrh(f"[REDIRECT] UE{client_ip.split(".")[-1]} was mapped to deprecated vBBU{target.split(":")[0][-1]}, now redirected to {new_vbbu}")
-
-        log_rrh(f"    [REQUEST] from UE{client_ip.split(".")[-1]} forwarding to vBBU{target.split(":")[0][-1]}")
-
-        if not target:
+        # Look up the original target
+        old_target = ue_target.get(client_ip)
+        if not old_target:
             self.send_response(403)
             self.end_headers()
             self.wfile.write(f"Unknown client {client_ip}".encode())
+            log_rrh(f"[ERROR] Unknown client UE{ue_id}")
             return
 
+        # If there's a redirect rule, install it now
+        new_target = redirected_vbbus.get(old_target)
+        if new_target:
+            ue_target[client_ip] = new_target
+            target = new_target
+            log_rrh(f"[INFO] UE{ue_id} traffic redirected: {old_target} → {new_target}")
+        else:
+            target = old_target
+
+        # Log exactly one line showing where we actually forward
+        log_rrh(f"    [REQUEST] UE{ue_id} → forwarding to vBBU{target.split(':')[0].split('.')[-1][-1]} ({target})")
+
+        # Perform the HTTP GET
         url = f"http://{target}{self.path}"
         try:
             resp = requests.get(url, timeout=3)
-            log_rrh(f"    [RESPONSE] from vBBU{target.split(":")[0][-1]} forwarding to UE{client_ip.split(".")[-1]}")
+            log_rrh(f"    [RESPONSE] vBBU{target.split(':')[0].split('.')[-1][-1]} → UE{ue_id} ({resp.status_code})")
             self.send_response(resp.status_code)
             self.end_headers()
             self.wfile.write(resp.content)
@@ -57,7 +64,7 @@ class ProxyHandler(BaseHTTPRequestHandler):
             self.send_response(502)
             self.end_headers()
             self.wfile.write(f"Forwarding failed: {e}".encode())
-            log_rrh(f"[ERROR] Failed forwarding to {target}: {e}")
+            log_rrh(f"[ERROR] Failed forwarding UE{ue_id} → {target}: {e}")
 
     def log_message(self, format, *args):
         return
@@ -139,35 +146,38 @@ def handle_orchestrator_command(conn, addr):
         conn.close()
 
 def report_assignments_periodically():
-    ORCH_IP = "10.0.0.200"
+
+
+    # send one immediately
+    send_assignments()
+
+    # then every 2 seconds
+    while True:
+        time.sleep(2)
+        send_assignments()
+
+def send_assignments():
+    ORCH_IP   = "10.0.0.200"
     ORCH_PORT = 9100
 
-    while True:
-        try:
-            assignments = []
-            for ip, vbbu in ue_target.items():
-                ue_id = f"UE{ip.split('.')[-1]}"
-                vbbu_ip, vbbu_port = vbbu.split(":")
-                assignments.append({
-                    "ue_id": ue_id,
-                    "vbbu_ip": vbbu_ip,
-                    "vbbu_port": int(vbbu_port)
-                })
-
-            message = {
-                "command": "report_assignments",
-                "assignments": assignments
-            }
-
-            with socket.create_connection((ORCH_IP, ORCH_PORT), timeout=3) as sock:
-                sock.sendall(json.dumps(message).encode())
-                _ = sock.recv(1024)  # optional response
-            log_rrh(f"[REPORT] Sent {len(assignments)} UE assignments to orchestrator")
-
-        except Exception as e:
-            log_rrh(f"[ERROR] Failed to report assignments: {e}")
-
-        time.sleep(10)  # every 10 secon
+    try:
+        assignments = []
+        for ip, vbbu in ue_target.items():
+            ue_id = f"UE{ip.split('.')[-1]}"
+            vbbu_ip, vbbu_port = vbbu.split(":")
+            assignments.append({
+                "ue_id": ue_id,
+                "vbbu_ip": vbbu_ip,
+                "vbbu_port": int(vbbu_port)
+            })
+        message = {"command":"report_assignments",
+                   "assignments": assignments}
+        with socket.create_connection((ORCH_IP, ORCH_PORT), timeout=3) as sock:
+            sock.sendall(json.dumps(message).encode())
+            _ = sock.recv(1024)
+        log_rrh(f"[REPORT] Sent {len(assignments)} UE assignments to orchestrator")
+    except Exception as e:
+        log_rrh(f"[ERROR] Failed to report assignments: {e}")
 
 # === Main Entry ===
 if __name__ == '__main__':

@@ -1,0 +1,248 @@
+[2025-05-28 10:51:45] vBBU server running on port 8080 as vbbu1
+[2025-05-28 10:51:45] [ERROR] Failed to report load: [Errno 111] Connection refused
+[2025-05-28 10:51:50] [REPORT] Sent load to orchestrator: 0 UEs
+[2025-05-28 10:51:55] [REPORT] Sent load to orchestrator: 0 UEs
+[2025-05-28 10:52:00] [REPORT] Sent load to orchestrator: 0 UEs
+[2025-05-28 10:52:05] [REPORT] Sent load to orchestrator: 0 UEs
+[2025-05-28 10:52:10] [REPORT] Sent load to orchestrator: 0 UEs
+[2025-05-28 10:52:15] [REPORT] Sent load to orchestrator: 0 UEs
+[2025-05-28 10:52:20] [REPORT] Sent load to orchestrator: 0 UEs
+[2025-05-28 10:52:25] [REPORT] Sent load to orchestrator: 0 UEs
+[2025-05-28 10:52:30] [REPORT] Sent load to orchestrator: 0 UEs
+[2025-05-28 10:52:35] [REPORT] Sent load to orchestrator: 0 UEs
+[2025-05-28 10:52:40] [REPORT] Sent load to orchestrator: 0 UEs
+[2025-05-28 10:52:45] [REPORT] Sent load to orchestrator: 0 UEs
+[2025-05-28 10:52:48]     [REQUEST] Value 0 received from UE1
+[2025-05-28 10:52:50] [REPORT] Sent load to orchestrator: 1 UEs
+[2025-05-28 10:52:50]     [REQUEST] Value 1 received from UE1
+[2025-05-28 10:52:53]     [REQUEST] Value 2 received from UE1
+[2025-05-28 10:52:55]     [REQUEST] Value 3 received from UE1
+[2025-05-28 10:52:55] [REPORT] Sent load to orchestrator: 1 UEs
+[2025-05-28 10:52:56]     [REQUEST] Value 4 received from UE1
+[2025-05-28 10:52:58]     [REQUEST] Value 5 received from UE1
+[2025-05-28 10:53:00] [REPORT] Sent load to orchestrator: 1 UEs
+[2025-05-28 10:53:01]     [REQUEST] Value 6 received from UE1
+[2025-05-28 10:53:02]     [REQUEST] Value 7 received from UE1
+[2025-05-28 10:53:05]     [REQUEST] Value 8 received from UE1
+[2025-05-28 10:53:05] [REPORT] Sent load to orchestrator: 1 UEs
+[2025-05-28 10:53:06]     [REQUEST] Value 0 received from UE2
+[2025-05-28 10:53:08]     [REQUEST] Value 9 received from UE1
+[2025-05-28 10:53:09]     [REQUEST] Value 1 received from UE2
+[2025-05-28 10:53:10]     [REQUEST] Value 10 received from UE1
+[2025-05-28 10:53:10] [REPORT] Sent load to orchestrator: 2 UEs
+[2025-05-28 10:53:11]     [REQUEST] Value 2 received from UE2
+[2025-05-28 10:53:12]     [REQUEST] Value 11 received from UE1
+[2025-05-28 10:53:13]     [REQUEST] Value 3 received from UE2
+[2025-05-28 10:53:15]     [REQUEST] Value 12 received from UE1
+[2025-05-28 10:53:15]     [REQUEST] Value 4 received from UE2
+[2025-05-28 10:53:15]     [REQUEST] Value 0 received from UE6
+[2025-05-28 10:53:15] [REPORT] Sent load to orchestrator: 3 UEs
+[2025-05-28 10:53:16]     [REQUEST] Value 5 received from UE2
+[2025-05-28 10:53:17]     [REQUEST] Value 13 received from UE1
+[2025-05-28 10:53:18]     [REQUEST] Value 1 received from UE6
+[2025-05-28 10:53:18]     [REQUEST] Value 6 received from UE2
+[2025-05-28 10:53:19]     [REQUEST] Value 14 received from UE1
+[2025-05-28 10:53:20]     [REQUEST] Value 7 received from UE2
+[2025-05-28 10:53:20] [REPORT] Sent load to orchestrator: 3 UEs
+[2025-05-28 10:53:20]     [REQUEST] Value 2 received from UE6
+[2025-05-28 10:53:22]     [REQUEST] Value 8 received from UE2
+[2025-05-28 10:53:22]     [REQUEST] Value 15 received from UE1
+[2025-05-28 10:53:22]     [REQUEST] Value 3 received from UE6
+[2025-05-28 10:53:23]     [REQUEST] Value 9 received from UE2
+[2025-05-28 10:53:24]     [REQUEST] Value 4 received from UE6
+[2025-05-28 10:53:25]     [REQUEST] Value 16 received from UE1
+[2025-05-28 10:53:25] [REPORT] Sent load to orchestrator: 3 UEs
+[2025-05-28 10:53:26]     [REQUEST] Value 10 received from UE2
+[2025-05-28 10:53:26]     [REQUEST] Value 5 received from UE6
+[2025-05-28 10:53:28]     [REQUEST] Value 17 received from UE1
+[2025-05-28 10:53:28]     [REQUEST] Value 11 received from UE2
+[2025-05-28 10:53:28]     [REQUEST] Value 6 received from UE6
+[2025-05-28 10:53:30]     [REQUEST] Value 18 received from UE1
+[2025-05-28 10:53:30] [REPORT] Sent load to orchestrator: 3 UEs
+[2025-05-28 10:53:31]     [REQUEST] Value 12 received from UE2
+[2025-05-28 10:53:31]     [REQUEST] Value 7 received from UE6
+[2025-05-28 10:53:31]     [REQUEST] Value 19 received from UE1
+[2025-05-28 10:53:33]     [REQUEST] Value 20 received from UE1
+[2025-05-28 10:53:33]     [REQUEST] Value 13 received from UE2
+[2025-05-28 10:53:34]     [REQUEST] Value 8 received from UE6
+[2025-05-28 10:53:34]     [REQUEST] Value 21 received from UE1
+[2025-05-28 10:53:35] [REPORT] Sent load to orchestrator: 3 UEs
+[2025-05-28 10:53:36]     [REQUEST] Value 14 received from UE2
+[2025-05-28 10:53:37]     [REQUEST] Value 9 received from UE6
+[2025-05-28 10:53:37]     [REQUEST] Value 22 received from UE1
+[2025-05-28 10:53:39]     [REQUEST] Value 15 received from UE2
+[2025-05-28 10:53:39]     [REQUEST] Value 10 received from UE6
+[2025-05-28 10:53:40]     [REQUEST] Value 23 received from UE1
+[2025-05-28 10:53:40] [REPORT] Sent load to orchestrator: 3 UEs
+[2025-05-28 10:53:41]     [REQUEST] Value 16 received from UE2
+[2025-05-28 10:53:42]     [REQUEST] Value 11 received from UE6
+[2025-05-28 10:53:42]     [REQUEST] Value 24 received from UE1
+[2025-05-28 10:53:43]     [REQUEST] Value 17 received from UE2
+[2025-05-28 10:53:44]     [REQUEST] Value 25 received from UE1
+[2025-05-28 10:53:45]     [REQUEST] Value 12 received from UE6
+[2025-05-28 10:53:45] [REPORT] Sent load to orchestrator: 3 UEs
+[2025-05-28 10:53:45]     [REQUEST] Value 18 received from UE2
+[2025-05-28 10:53:46]     [REQUEST] Value 26 received from UE1
+[2025-05-28 10:53:47]     [REQUEST] Value 13 received from UE6
+[2025-05-28 10:53:48]     [REQUEST] Value 19 received from UE2
+[2025-05-28 10:53:48]     [REQUEST] Value 27 received from UE1
+[2025-05-28 10:53:49]     [REQUEST] Value 14 received from UE6
+[2025-05-28 10:53:50] [REPORT] Sent load to orchestrator: 3 UEs
+[2025-05-28 10:53:51]     [REQUEST] Value 20 received from UE2
+[2025-05-28 10:53:51]     [REQUEST] Value 28 received from UE1
+[2025-05-28 10:53:51]     [REQUEST] Value 15 received from UE6
+[2025-05-28 10:53:53]     [REQUEST] Value 21 received from UE2
+[2025-05-28 10:53:53]     [REQUEST] Value 29 received from UE1
+[2025-05-28 10:53:53]     [REQUEST] Value 16 received from UE6
+[2025-05-28 10:53:55] [REPORT] Sent load to orchestrator: 3 UEs
+[2025-05-28 10:53:56]     [REQUEST] Value 30 received from UE1
+[2025-05-28 10:53:56]     [REQUEST] Value 17 received from UE6
+[2025-05-28 10:53:56]     [REQUEST] Value 22 received from UE2
+[2025-05-28 10:53:57]     [REQUEST] Value 31 received from UE1
+[2025-05-28 10:53:58]     [REQUEST] Value 23 received from UE2
+[2025-05-28 10:53:58]     [REQUEST] Value 18 received from UE6
+[2025-05-28 10:53:59]     [REQUEST] Value 24 received from UE2
+[2025-05-28 10:54:00]     [REQUEST] Value 32 received from UE1
+[2025-05-28 10:54:00] [REPORT] Sent load to orchestrator: 3 UEs
+[2025-05-28 10:54:01]     [REQUEST] Value 19 received from UE6
+[2025-05-28 10:54:02]     [REQUEST] Value 25 received from UE2
+[2025-05-28 10:54:03]     [REQUEST] Value 33 received from UE1
+[2025-05-28 10:54:04]     [REQUEST] Value 26 received from UE2
+[2025-05-28 10:54:04]     [REQUEST] Value 20 received from UE6
+[2025-05-28 10:54:05]     [REQUEST] Value 34 received from UE1
+[2025-05-28 10:54:05] [REPORT] Sent load to orchestrator: 3 UEs
+[2025-05-28 10:54:07]     [REQUEST] Value 27 received from UE2
+[2025-05-28 10:54:07]     [REQUEST] Value 21 received from UE6
+[2025-05-28 10:54:07]     [REQUEST] Value 35 received from UE1
+[2025-05-28 10:54:08]     [REQUEST] Value 28 received from UE2
+[2025-05-28 10:54:08]     [REQUEST] Value 36 received from UE1
+[2025-05-28 10:54:09]     [REQUEST] Value 22 received from UE6
+[2025-05-28 10:54:10]     [REQUEST] Value 29 received from UE2
+[2025-05-28 10:54:10] [REPORT] Sent load to orchestrator: 3 UEs
+[2025-05-28 10:54:11]     [REQUEST] Value 37 received from UE1
+[2025-05-28 10:54:11]     [REQUEST] Value 23 received from UE6
+[2025-05-28 10:54:12]     [REQUEST] Value 30 received from UE2
+[2025-05-28 10:54:13]     [REQUEST] Value 24 received from UE6
+[2025-05-28 10:54:13]     [REQUEST] Value 38 received from UE1
+[2025-05-28 10:54:14]     [REQUEST] Value 31 received from UE2
+[2025-05-28 10:54:15] [REPORT] Sent load to orchestrator: 3 UEs
+[2025-05-28 10:54:16]     [REQUEST] Value 39 received from UE1
+[2025-05-28 10:54:16]     [REQUEST] Value 25 received from UE6
+[2025-05-28 10:54:16]     [REQUEST] Value 32 received from UE2
+[2025-05-28 10:54:17]     [REQUEST] Value 40 received from UE1
+[2025-05-28 10:54:18]     [REQUEST] Value 26 received from UE6
+[2025-05-28 10:54:18]     [REQUEST] Value 33 received from UE2
+[2025-05-28 10:54:20]     [REQUEST] Value 41 received from UE1
+[2025-05-28 10:54:20] [REPORT] Sent load to orchestrator: 3 UEs
+[2025-05-28 10:54:21]     [REQUEST] Value 27 received from UE6
+[2025-05-28 10:54:21]     [REQUEST] Value 34 received from UE2
+[2025-05-28 10:54:21]     [REQUEST] Value 42 received from UE1
+[2025-05-28 10:54:23]     [REQUEST] Value 43 received from UE1
+[2025-05-28 10:54:24]     [REQUEST] Value 28 received from UE6
+[2025-05-28 10:54:24]     [REQUEST] Value 35 received from UE2
+[2025-05-28 10:54:25]     [REQUEST] Value 44 received from UE1
+[2025-05-28 10:54:25] [REPORT] Sent load to orchestrator: 3 UEs
+[2025-05-28 10:54:25]     [REQUEST] Value 29 received from UE6
+[2025-05-28 10:54:26]     [REQUEST] Value 36 received from UE2
+[2025-05-28 10:54:27]     [REQUEST] Value 45 received from UE1
+[2025-05-28 10:54:27]     [REQUEST] Value 30 received from UE6
+[2025-05-28 10:54:29]     [REQUEST] Value 37 received from UE2
+[2025-05-28 10:54:30]     [REQUEST] Value 31 received from UE6
+[2025-05-28 10:54:30]     [REQUEST] Value 38 received from UE2
+[2025-05-28 10:54:30] [REPORT] Sent load to orchestrator: 3 UEs
+[2025-05-28 10:54:30]     [REQUEST] Value 46 received from UE1
+[2025-05-28 10:54:32]     [REQUEST] Value 47 received from UE1
+[2025-05-28 10:54:32]     [REQUEST] Value 32 received from UE6
+[2025-05-28 10:54:33]     [REQUEST] Value 39 received from UE2
+[2025-05-28 10:54:34]     [REQUEST] Value 33 received from UE6
+[2025-05-28 10:54:35]     [REQUEST] Value 48 received from UE1
+[2025-05-28 10:54:35]     [REQUEST] Value 40 received from UE2
+[2025-05-28 10:54:35] [REPORT] Sent load to orchestrator: 3 UEs
+[2025-05-28 10:54:36]     [REQUEST] Value 34 received from UE6
+[2025-05-28 10:54:37]     [REQUEST] Value 41 received from UE2
+[2025-05-28 10:54:39]     [REQUEST] Value 35 received from UE6
+[2025-05-28 10:54:39]     [REQUEST] Value 42 received from UE2
+[2025-05-28 10:54:40] [REPORT] Sent load to orchestrator: 2 UEs
+[2025-05-28 10:54:40]     [REQUEST] Value 36 received from UE6
+[2025-05-28 10:54:41]     [REQUEST] Value 43 received from UE2
+[2025-05-28 10:54:42]     [REQUEST] Value 37 received from UE6
+[2025-05-28 10:54:43]     [REQUEST] Value 44 received from UE2
+[2025-05-28 10:54:44]     [REQUEST] Value 38 received from UE6
+[2025-05-28 10:54:45]     [REQUEST] Value 45 received from UE2
+[2025-05-28 10:54:45] [REPORT] Sent load to orchestrator: 2 UEs
+[2025-05-28 10:54:46]     [REQUEST] Value 46 received from UE2
+[2025-05-28 10:54:47]     [REQUEST] Value 39 received from UE6
+[2025-05-28 10:54:49]     [REQUEST] Value 40 received from UE6
+[2025-05-28 10:54:49]     [REQUEST] Value 47 received from UE2
+[2025-05-28 10:54:50] [REPORT] Sent load to orchestrator: 2 UEs
+[2025-05-28 10:54:51]     [REQUEST] Value 41 received from UE6
+[2025-05-28 10:54:51]     [REQUEST] Value 48 received from UE2
+[2025-05-28 10:54:53]     [REQUEST] Value 42 received from UE6
+[2025-05-28 10:54:53]     [REQUEST] Value 49 received from UE2
+[2025-05-28 10:54:54]     [REQUEST] Value 43 received from UE6
+[2025-05-28 10:54:55]     [REQUEST] Value 50 received from UE2
+[2025-05-28 10:54:55] [REPORT] Sent load to orchestrator: 2 UEs
+[2025-05-28 10:54:57]     [REQUEST] Value 44 received from UE6
+[2025-05-28 10:54:57]     [REQUEST] Value 51 received from UE2
+[2025-05-28 10:54:58]     [REQUEST] Value 52 received from UE2
+[2025-05-28 10:54:59]     [REQUEST] Value 45 received from UE6
+[2025-05-28 10:55:00]     [REQUEST] Value 46 received from UE6
+[2025-05-28 10:55:00] [REPORT] Sent load to orchestrator: 2 UEs
+[2025-05-28 10:55:01]     [REQUEST] Value 53 received from UE2
+[2025-05-28 10:55:03]     [REQUEST] Value 47 received from UE6
+[2025-05-28 10:55:03]     [REQUEST] Value 54 received from UE2
+[2025-05-28 10:55:05]     [REQUEST] Value 55 received from UE2
+[2025-05-28 10:55:05] [REPORT] Sent load to orchestrator: 2 UEs
+[2025-05-28 10:55:06]     [REQUEST] Value 48 received from UE6
+[2025-05-28 10:55:07]     [REQUEST] Value 56 received from UE2
+[2025-05-28 10:55:08]     [REQUEST] Value 49 received from UE6
+[2025-05-28 10:55:09]     [REQUEST] Value 57 received from UE2
+[2025-05-28 10:55:09]     [REQUEST] Value 50 received from UE6
+[2025-05-28 10:55:10] [REPORT] Sent load to orchestrator: 2 UEs
+[2025-05-28 10:55:12]     [REQUEST] Value 51 received from UE6
+[2025-05-28 10:55:12]     [REQUEST] Value 58 received from UE2
+[2025-05-28 10:55:13]     [REQUEST] Value 52 received from UE6
+[2025-05-28 10:55:14]     [REQUEST] Value 59 received from UE2
+[2025-05-28 10:55:15] [REPORT] Sent load to orchestrator: 2 UEs
+[2025-05-28 10:55:16]     [REQUEST] Value 53 received from UE6
+[2025-05-28 10:55:16]     [REQUEST] Value 60 received from UE2
+[2025-05-28 10:55:18]     [REQUEST] Value 61 received from UE2
+[2025-05-28 10:55:18]     [REQUEST] Value 54 received from UE6
+[2025-05-28 10:55:20]     [REQUEST] Value 62 received from UE2
+[2025-05-28 10:55:20] [REPORT] Sent load to orchestrator: 2 UEs
+[2025-05-28 10:55:21]     [REQUEST] Value 55 received from UE6
+[2025-05-28 10:55:23]     [REQUEST] Value 63 received from UE2
+[2025-05-28 10:55:24]     [REQUEST] Value 56 received from UE6
+[2025-05-28 10:55:25]     [REQUEST] Value 64 received from UE2
+[2025-05-28 10:55:25] [REPORT] Sent load to orchestrator: 2 UEs
+[2025-05-28 10:55:26]     [REQUEST] Value 57 received from UE6
+[2025-05-28 10:55:27]     [REQUEST] Value 65 received from UE2
+[2025-05-28 10:55:28]     [REQUEST] Value 58 received from UE6
+[2025-05-28 10:55:29]     [REQUEST] Value 66 received from UE2
+[2025-05-28 10:55:30] [REPORT] Sent load to orchestrator: 2 UEs
+[2025-05-28 10:55:30]     [REQUEST] Value 67 received from UE2
+[2025-05-28 10:55:31]     [REQUEST] Value 59 received from UE6
+[2025-05-28 10:55:32]     [REQUEST] Value 68 received from UE2
+[2025-05-28 10:55:34]     [REQUEST] Value 60 received from UE6
+[2025-05-28 10:55:34]     [REQUEST] Value 69 received from UE2
+[2025-05-28 10:55:35] [REPORT] Sent load to orchestrator: 2 UEs
+[2025-05-28 10:55:36]     [REQUEST] Value 70 received from UE2
+[2025-05-28 10:55:37]     [REQUEST] Value 61 received from UE6
+[2025-05-28 10:55:38]     [REQUEST] Value 62 received from UE6
+[2025-05-28 10:55:39]     [REQUEST] Value 71 received from UE2
+[2025-05-28 10:55:40]     [REQUEST] Value 63 received from UE6
+[2025-05-28 10:55:40] [REPORT] Sent load to orchestrator: 2 UEs
+[2025-05-28 10:55:41]     [REQUEST] Value 72 received from UE2
+[2025-05-28 10:55:43]     [REQUEST] Value 64 received from UE6
+[2025-05-28 10:55:43]     [REQUEST] Value 73 received from UE2
+[2025-05-28 10:55:45]     [REQUEST] Value 65 received from UE6
+[2025-05-28 10:55:45] [REPORT] Sent load to orchestrator: 2 UEs
+[2025-05-28 10:55:46]     [REQUEST] Value 74 received from UE2
+[2025-05-28 10:55:48]     [REQUEST] Value 66 received from UE6
+[2025-05-28 10:55:48]     [REQUEST] Value 75 received from UE2
+[2025-05-28 10:55:50]     [REQUEST] Value 67 received from UE6
+[2025-05-28 10:55:50] [REPORT] Sent load to orchestrator: 2 UEs
+[2025-05-28 10:55:51]     [REQUEST] Value 76 received from UE2
+[2025-05-28 10:55:52]     [REQUEST] Value 77 received from UE2
+[2025-05-28 10:55:52]     [REQUEST] Value 68 received from UE6
+[2025-05-28 10:55:54]     [REQUEST] Value 78 received from UE2

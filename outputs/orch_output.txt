@@ -1,0 +1,228 @@
+[2025-05-28 10:51:46] [INIT] Orchestrator process started.
+[2025-05-28 10:51:46] [ORCH_SERVER] Listening on 0.0.0.0:9100
+[2025-05-28 10:51:47] [ASSIGN] Received 10 UE assignments from RRH
+[2025-05-28 10:51:49] [ASSIGN] Received 10 UE assignments from RRH
+[2025-05-28 10:51:50] [LOAD] 10.0.0.202: CPU=0, Conn=0
+[2025-05-28 10:51:50] [LOAD] 10.0.0.201: CPU=0, Conn=0
+[2025-05-28 10:51:51] [ASSIGN] Received 10 UE assignments from RRH
+[2025-05-28 10:51:53] [ASSIGN] Received 10 UE assignments from RRH
+[2025-05-28 10:51:55] [LOAD] 10.0.0.202: CPU=0, Conn=0
+[2025-05-28 10:51:55] [LOAD] 10.0.0.201: CPU=0, Conn=0
+[2025-05-28 10:51:55] [ASSIGN] Received 10 UE assignments from RRH
+[2025-05-28 10:51:57] [ASSIGN] Received 10 UE assignments from RRH
+[2025-05-28 10:51:59] [ASSIGN] Received 10 UE assignments from RRH
+[2025-05-28 10:52:00] [LOAD] 10.0.0.202: CPU=0, Conn=0
+[2025-05-28 10:52:00] [LOAD] 10.0.0.201: CPU=0, Conn=0
+[2025-05-28 10:52:01] [ASSIGN] Received 10 UE assignments from RRH
+[2025-05-28 10:52:03] [ASSIGN] Received 10 UE assignments from RRH
+[2025-05-28 10:52:05] [LOAD] 10.0.0.202: CPU=0, Conn=0
+[2025-05-28 10:52:05] [LOAD] 10.0.0.201: CPU=0, Conn=0
+[2025-05-28 10:52:05] [ASSIGN] Received 10 UE assignments from RRH
+[2025-05-28 10:52:07] [ASSIGN] Received 10 UE assignments from RRH
+[2025-05-28 10:52:09] [ASSIGN] Received 10 UE assignments from RRH
+[2025-05-28 10:52:10] [LOAD] 10.0.0.202: CPU=0, Conn=0
+[2025-05-28 10:52:10] [LOAD] 10.0.0.201: CPU=0, Conn=0
+[2025-05-28 10:52:11] [ASSIGN] Received 10 UE assignments from RRH
+[2025-05-28 10:52:13] [ASSIGN] Received 10 UE assignments from RRH
+[2025-05-28 10:52:15] [LOAD] 10.0.0.202: CPU=0, Conn=0
+[2025-05-28 10:52:15] [LOAD] 10.0.0.201: CPU=0, Conn=0
+[2025-05-28 10:52:15] [ASSIGN] Received 10 UE assignments from RRH
+[2025-05-28 10:52:17] [ASSIGN] Received 10 UE assignments from RRH
+[2025-05-28 10:52:19] [ASSIGN] Received 10 UE assignments from RRH
+[2025-05-28 10:52:20] [LOAD] 10.0.0.202: CPU=0, Conn=0
+[2025-05-28 10:52:20] [LOAD] 10.0.0.201: CPU=0, Conn=0
+[2025-05-28 10:52:21] [ASSIGN] Received 10 UE assignments from RRH
+[2025-05-28 10:52:23] [ASSIGN] Received 10 UE assignments from RRH
+[2025-05-28 10:52:25] [LOAD] 10.0.0.202: CPU=0, Conn=0
+[2025-05-28 10:52:25] [LOAD] 10.0.0.201: CPU=0, Conn=0
+[2025-05-28 10:52:25] [ASSIGN] Received 10 UE assignments from RRH
+[2025-05-28 10:52:27] [ASSIGN] Received 10 UE assignments from RRH
+[2025-05-28 10:52:29] [ASSIGN] Received 10 UE assignments from RRH
+[2025-05-28 10:52:30] [LOAD] 10.0.0.202: CPU=0, Conn=0
+[2025-05-28 10:52:30] [LOAD] 10.0.0.201: CPU=0, Conn=0
+[2025-05-28 10:52:31] [ASSIGN] Received 10 UE assignments from RRH
+[2025-05-28 10:52:33] [ASSIGN] Received 10 UE assignments from RRH
+[2025-05-28 10:52:35] [LOAD] 10.0.0.202: CPU=0, Conn=0
+[2025-05-28 10:52:35] [LOAD] 10.0.0.201: CPU=0, Conn=0
+[2025-05-28 10:52:35] [ASSIGN] Received 10 UE assignments from RRH
+[2025-05-28 10:52:37] [ASSIGN] Received 10 UE assignments from RRH
+[2025-05-28 10:52:39] [ASSIGN] Received 10 UE assignments from RRH
+[2025-05-28 10:52:40] [LOAD] 10.0.0.202: CPU=0, Conn=0
+[2025-05-28 10:52:40] [LOAD] 10.0.0.201: CPU=0, Conn=0
+[2025-05-28 10:52:41] [ASSIGN] Received 10 UE assignments from RRH
+[2025-05-28 10:52:43] [ASSIGN] Received 10 UE assignments from RRH
+[2025-05-28 10:52:45] [LOAD] 10.0.0.202: CPU=0, Conn=0
+[2025-05-28 10:52:45] [LOAD] 10.0.0.201: CPU=0, Conn=0
+[2025-05-28 10:52:45] [ASSIGN] Received 10 UE assignments from RRH
+[2025-05-28 10:52:47] [UE_MANAGER] UE1 acknowledged 'add'.
+[2025-05-28 10:52:47] [ASSIGN] Received 10 UE assignments from RRH
+[2025-05-28 10:52:49] [ASSIGN] Received 10 UE assignments from RRH
+[2025-05-28 10:52:50] [LOAD] 10.0.0.202: CPU=0, Conn=0
+[2025-05-28 10:52:50] [LOAD] 10.0.0.201: CPU=4, Conn=1
+[2025-05-28 10:52:51] [ASSIGN] Received 10 UE assignments from RRH
+[2025-05-28 10:52:53] [ASSIGN] Received 10 UE assignments from RRH
+[2025-05-28 10:52:55] [LOAD] 10.0.0.202: CPU=0, Conn=0
+[2025-05-28 10:52:55] [LOAD] 10.0.0.201: CPU=4, Conn=1
+[2025-05-28 10:52:55] [ASSIGN] Received 10 UE assignments from RRH
+[2025-05-28 10:52:57] [ASSIGN] Received 10 UE assignments from RRH
+[2025-05-28 10:52:59] [ASSIGN] Received 10 UE assignments from RRH
+[2025-05-28 10:53:00] [LOAD] 10.0.0.202: CPU=0, Conn=0
+[2025-05-28 10:53:00] [LOAD] 10.0.0.201: CPU=4, Conn=1
+[2025-05-28 10:53:01] [ASSIGN] Received 10 UE assignments from RRH
+[2025-05-28 10:53:03] [ASSIGN] Received 10 UE assignments from RRH
+[2025-05-28 10:53:04] [UE_MANAGER] UE2 acknowledged 'add'.
+[2025-05-28 10:53:05] [LOAD] 10.0.0.202: CPU=0, Conn=0
+[2025-05-28 10:53:05] [LOAD] 10.0.0.201: CPU=4, Conn=1
+[2025-05-28 10:53:05] [ASSIGN] Received 10 UE assignments from RRH
+[2025-05-28 10:53:07] [ASSIGN] Received 10 UE assignments from RRH
+[2025-05-28 10:53:09] [ASSIGN] Received 10 UE assignments from RRH
+[2025-05-28 10:53:10] [LOAD] 10.0.0.202: CPU=0, Conn=0
+[2025-05-28 10:53:10] [LOAD] 10.0.0.201: CPU=8, Conn=2
+[2025-05-28 10:53:11] [ASSIGN] Received 10 UE assignments from RRH
+[2025-05-28 10:53:13] [ASSIGN] Received 10 UE assignments from RRH
+[2025-05-28 10:53:14] [UE_MANAGER] UE6 acknowledged 'add'.
+[2025-05-28 10:53:15] [LOAD] 10.0.0.202: CPU=0, Conn=0
+[2025-05-28 10:53:15] [LOAD] 10.0.0.201: CPU=12, Conn=3
+[2025-05-28 10:53:15] [ASSIGN] Received 10 UE assignments from RRH
+[2025-05-28 10:53:18] [ASSIGN] Received 10 UE assignments from RRH
+[2025-05-28 10:53:20] [ASSIGN] Received 10 UE assignments from RRH
+[2025-05-28 10:53:20] [LOAD] 10.0.0.202: CPU=0, Conn=0
+[2025-05-28 10:53:20] [LOAD] 10.0.0.201: CPU=12, Conn=3
+[2025-05-28 10:53:22] [ASSIGN] Received 10 UE assignments from RRH
+[2025-05-28 10:53:24] [ASSIGN] Received 10 UE assignments from RRH
+[2025-05-28 10:53:25] [LOAD] 10.0.0.202: CPU=0, Conn=0
+[2025-05-28 10:53:25] [LOAD] 10.0.0.201: CPU=12, Conn=3
+[2025-05-28 10:53:26] [ASSIGN] Received 10 UE assignments from RRH
+[2025-05-28 10:53:28] [ASSIGN] Received 10 UE assignments from RRH
+[2025-05-28 10:53:30] [ASSIGN] Received 10 UE assignments from RRH
+[2025-05-28 10:53:30] [LOAD] 10.0.0.202: CPU=0, Conn=0
+[2025-05-28 10:53:30] [LOAD] 10.0.0.201: CPU=12, Conn=3
+[2025-05-28 10:53:32] [ASSIGN] Received 10 UE assignments from RRH
+[2025-05-28 10:53:34] [ASSIGN] Received 10 UE assignments from RRH
+[2025-05-28 10:53:35] [LOAD] 10.0.0.202: CPU=0, Conn=0
+[2025-05-28 10:53:35] [LOAD] 10.0.0.201: CPU=12, Conn=3
+[2025-05-28 10:53:36] [ASSIGN] Received 10 UE assignments from RRH
+[2025-05-28 10:53:38] [ASSIGN] Received 10 UE assignments from RRH
+[2025-05-28 10:53:40] [ASSIGN] Received 10 UE assignments from RRH
+[2025-05-28 10:53:40] [LOAD] 10.0.0.202: CPU=0, Conn=0
+[2025-05-28 10:53:40] [LOAD] 10.0.0.201: CPU=12, Conn=3
+[2025-05-28 10:53:42] [ASSIGN] Received 10 UE assignments from RRH
+[2025-05-28 10:53:44] [ASSIGN] Received 10 UE assignments from RRH
+[2025-05-28 10:53:45] [LOAD] 10.0.0.202: CPU=0, Conn=0
+[2025-05-28 10:53:45] [LOAD] 10.0.0.201: CPU=12, Conn=3
+[2025-05-28 10:53:46] [ASSIGN] Received 10 UE assignments from RRH
+[2025-05-28 10:53:48] [ASSIGN] Received 10 UE assignments from RRH
+[2025-05-28 10:53:50] [ASSIGN] Received 10 UE assignments from RRH
+[2025-05-28 10:53:50] [LOAD] 10.0.0.202: CPU=0, Conn=0
+[2025-05-28 10:53:50] [LOAD] 10.0.0.201: CPU=12, Conn=3
+[2025-05-28 10:53:52] [ASSIGN] Received 10 UE assignments from RRH
+[2025-05-28 10:53:54] [ASSIGN] Received 10 UE assignments from RRH
+[2025-05-28 10:53:55] [LOAD] 10.0.0.202: CPU=0, Conn=0
+[2025-05-28 10:53:55] [LOAD] 10.0.0.201: CPU=12, Conn=3
+[2025-05-28 10:53:56] [ASSIGN] Received 10 UE assignments from RRH
+[2025-05-28 10:53:58] [ASSIGN] Received 10 UE assignments from RRH
+[2025-05-28 10:54:00] [ASSIGN] Received 10 UE assignments from RRH
+[2025-05-28 10:54:00] [LOAD] 10.0.0.202: CPU=0, Conn=0
+[2025-05-28 10:54:00] [LOAD] 10.0.0.201: CPU=12, Conn=3
+[2025-05-28 10:54:02] [ASSIGN] Received 10 UE assignments from RRH
+[2025-05-28 10:54:04] [ASSIGN] Received 10 UE assignments from RRH
+[2025-05-28 10:54:05] [LOAD] 10.0.0.202: CPU=0, Conn=0
+[2025-05-28 10:54:05] [LOAD] 10.0.0.201: CPU=12, Conn=3
+[2025-05-28 10:54:06] [ASSIGN] Received 10 UE assignments from RRH
+[2025-05-28 10:54:08] [ASSIGN] Received 10 UE assignments from RRH
+[2025-05-28 10:54:10] [ASSIGN] Received 10 UE assignments from RRH
+[2025-05-28 10:54:10] [LOAD] 10.0.0.202: CPU=0, Conn=0
+[2025-05-28 10:54:10] [LOAD] 10.0.0.201: CPU=12, Conn=3
+[2025-05-28 10:54:12] [ASSIGN] Received 10 UE assignments from RRH
+[2025-05-28 10:54:14] [ASSIGN] Received 10 UE assignments from RRH
+[2025-05-28 10:54:15] [LOAD] 10.0.0.202: CPU=0, Conn=0
+[2025-05-28 10:54:15] [LOAD] 10.0.0.201: CPU=12, Conn=3
+[2025-05-28 10:54:16] [ASSIGN] Received 10 UE assignments from RRH
+[2025-05-28 10:54:18] [ASSIGN] Received 10 UE assignments from RRH
+[2025-05-28 10:54:20] [ASSIGN] Received 10 UE assignments from RRH
+[2025-05-28 10:54:20] [LOAD] 10.0.0.202: CPU=0, Conn=0
+[2025-05-28 10:54:20] [LOAD] 10.0.0.201: CPU=12, Conn=3
+[2025-05-28 10:54:22] [ASSIGN] Received 10 UE assignments from RRH
+[2025-05-28 10:54:24] [ASSIGN] Received 10 UE assignments from RRH
+[2025-05-28 10:54:25] [LOAD] 10.0.0.202: CPU=0, Conn=0
+[2025-05-28 10:54:25] [LOAD] 10.0.0.201: CPU=12, Conn=3
+[2025-05-28 10:54:26] [ASSIGN] Received 10 UE assignments from RRH
+[2025-05-28 10:54:28] [ASSIGN] Received 10 UE assignments from RRH
+[2025-05-28 10:54:30] [ASSIGN] Received 10 UE assignments from RRH
+[2025-05-28 10:54:30] [LOAD] 10.0.0.202: CPU=0, Conn=0
+[2025-05-28 10:54:30] [LOAD] 10.0.0.201: CPU=12, Conn=3
+[2025-05-28 10:54:32] [ASSIGN] Received 10 UE assignments from RRH
+[2025-05-28 10:54:34] [ASSIGN] Received 10 UE assignments from RRH
+[2025-05-28 10:54:35] [LOAD] 10.0.0.202: CPU=0, Conn=0
+[2025-05-28 10:54:35] [LOAD] 10.0.0.201: CPU=12, Conn=3
+[2025-05-28 10:54:36] [ASSIGN] Received 10 UE assignments from RRH
+[2025-05-28 10:54:37] [UE_MANAGER] UE1 acknowledged 'remove'.
+[2025-05-28 10:54:38] [ASSIGN] Received 10 UE assignments from RRH
+[2025-05-28 10:54:40] [ASSIGN] Received 10 UE assignments from RRH
+[2025-05-28 10:54:40] [LOAD] 10.0.0.202: CPU=0, Conn=0
+[2025-05-28 10:54:40] [LOAD] 10.0.0.201: CPU=8, Conn=2
+[2025-05-28 10:54:42] [ASSIGN] Received 10 UE assignments from RRH
+[2025-05-28 10:54:44] [ASSIGN] Received 10 UE assignments from RRH
+[2025-05-28 10:54:45] [LOAD] 10.0.0.202: CPU=0, Conn=0
+[2025-05-28 10:54:45] [LOAD] 10.0.0.201: CPU=8, Conn=2
+[2025-05-28 10:54:46] [ASSIGN] Received 10 UE assignments from RRH
+[2025-05-28 10:54:48] [ASSIGN] Received 10 UE assignments from RRH
+[2025-05-28 10:54:50] [ASSIGN] Received 10 UE assignments from RRH
+[2025-05-28 10:54:50] [LOAD] 10.0.0.202: CPU=0, Conn=0
+[2025-05-28 10:54:50] [LOAD] 10.0.0.201: CPU=8, Conn=2
+[2025-05-28 10:54:52] [ASSIGN] Received 10 UE assignments from RRH
+[2025-05-28 10:54:54] [ASSIGN] Received 10 UE assignments from RRH
+[2025-05-28 10:54:55] [LOAD] 10.0.0.201: CPU=8, Conn=2
+[2025-05-28 10:54:55] [LOAD] 10.0.0.202: CPU=0, Conn=0
+[2025-05-28 10:54:56] [ASSIGN] Received 10 UE assignments from RRH
+[2025-05-28 10:54:58] [ASSIGN] Received 10 UE assignments from RRH
+[2025-05-28 10:55:00] [ASSIGN] Received 10 UE assignments from RRH
+[2025-05-28 10:55:00] [LOAD] 10.0.0.202: CPU=0, Conn=0
+[2025-05-28 10:55:00] [LOAD] 10.0.0.201: CPU=8, Conn=2
+[2025-05-28 10:55:02] [ASSIGN] Received 10 UE assignments from RRH
+[2025-05-28 10:55:04] [ASSIGN] Received 10 UE assignments from RRH
+[2025-05-28 10:55:05] [LOAD] 10.0.0.201: CPU=8, Conn=2
+[2025-05-28 10:55:05] [LOAD] 10.0.0.202: CPU=0, Conn=0
+[2025-05-28 10:55:06] [ASSIGN] Received 10 UE assignments from RRH
+[2025-05-28 10:55:08] [ASSIGN] Received 10 UE assignments from RRH
+[2025-05-28 10:55:10] [ASSIGN] Received 10 UE assignments from RRH
+[2025-05-28 10:55:10] [LOAD] 10.0.0.201: CPU=8, Conn=2
+[2025-05-28 10:55:10] [LOAD] 10.0.0.202: CPU=0, Conn=0
+[2025-05-28 10:55:12] [ASSIGN] Received 10 UE assignments from RRH
+[2025-05-28 10:55:14] [ASSIGN] Received 10 UE assignments from RRH
+[2025-05-28 10:55:15] [LOAD] 10.0.0.202: CPU=0, Conn=0
+[2025-05-28 10:55:15] [LOAD] 10.0.0.201: CPU=8, Conn=2
+[2025-05-28 10:55:16] [ASSIGN] Received 10 UE assignments from RRH
+[2025-05-28 10:55:18] [ASSIGN] Received 10 UE assignments from RRH
+[2025-05-28 10:55:20] [ASSIGN] Received 10 UE assignments from RRH
+[2025-05-28 10:55:20] [LOAD] 10.0.0.202: CPU=0, Conn=0
+[2025-05-28 10:55:20] [LOAD] 10.0.0.201: CPU=8, Conn=2
+[2025-05-28 10:55:22] [ASSIGN] Received 10 UE assignments from RRH
+[2025-05-28 10:55:24] [ASSIGN] Received 10 UE assignments from RRH
+[2025-05-28 10:55:25] [LOAD] 10.0.0.202: CPU=0, Conn=0
+[2025-05-28 10:55:25] [LOAD] 10.0.0.201: CPU=8, Conn=2
+[2025-05-28 10:55:26] [ASSIGN] Received 10 UE assignments from RRH
+[2025-05-28 10:55:28] [ASSIGN] Received 10 UE assignments from RRH
+[2025-05-28 10:55:30] [ASSIGN] Received 10 UE assignments from RRH
+[2025-05-28 10:55:30] [LOAD] 10.0.0.202: CPU=0, Conn=0
+[2025-05-28 10:55:30] [LOAD] 10.0.0.201: CPU=8, Conn=2
+[2025-05-28 10:55:32] [ASSIGN] Received 10 UE assignments from RRH
+[2025-05-28 10:55:34] [ASSIGN] Received 10 UE assignments from RRH
+[2025-05-28 10:55:35] [LOAD] 10.0.0.201: CPU=8, Conn=2
+[2025-05-28 10:55:35] [LOAD] 10.0.0.202: CPU=0, Conn=0
+[2025-05-28 10:55:36] [ASSIGN] Received 10 UE assignments from RRH
+[2025-05-28 10:55:38] [ASSIGN] Received 10 UE assignments from RRH
+[2025-05-28 10:55:40] [ASSIGN] Received 10 UE assignments from RRH
+[2025-05-28 10:55:40] [LOAD] 10.0.0.201: CPU=8, Conn=2
+[2025-05-28 10:55:40] [LOAD] 10.0.0.202: CPU=0, Conn=0
+[2025-05-28 10:55:42] [ASSIGN] Received 10 UE assignments from RRH
+[2025-05-28 10:55:44] [ASSIGN] Received 10 UE assignments from RRH
+[2025-05-28 10:55:45] [LOAD] 10.0.0.202: CPU=0, Conn=0
+[2025-05-28 10:55:45] [LOAD] 10.0.0.201: CPU=8, Conn=2
+[2025-05-28 10:55:46] [ASSIGN] Received 10 UE assignments from RRH
+[2025-05-28 10:55:48] [ASSIGN] Received 10 UE assignments from RRH
+[2025-05-28 10:55:50] [ASSIGN] Received 10 UE assignments from RRH
+[2025-05-28 10:55:50] [LOAD] 10.0.0.201: CPU=8, Conn=2
+[2025-05-28 10:55:50] [LOAD] 10.0.0.202: CPU=0, Conn=0
+[2025-05-28 10:55:52] [ASSIGN] Received 10 UE assignments from RRH
+[2025-05-28 10:55:54] [ASSIGN] Received 10 UE assignments from RRH
