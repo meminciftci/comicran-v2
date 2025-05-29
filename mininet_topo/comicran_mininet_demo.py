@@ -84,7 +84,7 @@ def deploy_http_services(net, topo_vbbu_config):
     # orch.cmd('xterm -T orchestrator -e python3 orchestrator.py &')
     orch.cmd(
         'xterm -T orchestrator -e bash -lc "'
-        'source ../venv/bin/activate && '
+        'source ./venv/bin/activate && '
         'python3 orchestrator.py" &'
     )
 
