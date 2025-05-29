@@ -1,51 +1,21 @@
-[2025-05-28 10:51:45] vBBU server running on port 8081 as vbbu2
-[2025-05-28 10:51:45] [ERROR] Failed to report load: [Errno 111] Connection refused
-[2025-05-28 10:51:50] [REPORT] Sent load to orchestrator: 0 UEs
-[2025-05-28 10:51:55] [REPORT] Sent load to orchestrator: 0 UEs
-[2025-05-28 10:52:00] [REPORT] Sent load to orchestrator: 0 UEs
-[2025-05-28 10:52:05] [REPORT] Sent load to orchestrator: 0 UEs
-[2025-05-28 10:52:10] [REPORT] Sent load to orchestrator: 0 UEs
-[2025-05-28 10:52:15] [REPORT] Sent load to orchestrator: 0 UEs
-[2025-05-28 10:52:20] [REPORT] Sent load to orchestrator: 0 UEs
-[2025-05-28 10:52:25] [REPORT] Sent load to orchestrator: 0 UEs
-[2025-05-28 10:52:30] [REPORT] Sent load to orchestrator: 0 UEs
-[2025-05-28 10:52:35] [REPORT] Sent load to orchestrator: 0 UEs
-[2025-05-28 10:52:40] [REPORT] Sent load to orchestrator: 0 UEs
-[2025-05-28 10:52:45] [REPORT] Sent load to orchestrator: 0 UEs
-[2025-05-28 10:52:50] [REPORT] Sent load to orchestrator: 0 UEs
-[2025-05-28 10:52:55] [REPORT] Sent load to orchestrator: 0 UEs
-[2025-05-28 10:53:00] [REPORT] Sent load to orchestrator: 0 UEs
-[2025-05-28 10:53:05] [REPORT] Sent load to orchestrator: 0 UEs
-[2025-05-28 10:53:10] [REPORT] Sent load to orchestrator: 0 UEs
-[2025-05-28 10:53:15] [REPORT] Sent load to orchestrator: 0 UEs
-[2025-05-28 10:53:20] [REPORT] Sent load to orchestrator: 0 UEs
-[2025-05-28 10:53:25] [REPORT] Sent load to orchestrator: 0 UEs
-[2025-05-28 10:53:30] [REPORT] Sent load to orchestrator: 0 UEs
-[2025-05-28 10:53:35] [REPORT] Sent load to orchestrator: 0 UEs
-[2025-05-28 10:53:40] [REPORT] Sent load to orchestrator: 0 UEs
-[2025-05-28 10:53:45] [REPORT] Sent load to orchestrator: 0 UEs
-[2025-05-28 10:53:50] [REPORT] Sent load to orchestrator: 0 UEs
-[2025-05-28 10:53:55] [REPORT] Sent load to orchestrator: 0 UEs
-[2025-05-28 10:54:00] [REPORT] Sent load to orchestrator: 0 UEs
-[2025-05-28 10:54:05] [REPORT] Sent load to orchestrator: 0 UEs
-[2025-05-28 10:54:10] [REPORT] Sent load to orchestrator: 0 UEs
-[2025-05-28 10:54:15] [REPORT] Sent load to orchestrator: 0 UEs
-[2025-05-28 10:54:20] [REPORT] Sent load to orchestrator: 0 UEs
-[2025-05-28 10:54:25] [REPORT] Sent load to orchestrator: 0 UEs
-[2025-05-28 10:54:30] [REPORT] Sent load to orchestrator: 0 UEs
-[2025-05-28 10:54:35] [REPORT] Sent load to orchestrator: 0 UEs
-[2025-05-28 10:54:40] [REPORT] Sent load to orchestrator: 0 UEs
-[2025-05-28 10:54:45] [REPORT] Sent load to orchestrator: 0 UEs
-[2025-05-28 10:54:50] [REPORT] Sent load to orchestrator: 0 UEs
-[2025-05-28 10:54:55] [REPORT] Sent load to orchestrator: 0 UEs
-[2025-05-28 10:55:00] [REPORT] Sent load to orchestrator: 0 UEs
-[2025-05-28 10:55:05] [REPORT] Sent load to orchestrator: 0 UEs
-[2025-05-28 10:55:10] [REPORT] Sent load to orchestrator: 0 UEs
-[2025-05-28 10:55:15] [REPORT] Sent load to orchestrator: 0 UEs
-[2025-05-28 10:55:20] [REPORT] Sent load to orchestrator: 0 UEs
-[2025-05-28 10:55:25] [REPORT] Sent load to orchestrator: 0 UEs
-[2025-05-28 10:55:30] [REPORT] Sent load to orchestrator: 0 UEs
-[2025-05-28 10:55:35] [REPORT] Sent load to orchestrator: 0 UEs
-[2025-05-28 10:55:40] [REPORT] Sent load to orchestrator: 0 UEs
-[2025-05-28 10:55:45] [REPORT] Sent load to orchestrator: 0 UEs
-[2025-05-28 10:55:50] [REPORT] Sent load to orchestrator: 0 UEs
+[2025-05-28 19:52:00] vBBU server running on port 8081 as vbbu1-prime with capacity 20
+[2025-05-28 19:52:00] [ERROR] Failed to report load: [Errno 111] Connection refused
+[2025-05-28 19:52:05] [REPORT] Sent load to orchestrator: 0/20 users (0.0% utilization)
+[2025-05-28 19:52:10] [REPORT] Sent load to orchestrator: 0/20 users (0.0% utilization)
+[2025-05-28 19:52:15] [REPORT] Sent load to orchestrator: 0/20 users (0.0% utilization)
+[2025-05-28 19:52:20] [REPORT] Sent load to orchestrator: 0/20 users (0.0% utilization)
+[2025-05-28 19:52:25] [REPORT] Sent load to orchestrator: 0/20 users (0.0% utilization)
+[2025-05-28 19:52:30] [REPORT] Sent load to orchestrator: 0/20 users (0.0% utilization)
+[2025-05-28 19:52:35] [REPORT] Sent load to orchestrator: 0/20 users (0.0% utilization)
+[2025-05-28 19:52:40] [REPORT] Sent load to orchestrator: 0/20 users (0.0% utilization)
+[2025-05-28 19:52:45] [REPORT] Sent load to orchestrator: 0/20 users (0.0% utilization)
+[2025-05-28 19:52:50] [REPORT] Sent load to orchestrator: 0/20 users (0.0% utilization)
+[2025-05-28 19:52:55] [REPORT] Sent load to orchestrator: 0/20 users (0.0% utilization)
+[2025-05-28 19:53:00] [REPORT] Sent load to orchestrator: 0/20 users (0.0% utilization)
+[2025-05-28 19:53:05] [REPORT] Sent load to orchestrator: 0/20 users (0.0% utilization)
+[2025-05-28 19:53:10] [REPORT] Sent load to orchestrator: 0/20 users (0.0% utilization)
+[2025-05-28 19:53:15] [REPORT] Sent load to orchestrator: 0/20 users (0.0% utilization)
+[2025-05-28 19:53:20] [REPORT] Sent load to orchestrator: 0/20 users (0.0% utilization)
+[2025-05-28 19:53:25] [REPORT] Sent load to orchestrator: 0/20 users (0.0% utilization)
+[2025-05-28 19:53:30] [REPORT] Sent load to orchestrator: 0/20 users (0.0% utilization)
+[2025-05-28 19:53:35] [REPORT] Sent load to orchestrator: 0/20 users (0.0% utilization)

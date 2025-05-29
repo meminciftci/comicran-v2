@@ -1,1 +1,1 @@
-[2025-05-28 10:51:47] Starting UE client #7, initial target=10.0.0.100
+[2025-05-28 19:52:02] Starting UE client #7, initial target=10.0.0.100

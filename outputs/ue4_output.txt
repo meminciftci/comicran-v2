@@ -1,1 +1,12 @@
-[2025-05-28 10:51:47] Starting UE client #4, initial target=10.0.0.100
+[2025-05-28 19:52:02] Starting UE client #4, initial target=10.0.0.100
+[2025-05-28 19:53:17] Switched to RRH
+[2025-05-28 19:53:19]     [RESPONSE] Ack#0 from vBBU1 to UE4
+[2025-05-28 19:53:21]     [RESPONSE] Ack#1 from vBBU1 to UE4
+[2025-05-28 19:53:24]     [RESPONSE] Ack#2 from vBBU1 to UE4
+[2025-05-28 19:53:26]     [RESPONSE] Ack#3 from vBBU1 to UE4
+[2025-05-28 19:53:28]     [RESPONSE] Ack#4 from vBBU1 to UE4
+[2025-05-28 19:53:29]     [RESPONSE] Ack#5 from vBBU1 to UE4
+[2025-05-28 19:53:32]     [RESPONSE] Ack#6 from vBBU1 to UE4
+[2025-05-28 19:53:34]     [RESPONSE] Ack#7 from vBBU1 to UE4
+[2025-05-28 19:53:36]     [RESPONSE] Ack#8 from vBBU1 to UE4
+[2025-05-28 19:53:38]     [RESPONSE] Ack#9 from vBBU1 to UE4

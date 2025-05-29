@@ -1,522 +1,260 @@
-[2025-05-28 10:51:45] RRH command listener started on port 9200
-[2025-05-28 10:51:45] RRH proxy started on port 8000
-[2025-05-28 10:51:45] Initial UE mapping: {'10.0.0.1': '10.0.0.201:8080', '10.0.0.2': '10.0.0.201:8080', '10.0.0.3': '10.0.0.201:8080', '10.0.0.4': '10.0.0.201:8080', '10.0.0.5': '10.0.0.201:8080', '10.0.0.6': '10.0.0.201:8080', '10.0.0.7': '10.0.0.201:8080', '10.0.0.8': '10.0.0.201:8080', '10.0.0.9': '10.0.0.201:8080', '10.0.0.10': '10.0.0.201:8080'}
-[2025-05-28 10:51:45] [ERROR] Failed to report assignments: [Errno 111] Connection refused
-[2025-05-28 10:51:47] [REPORT] Sent 10 UE assignments to orchestrator
-[2025-05-28 10:51:49] [REPORT] Sent 10 UE assignments to orchestrator
-[2025-05-28 10:51:51] [REPORT] Sent 10 UE assignments to orchestrator
-[2025-05-28 10:51:53] [REPORT] Sent 10 UE assignments to orchestrator
-[2025-05-28 10:51:55] [REPORT] Sent 10 UE assignments to orchestrator
-[2025-05-28 10:51:57] [REPORT] Sent 10 UE assignments to orchestrator
-[2025-05-28 10:51:59] [REPORT] Sent 10 UE assignments to orchestrator
-[2025-05-28 10:52:01] [REPORT] Sent 10 UE assignments to orchestrator
-[2025-05-28 10:52:03] [REPORT] Sent 10 UE assignments to orchestrator
-[2025-05-28 10:52:05] [REPORT] Sent 10 UE assignments to orchestrator
-[2025-05-28 10:52:07] [REPORT] Sent 10 UE assignments to orchestrator
-[2025-05-28 10:52:09] [REPORT] Sent 10 UE assignments to orchestrator
-[2025-05-28 10:52:11] [REPORT] Sent 10 UE assignments to orchestrator
-[2025-05-28 10:52:13] [REPORT] Sent 10 UE assignments to orchestrator
-[2025-05-28 10:52:15] [REPORT] Sent 10 UE assignments to orchestrator
-[2025-05-28 10:52:17] [REPORT] Sent 10 UE assignments to orchestrator
-[2025-05-28 10:52:19] [REPORT] Sent 10 UE assignments to orchestrator
-[2025-05-28 10:52:21] [REPORT] Sent 10 UE assignments to orchestrator
-[2025-05-28 10:52:23] [REPORT] Sent 10 UE assignments to orchestrator
-[2025-05-28 10:52:25] [REPORT] Sent 10 UE assignments to orchestrator
-[2025-05-28 10:52:27] [REPORT] Sent 10 UE assignments to orchestrator
-[2025-05-28 10:52:29] [REPORT] Sent 10 UE assignments to orchestrator
-[2025-05-28 10:52:31] [REPORT] Sent 10 UE assignments to orchestrator
-[2025-05-28 10:52:33] [REPORT] Sent 10 UE assignments to orchestrator
-[2025-05-28 10:52:35] [REPORT] Sent 10 UE assignments to orchestrator
-[2025-05-28 10:52:37] [REPORT] Sent 10 UE assignments to orchestrator
-[2025-05-28 10:52:39] [REPORT] Sent 10 UE assignments to orchestrator
-[2025-05-28 10:52:41] [REPORT] Sent 10 UE assignments to orchestrator
-[2025-05-28 10:52:43] [REPORT] Sent 10 UE assignments to orchestrator
-[2025-05-28 10:52:45] [REPORT] Sent 10 UE assignments to orchestrator
-[2025-05-28 10:52:47] [REPORT] Sent 10 UE assignments to orchestrator
-[2025-05-28 10:52:48]     [REQUEST] UE1 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:52:48]     [RESPONSE] vBBU1 → UE1 (200)
-[2025-05-28 10:52:49] [REPORT] Sent 10 UE assignments to orchestrator
-[2025-05-28 10:52:50]     [REQUEST] UE1 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:52:50]     [RESPONSE] vBBU1 → UE1 (200)
-[2025-05-28 10:52:51] [REPORT] Sent 10 UE assignments to orchestrator
-[2025-05-28 10:52:53]     [REQUEST] UE1 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:52:53]     [RESPONSE] vBBU1 → UE1 (200)
-[2025-05-28 10:52:53] [REPORT] Sent 10 UE assignments to orchestrator
-[2025-05-28 10:52:55]     [REQUEST] UE1 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:52:55]     [RESPONSE] vBBU1 → UE1 (200)
-[2025-05-28 10:52:55] [REPORT] Sent 10 UE assignments to orchestrator
-[2025-05-28 10:52:56]     [REQUEST] UE1 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:52:56]     [RESPONSE] vBBU1 → UE1 (200)
-[2025-05-28 10:52:57] [REPORT] Sent 10 UE assignments to orchestrator
-[2025-05-28 10:52:58]     [REQUEST] UE1 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:52:58]     [RESPONSE] vBBU1 → UE1 (200)
-[2025-05-28 10:52:59] [REPORT] Sent 10 UE assignments to orchestrator
-[2025-05-28 10:53:01]     [REQUEST] UE1 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:53:01]     [RESPONSE] vBBU1 → UE1 (200)
-[2025-05-28 10:53:01] [REPORT] Sent 10 UE assignments to orchestrator
-[2025-05-28 10:53:02]     [REQUEST] UE1 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:53:02]     [RESPONSE] vBBU1 → UE1 (200)
-[2025-05-28 10:53:03] [REPORT] Sent 10 UE assignments to orchestrator
-[2025-05-28 10:53:05]     [REQUEST] UE1 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:53:05]     [RESPONSE] vBBU1 → UE1 (200)
-[2025-05-28 10:53:05] [REPORT] Sent 10 UE assignments to orchestrator
-[2025-05-28 10:53:06]     [REQUEST] UE2 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:53:06]     [RESPONSE] vBBU1 → UE2 (200)
-[2025-05-28 10:53:07] [REPORT] Sent 10 UE assignments to orchestrator
-[2025-05-28 10:53:08]     [REQUEST] UE1 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:53:08]     [RESPONSE] vBBU1 → UE1 (200)
-[2025-05-28 10:53:09]     [REQUEST] UE2 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:53:09]     [RESPONSE] vBBU1 → UE2 (200)
-[2025-05-28 10:53:09] [REPORT] Sent 10 UE assignments to orchestrator
-[2025-05-28 10:53:10]     [REQUEST] UE1 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:53:10]     [RESPONSE] vBBU1 → UE1 (200)
-[2025-05-28 10:53:11]     [REQUEST] UE2 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:53:11]     [RESPONSE] vBBU1 → UE2 (200)
-[2025-05-28 10:53:11] [REPORT] Sent 10 UE assignments to orchestrator
-[2025-05-28 10:53:12]     [REQUEST] UE1 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:53:12]     [RESPONSE] vBBU1 → UE1 (200)
-[2025-05-28 10:53:13]     [REQUEST] UE2 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:53:13]     [RESPONSE] vBBU1 → UE2 (200)
-[2025-05-28 10:53:13] [REPORT] Sent 10 UE assignments to orchestrator
-[2025-05-28 10:53:15]     [REQUEST] UE1 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:53:15]     [RESPONSE] vBBU1 → UE1 (200)
-[2025-05-28 10:53:15]     [REQUEST] UE2 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:53:15]     [RESPONSE] vBBU1 → UE2 (200)
-[2025-05-28 10:53:15]     [REQUEST] UE6 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:53:15]     [RESPONSE] vBBU1 → UE6 (200)
-[2025-05-28 10:53:15] [REPORT] Sent 10 UE assignments to orchestrator
-[2025-05-28 10:53:16]     [REQUEST] UE2 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:53:16]     [RESPONSE] vBBU1 → UE2 (200)
-[2025-05-28 10:53:17]     [REQUEST] UE1 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:53:17]     [RESPONSE] vBBU1 → UE1 (200)
-[2025-05-28 10:53:18] [REPORT] Sent 10 UE assignments to orchestrator
-[2025-05-28 10:53:18]     [REQUEST] UE6 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:53:18]     [RESPONSE] vBBU1 → UE6 (200)
-[2025-05-28 10:53:18]     [REQUEST] UE2 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:53:18]     [RESPONSE] vBBU1 → UE2 (200)
-[2025-05-28 10:53:19]     [REQUEST] UE1 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:53:19]     [RESPONSE] vBBU1 → UE1 (200)
-[2025-05-28 10:53:20] [REPORT] Sent 10 UE assignments to orchestrator
-[2025-05-28 10:53:20]     [REQUEST] UE2 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:53:20]     [RESPONSE] vBBU1 → UE2 (200)
-[2025-05-28 10:53:20]     [REQUEST] UE6 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:53:20]     [RESPONSE] vBBU1 → UE6 (200)
-[2025-05-28 10:53:22] [REPORT] Sent 10 UE assignments to orchestrator
-[2025-05-28 10:53:22]     [REQUEST] UE2 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:53:22]     [RESPONSE] vBBU1 → UE2 (200)
-[2025-05-28 10:53:22]     [REQUEST] UE1 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:53:22]     [RESPONSE] vBBU1 → UE1 (200)
-[2025-05-28 10:53:22]     [REQUEST] UE6 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:53:22]     [RESPONSE] vBBU1 → UE6 (200)
-[2025-05-28 10:53:23]     [REQUEST] UE2 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:53:23]     [RESPONSE] vBBU1 → UE2 (200)
-[2025-05-28 10:53:24] [REPORT] Sent 10 UE assignments to orchestrator
-[2025-05-28 10:53:24]     [REQUEST] UE6 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:53:24]     [RESPONSE] vBBU1 → UE6 (200)
-[2025-05-28 10:53:25]     [REQUEST] UE1 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:53:25]     [RESPONSE] vBBU1 → UE1 (200)
-[2025-05-28 10:53:26] [REPORT] Sent 10 UE assignments to orchestrator
-[2025-05-28 10:53:26]     [REQUEST] UE2 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:53:26]     [REQUEST] UE6 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:53:26]     [RESPONSE] vBBU1 → UE2 (200)
-[2025-05-28 10:53:26]     [RESPONSE] vBBU1 → UE6 (200)
-[2025-05-28 10:53:28] [REPORT] Sent 10 UE assignments to orchestrator
-[2025-05-28 10:53:28]     [REQUEST] UE1 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:53:28]     [RESPONSE] vBBU1 → UE1 (200)
-[2025-05-28 10:53:28]     [REQUEST] UE2 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:53:28]     [RESPONSE] vBBU1 → UE2 (200)
-[2025-05-28 10:53:28]     [REQUEST] UE6 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:53:28]     [RESPONSE] vBBU1 → UE6 (200)
-[2025-05-28 10:53:30] [REPORT] Sent 10 UE assignments to orchestrator
-[2025-05-28 10:53:30]     [REQUEST] UE1 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:53:30]     [RESPONSE] vBBU1 → UE1 (200)
-[2025-05-28 10:53:31]     [REQUEST] UE2 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:53:31]     [RESPONSE] vBBU1 → UE2 (200)
-[2025-05-28 10:53:31]     [REQUEST] UE6 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:53:31]     [RESPONSE] vBBU1 → UE6 (200)
-[2025-05-28 10:53:31]     [REQUEST] UE1 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:53:31]     [RESPONSE] vBBU1 → UE1 (200)
-[2025-05-28 10:53:32] [REPORT] Sent 10 UE assignments to orchestrator
-[2025-05-28 10:53:33]     [REQUEST] UE1 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:53:33]     [RESPONSE] vBBU1 → UE1 (200)
-[2025-05-28 10:53:33]     [REQUEST] UE2 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:53:33]     [RESPONSE] vBBU1 → UE2 (200)
-[2025-05-28 10:53:34] [REPORT] Sent 10 UE assignments to orchestrator
-[2025-05-28 10:53:34]     [REQUEST] UE6 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:53:34]     [RESPONSE] vBBU1 → UE6 (200)
-[2025-05-28 10:53:34]     [REQUEST] UE1 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:53:34]     [RESPONSE] vBBU1 → UE1 (200)
-[2025-05-28 10:53:36] [REPORT] Sent 10 UE assignments to orchestrator
-[2025-05-28 10:53:36]     [REQUEST] UE2 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:53:36]     [RESPONSE] vBBU1 → UE2 (200)
-[2025-05-28 10:53:37]     [REQUEST] UE6 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:53:37]     [RESPONSE] vBBU1 → UE6 (200)
-[2025-05-28 10:53:37]     [REQUEST] UE1 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:53:37]     [RESPONSE] vBBU1 → UE1 (200)
-[2025-05-28 10:53:38] [REPORT] Sent 10 UE assignments to orchestrator
-[2025-05-28 10:53:39]     [REQUEST] UE2 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:53:39]     [RESPONSE] vBBU1 → UE2 (200)
-[2025-05-28 10:53:39]     [REQUEST] UE6 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:53:39]     [RESPONSE] vBBU1 → UE6 (200)
-[2025-05-28 10:53:40] [REPORT] Sent 10 UE assignments to orchestrator
-[2025-05-28 10:53:40]     [REQUEST] UE1 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:53:40]     [RESPONSE] vBBU1 → UE1 (200)
-[2025-05-28 10:53:41]     [REQUEST] UE2 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:53:41]     [RESPONSE] vBBU1 → UE2 (200)
-[2025-05-28 10:53:42] [REPORT] Sent 10 UE assignments to orchestrator
-[2025-05-28 10:53:42]     [REQUEST] UE6 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:53:42]     [RESPONSE] vBBU1 → UE6 (200)
-[2025-05-28 10:53:42]     [REQUEST] UE1 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:53:42]     [RESPONSE] vBBU1 → UE1 (200)
-[2025-05-28 10:53:43]     [REQUEST] UE2 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:53:43]     [RESPONSE] vBBU1 → UE2 (200)
-[2025-05-28 10:53:44] [REPORT] Sent 10 UE assignments to orchestrator
-[2025-05-28 10:53:44]     [REQUEST] UE1 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:53:45]     [RESPONSE] vBBU1 → UE1 (200)
-[2025-05-28 10:53:45]     [REQUEST] UE6 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:53:45]     [RESPONSE] vBBU1 → UE6 (200)
-[2025-05-28 10:53:45]     [REQUEST] UE2 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:53:45]     [RESPONSE] vBBU1 → UE2 (200)
-[2025-05-28 10:53:46] [REPORT] Sent 10 UE assignments to orchestrator
-[2025-05-28 10:53:46]     [REQUEST] UE1 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:53:46]     [RESPONSE] vBBU1 → UE1 (200)
-[2025-05-28 10:53:47]     [REQUEST] UE6 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:53:47]     [RESPONSE] vBBU1 → UE6 (200)
-[2025-05-28 10:53:48] [REPORT] Sent 10 UE assignments to orchestrator
-[2025-05-28 10:53:48]     [REQUEST] UE2 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:53:48]     [RESPONSE] vBBU1 → UE2 (200)
-[2025-05-28 10:53:48]     [REQUEST] UE1 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:53:48]     [RESPONSE] vBBU1 → UE1 (200)
-[2025-05-28 10:53:49]     [REQUEST] UE6 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:53:49]     [RESPONSE] vBBU1 → UE6 (200)
-[2025-05-28 10:53:50] [REPORT] Sent 10 UE assignments to orchestrator
-[2025-05-28 10:53:51]     [REQUEST] UE2 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:53:51]     [RESPONSE] vBBU1 → UE2 (200)
-[2025-05-28 10:53:51]     [REQUEST] UE1 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:53:51]     [RESPONSE] vBBU1 → UE1 (200)
-[2025-05-28 10:53:51]     [REQUEST] UE6 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:53:51]     [RESPONSE] vBBU1 → UE6 (200)
-[2025-05-28 10:53:52] [REPORT] Sent 10 UE assignments to orchestrator
-[2025-05-28 10:53:53]     [REQUEST] UE2 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:53:53]     [RESPONSE] vBBU1 → UE2 (200)
-[2025-05-28 10:53:53]     [REQUEST] UE1 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:53:53]     [RESPONSE] vBBU1 → UE1 (200)
-[2025-05-28 10:53:53]     [REQUEST] UE6 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:53:53]     [RESPONSE] vBBU1 → UE6 (200)
-[2025-05-28 10:53:54] [REPORT] Sent 10 UE assignments to orchestrator
-[2025-05-28 10:53:56] [REPORT] Sent 10 UE assignments to orchestrator
-[2025-05-28 10:53:56]     [REQUEST] UE1 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:53:56]     [RESPONSE] vBBU1 → UE1 (200)
-[2025-05-28 10:53:56]     [REQUEST] UE6 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:53:56]     [RESPONSE] vBBU1 → UE6 (200)
-[2025-05-28 10:53:56]     [REQUEST] UE2 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:53:56]     [RESPONSE] vBBU1 → UE2 (200)
-[2025-05-28 10:53:57]     [REQUEST] UE1 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:53:58]     [RESPONSE] vBBU1 → UE1 (200)
-[2025-05-28 10:53:58] [REPORT] Sent 10 UE assignments to orchestrator
-[2025-05-28 10:53:58]     [REQUEST] UE2 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:53:58]     [RESPONSE] vBBU1 → UE2 (200)
-[2025-05-28 10:53:58]     [REQUEST] UE6 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:53:58]     [RESPONSE] vBBU1 → UE6 (200)
-[2025-05-28 10:53:59]     [REQUEST] UE2 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:53:59]     [RESPONSE] vBBU1 → UE2 (200)
-[2025-05-28 10:54:00] [REPORT] Sent 10 UE assignments to orchestrator
-[2025-05-28 10:54:00]     [REQUEST] UE1 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:54:00]     [RESPONSE] vBBU1 → UE1 (200)
-[2025-05-28 10:54:01]     [REQUEST] UE6 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:54:01]     [RESPONSE] vBBU1 → UE6 (200)
-[2025-05-28 10:54:02] [REPORT] Sent 10 UE assignments to orchestrator
-[2025-05-28 10:54:02]     [REQUEST] UE2 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:54:02]     [RESPONSE] vBBU1 → UE2 (200)
-[2025-05-28 10:54:03]     [REQUEST] UE1 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:54:03]     [RESPONSE] vBBU1 → UE1 (200)
-[2025-05-28 10:54:04] [REPORT] Sent 10 UE assignments to orchestrator
-[2025-05-28 10:54:04]     [REQUEST] UE2 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:54:04]     [RESPONSE] vBBU1 → UE2 (200)
-[2025-05-28 10:54:04]     [REQUEST] UE6 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:54:04]     [RESPONSE] vBBU1 → UE6 (200)
-[2025-05-28 10:54:05]     [REQUEST] UE1 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:54:05]     [RESPONSE] vBBU1 → UE1 (200)
-[2025-05-28 10:54:06] [REPORT] Sent 10 UE assignments to orchestrator
-[2025-05-28 10:54:07]     [REQUEST] UE2 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:54:07]     [RESPONSE] vBBU1 → UE2 (200)
-[2025-05-28 10:54:07]     [REQUEST] UE6 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:54:07]     [RESPONSE] vBBU1 → UE6 (200)
-[2025-05-28 10:54:07]     [REQUEST] UE1 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:54:07]     [RESPONSE] vBBU1 → UE1 (200)
-[2025-05-28 10:54:08] [REPORT] Sent 10 UE assignments to orchestrator
-[2025-05-28 10:54:08]     [REQUEST] UE2 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:54:08]     [RESPONSE] vBBU1 → UE2 (200)
-[2025-05-28 10:54:08]     [REQUEST] UE1 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:54:08]     [RESPONSE] vBBU1 → UE1 (200)
-[2025-05-28 10:54:09]     [REQUEST] UE6 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:54:09]     [RESPONSE] vBBU1 → UE6 (200)
-[2025-05-28 10:54:10] [REPORT] Sent 10 UE assignments to orchestrator
-[2025-05-28 10:54:10]     [REQUEST] UE2 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:54:10]     [RESPONSE] vBBU1 → UE2 (200)
-[2025-05-28 10:54:11]     [REQUEST] UE1 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:54:11]     [RESPONSE] vBBU1 → UE1 (200)
-[2025-05-28 10:54:11]     [REQUEST] UE6 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:54:11]     [RESPONSE] vBBU1 → UE6 (200)
-[2025-05-28 10:54:12] [REPORT] Sent 10 UE assignments to orchestrator
-[2025-05-28 10:54:12]     [REQUEST] UE2 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:54:12]     [RESPONSE] vBBU1 → UE2 (200)
-[2025-05-28 10:54:13]     [REQUEST] UE6 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:54:13]     [RESPONSE] vBBU1 → UE6 (200)
-[2025-05-28 10:54:13]     [REQUEST] UE1 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:54:13]     [RESPONSE] vBBU1 → UE1 (200)
-[2025-05-28 10:54:14]     [REQUEST] UE2 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:54:14] [REPORT] Sent 10 UE assignments to orchestrator
-[2025-05-28 10:54:14]     [RESPONSE] vBBU1 → UE2 (200)
-[2025-05-28 10:54:16] [REPORT] Sent 10 UE assignments to orchestrator
-[2025-05-28 10:54:16]     [REQUEST] UE1 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:54:16]     [RESPONSE] vBBU1 → UE1 (200)
-[2025-05-28 10:54:16]     [REQUEST] UE6 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:54:16]     [RESPONSE] vBBU1 → UE6 (200)
-[2025-05-28 10:54:16]     [REQUEST] UE2 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:54:16]     [RESPONSE] vBBU1 → UE2 (200)
-[2025-05-28 10:54:17]     [REQUEST] UE1 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:54:17]     [RESPONSE] vBBU1 → UE1 (200)
-[2025-05-28 10:54:18] [REPORT] Sent 10 UE assignments to orchestrator
-[2025-05-28 10:54:18]     [REQUEST] UE6 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:54:18]     [RESPONSE] vBBU1 → UE6 (200)
-[2025-05-28 10:54:18]     [REQUEST] UE2 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:54:18]     [RESPONSE] vBBU1 → UE2 (200)
-[2025-05-28 10:54:20]     [REQUEST] UE1 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:54:20]     [RESPONSE] vBBU1 → UE1 (200)
-[2025-05-28 10:54:20] [REPORT] Sent 10 UE assignments to orchestrator
-[2025-05-28 10:54:21]     [REQUEST] UE6 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:54:21]     [RESPONSE] vBBU1 → UE6 (200)
-[2025-05-28 10:54:21]     [REQUEST] UE2 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:54:21]     [RESPONSE] vBBU1 → UE2 (200)
-[2025-05-28 10:54:21]     [REQUEST] UE1 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:54:21]     [RESPONSE] vBBU1 → UE1 (200)
-[2025-05-28 10:54:22] [REPORT] Sent 10 UE assignments to orchestrator
-[2025-05-28 10:54:23]     [REQUEST] UE1 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:54:23]     [RESPONSE] vBBU1 → UE1 (200)
-[2025-05-28 10:54:24] [REPORT] Sent 10 UE assignments to orchestrator
-[2025-05-28 10:54:24]     [REQUEST] UE6 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:54:24]     [RESPONSE] vBBU1 → UE6 (200)
-[2025-05-28 10:54:24]     [REQUEST] UE2 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:54:24]     [RESPONSE] vBBU1 → UE2 (200)
-[2025-05-28 10:54:25]     [REQUEST] UE1 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:54:25]     [RESPONSE] vBBU1 → UE1 (200)
-[2025-05-28 10:54:25]     [REQUEST] UE6 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:54:25]     [RESPONSE] vBBU1 → UE6 (200)
-[2025-05-28 10:54:26]     [REQUEST] UE2 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:54:26]     [RESPONSE] vBBU1 → UE2 (200)
-[2025-05-28 10:54:26] [REPORT] Sent 10 UE assignments to orchestrator
-[2025-05-28 10:54:27]     [REQUEST] UE1 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:54:27]     [RESPONSE] vBBU1 → UE1 (200)
-[2025-05-28 10:54:27]     [REQUEST] UE6 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:54:27]     [RESPONSE] vBBU1 → UE6 (200)
-[2025-05-28 10:54:28] [REPORT] Sent 10 UE assignments to orchestrator
-[2025-05-28 10:54:29]     [REQUEST] UE2 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:54:29]     [RESPONSE] vBBU1 → UE2 (200)
-[2025-05-28 10:54:30]     [REQUEST] UE6 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:54:30]     [RESPONSE] vBBU1 → UE6 (200)
-[2025-05-28 10:54:30] [REPORT] Sent 10 UE assignments to orchestrator
-[2025-05-28 10:54:30]     [REQUEST] UE2 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:54:30]     [RESPONSE] vBBU1 → UE2 (200)
-[2025-05-28 10:54:30]     [REQUEST] UE1 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:54:30]     [RESPONSE] vBBU1 → UE1 (200)
-[2025-05-28 10:54:32] [REPORT] Sent 10 UE assignments to orchestrator
-[2025-05-28 10:54:32]     [REQUEST] UE1 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:54:32]     [RESPONSE] vBBU1 → UE1 (200)
-[2025-05-28 10:54:32]     [REQUEST] UE6 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:54:32]     [RESPONSE] vBBU1 → UE6 (200)
-[2025-05-28 10:54:33]     [REQUEST] UE2 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:54:33]     [RESPONSE] vBBU1 → UE2 (200)
-[2025-05-28 10:54:34] [REPORT] Sent 10 UE assignments to orchestrator
-[2025-05-28 10:54:34]     [REQUEST] UE6 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:54:34]     [RESPONSE] vBBU1 → UE6 (200)
-[2025-05-28 10:54:35]     [REQUEST] UE1 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:54:35]     [RESPONSE] vBBU1 → UE1 (200)
-[2025-05-28 10:54:35]     [REQUEST] UE2 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:54:35]     [RESPONSE] vBBU1 → UE2 (200)
-[2025-05-28 10:54:36] [REPORT] Sent 10 UE assignments to orchestrator
-[2025-05-28 10:54:36]     [REQUEST] UE6 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:54:36]     [RESPONSE] vBBU1 → UE6 (200)
-[2025-05-28 10:54:37]     [REQUEST] UE2 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:54:37]     [RESPONSE] vBBU1 → UE2 (200)
-[2025-05-28 10:54:38] [REPORT] Sent 10 UE assignments to orchestrator
-[2025-05-28 10:54:39]     [REQUEST] UE6 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:54:39]     [RESPONSE] vBBU1 → UE6 (200)
-[2025-05-28 10:54:39]     [REQUEST] UE2 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:54:39]     [RESPONSE] vBBU1 → UE2 (200)
-[2025-05-28 10:54:40] [REPORT] Sent 10 UE assignments to orchestrator
-[2025-05-28 10:54:40]     [REQUEST] UE6 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:54:40]     [RESPONSE] vBBU1 → UE6 (200)
-[2025-05-28 10:54:41]     [REQUEST] UE2 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:54:41]     [RESPONSE] vBBU1 → UE2 (200)
-[2025-05-28 10:54:42] [REPORT] Sent 10 UE assignments to orchestrator
-[2025-05-28 10:54:42]     [REQUEST] UE6 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:54:42]     [RESPONSE] vBBU1 → UE6 (200)
-[2025-05-28 10:54:43]     [REQUEST] UE2 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:54:43]     [RESPONSE] vBBU1 → UE2 (200)
-[2025-05-28 10:54:44] [REPORT] Sent 10 UE assignments to orchestrator
-[2025-05-28 10:54:44]     [REQUEST] UE6 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:54:44]     [RESPONSE] vBBU1 → UE6 (200)
-[2025-05-28 10:54:45]     [REQUEST] UE2 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:54:45]     [RESPONSE] vBBU1 → UE2 (200)
-[2025-05-28 10:54:46] [REPORT] Sent 10 UE assignments to orchestrator
-[2025-05-28 10:54:46]     [REQUEST] UE2 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:54:46]     [RESPONSE] vBBU1 → UE2 (200)
-[2025-05-28 10:54:47]     [REQUEST] UE6 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:54:47]     [RESPONSE] vBBU1 → UE6 (200)
-[2025-05-28 10:54:48] [REPORT] Sent 10 UE assignments to orchestrator
-[2025-05-28 10:54:49]     [REQUEST] UE6 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:54:49]     [RESPONSE] vBBU1 → UE6 (200)
-[2025-05-28 10:54:49]     [REQUEST] UE2 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:54:49]     [RESPONSE] vBBU1 → UE2 (200)
-[2025-05-28 10:54:50] [REPORT] Sent 10 UE assignments to orchestrator
-[2025-05-28 10:54:51]     [REQUEST] UE6 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:54:51]     [RESPONSE] vBBU1 → UE6 (200)
-[2025-05-28 10:54:51]     [REQUEST] UE2 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:54:51]     [RESPONSE] vBBU1 → UE2 (200)
-[2025-05-28 10:54:52] [REPORT] Sent 10 UE assignments to orchestrator
-[2025-05-28 10:54:53]     [REQUEST] UE6 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:54:53]     [RESPONSE] vBBU1 → UE6 (200)
-[2025-05-28 10:54:53]     [REQUEST] UE2 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:54:53]     [RESPONSE] vBBU1 → UE2 (200)
-[2025-05-28 10:54:54] [REPORT] Sent 10 UE assignments to orchestrator
-[2025-05-28 10:54:54]     [REQUEST] UE6 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:54:54]     [RESPONSE] vBBU1 → UE6 (200)
-[2025-05-28 10:54:55]     [REQUEST] UE2 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:54:55]     [RESPONSE] vBBU1 → UE2 (200)
-[2025-05-28 10:54:56] [REPORT] Sent 10 UE assignments to orchestrator
-[2025-05-28 10:54:57]     [REQUEST] UE6 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:54:57]     [RESPONSE] vBBU1 → UE6 (200)
-[2025-05-28 10:54:57]     [REQUEST] UE2 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:54:57]     [RESPONSE] vBBU1 → UE2 (200)
-[2025-05-28 10:54:58] [REPORT] Sent 10 UE assignments to orchestrator
-[2025-05-28 10:54:58]     [REQUEST] UE2 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:54:58]     [RESPONSE] vBBU1 → UE2 (200)
-[2025-05-28 10:54:59]     [REQUEST] UE6 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:54:59]     [RESPONSE] vBBU1 → UE6 (200)
-[2025-05-28 10:55:00] [REPORT] Sent 10 UE assignments to orchestrator
-[2025-05-28 10:55:00]     [REQUEST] UE6 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:55:00]     [RESPONSE] vBBU1 → UE6 (200)
-[2025-05-28 10:55:01]     [REQUEST] UE2 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:55:01]     [RESPONSE] vBBU1 → UE2 (200)
-[2025-05-28 10:55:02] [REPORT] Sent 10 UE assignments to orchestrator
-[2025-05-28 10:55:03]     [REQUEST] UE6 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:55:03]     [RESPONSE] vBBU1 → UE6 (200)
-[2025-05-28 10:55:03]     [REQUEST] UE2 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:55:03]     [RESPONSE] vBBU1 → UE2 (200)
-[2025-05-28 10:55:04] [REPORT] Sent 10 UE assignments to orchestrator
-[2025-05-28 10:55:05]     [REQUEST] UE2 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:55:05]     [RESPONSE] vBBU1 → UE2 (200)
-[2025-05-28 10:55:06]     [REQUEST] UE6 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:55:06]     [RESPONSE] vBBU1 → UE6 (200)
-[2025-05-28 10:55:06] [REPORT] Sent 10 UE assignments to orchestrator
-[2025-05-28 10:55:07]     [REQUEST] UE2 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:55:07]     [RESPONSE] vBBU1 → UE2 (200)
-[2025-05-28 10:55:08]     [REQUEST] UE6 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:55:08]     [RESPONSE] vBBU1 → UE6 (200)
-[2025-05-28 10:55:08] [REPORT] Sent 10 UE assignments to orchestrator
-[2025-05-28 10:55:09]     [REQUEST] UE2 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:55:09]     [RESPONSE] vBBU1 → UE2 (200)
-[2025-05-28 10:55:09]     [REQUEST] UE6 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:55:09]     [RESPONSE] vBBU1 → UE6 (200)
-[2025-05-28 10:55:10] [REPORT] Sent 10 UE assignments to orchestrator
-[2025-05-28 10:55:12]     [REQUEST] UE6 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:55:12]     [RESPONSE] vBBU1 → UE6 (200)
-[2025-05-28 10:55:12] [REPORT] Sent 10 UE assignments to orchestrator
-[2025-05-28 10:55:12]     [REQUEST] UE2 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:55:12]     [RESPONSE] vBBU1 → UE2 (200)
-[2025-05-28 10:55:13]     [REQUEST] UE6 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:55:13]     [RESPONSE] vBBU1 → UE6 (200)
-[2025-05-28 10:55:14] [REPORT] Sent 10 UE assignments to orchestrator
-[2025-05-28 10:55:14]     [REQUEST] UE2 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:55:14]     [RESPONSE] vBBU1 → UE2 (200)
-[2025-05-28 10:55:16] [REPORT] Sent 10 UE assignments to orchestrator
-[2025-05-28 10:55:16]     [REQUEST] UE6 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:55:16]     [RESPONSE] vBBU1 → UE6 (200)
-[2025-05-28 10:55:16]     [REQUEST] UE2 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:55:16]     [RESPONSE] vBBU1 → UE2 (200)
-[2025-05-28 10:55:18] [REPORT] Sent 10 UE assignments to orchestrator
-[2025-05-28 10:55:18]     [REQUEST] UE2 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:55:18]     [RESPONSE] vBBU1 → UE2 (200)
-[2025-05-28 10:55:18]     [REQUEST] UE6 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:55:18]     [RESPONSE] vBBU1 → UE6 (200)
-[2025-05-28 10:55:20] [REPORT] Sent 10 UE assignments to orchestrator
-[2025-05-28 10:55:20]     [REQUEST] UE2 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:55:20]     [RESPONSE] vBBU1 → UE2 (200)
-[2025-05-28 10:55:21]     [REQUEST] UE6 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:55:21]     [RESPONSE] vBBU1 → UE6 (200)
-[2025-05-28 10:55:22] [REPORT] Sent 10 UE assignments to orchestrator
-[2025-05-28 10:55:23]     [REQUEST] UE2 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:55:23]     [RESPONSE] vBBU1 → UE2 (200)
-[2025-05-28 10:55:24] [REPORT] Sent 10 UE assignments to orchestrator
-[2025-05-28 10:55:24]     [REQUEST] UE6 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:55:24]     [RESPONSE] vBBU1 → UE6 (200)
-[2025-05-28 10:55:25]     [REQUEST] UE2 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:55:25]     [RESPONSE] vBBU1 → UE2 (200)
-[2025-05-28 10:55:26]     [REQUEST] UE6 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:55:26]     [RESPONSE] vBBU1 → UE6 (200)
-[2025-05-28 10:55:26] [REPORT] Sent 10 UE assignments to orchestrator
-[2025-05-28 10:55:27]     [REQUEST] UE2 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:55:27]     [RESPONSE] vBBU1 → UE2 (200)
-[2025-05-28 10:55:28] [REPORT] Sent 10 UE assignments to orchestrator
-[2025-05-28 10:55:28]     [REQUEST] UE6 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:55:28]     [RESPONSE] vBBU1 → UE6 (200)
-[2025-05-28 10:55:29]     [REQUEST] UE2 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:55:29]     [RESPONSE] vBBU1 → UE2 (200)
-[2025-05-28 10:55:30] [REPORT] Sent 10 UE assignments to orchestrator
-[2025-05-28 10:55:30]     [REQUEST] UE2 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:55:30]     [RESPONSE] vBBU1 → UE2 (200)
-[2025-05-28 10:55:31]     [REQUEST] UE6 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:55:31]     [RESPONSE] vBBU1 → UE6 (200)
-[2025-05-28 10:55:32] [REPORT] Sent 10 UE assignments to orchestrator
-[2025-05-28 10:55:32]     [REQUEST] UE2 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:55:33]     [RESPONSE] vBBU1 → UE2 (200)
-[2025-05-28 10:55:34]     [REQUEST] UE6 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:55:34]     [RESPONSE] vBBU1 → UE6 (200)
-[2025-05-28 10:55:34] [REPORT] Sent 10 UE assignments to orchestrator
-[2025-05-28 10:55:34]     [REQUEST] UE2 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:55:34]     [RESPONSE] vBBU1 → UE2 (200)
-[2025-05-28 10:55:36] [REPORT] Sent 10 UE assignments to orchestrator
-[2025-05-28 10:55:36]     [REQUEST] UE2 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:55:36]     [RESPONSE] vBBU1 → UE2 (200)
-[2025-05-28 10:55:37]     [REQUEST] UE6 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:55:37]     [RESPONSE] vBBU1 → UE6 (200)
-[2025-05-28 10:55:38] [REPORT] Sent 10 UE assignments to orchestrator
-[2025-05-28 10:55:38]     [REQUEST] UE6 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:55:38]     [RESPONSE] vBBU1 → UE6 (200)
-[2025-05-28 10:55:39]     [REQUEST] UE2 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:55:39]     [RESPONSE] vBBU1 → UE2 (200)
-[2025-05-28 10:55:40] [REPORT] Sent 10 UE assignments to orchestrator
-[2025-05-28 10:55:40]     [REQUEST] UE6 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:55:40]     [RESPONSE] vBBU1 → UE6 (200)
-[2025-05-28 10:55:41]     [REQUEST] UE2 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:55:41]     [RESPONSE] vBBU1 → UE2 (200)
-[2025-05-28 10:55:42] [REPORT] Sent 10 UE assignments to orchestrator
-[2025-05-28 10:55:43]     [REQUEST] UE6 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:55:43]     [RESPONSE] vBBU1 → UE6 (200)
-[2025-05-28 10:55:43]     [REQUEST] UE2 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:55:43]     [RESPONSE] vBBU1 → UE2 (200)
-[2025-05-28 10:55:44] [REPORT] Sent 10 UE assignments to orchestrator
-[2025-05-28 10:55:45]     [REQUEST] UE6 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:55:45]     [RESPONSE] vBBU1 → UE6 (200)
-[2025-05-28 10:55:46]     [REQUEST] UE2 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:55:46]     [RESPONSE] vBBU1 → UE2 (200)
-[2025-05-28 10:55:46] [REPORT] Sent 10 UE assignments to orchestrator
-[2025-05-28 10:55:48]     [REQUEST] UE6 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:55:48]     [RESPONSE] vBBU1 → UE6 (200)
-[2025-05-28 10:55:48] [REPORT] Sent 10 UE assignments to orchestrator
-[2025-05-28 10:55:48]     [REQUEST] UE2 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:55:48]     [RESPONSE] vBBU1 → UE2 (200)
-[2025-05-28 10:55:50] [REPORT] Sent 10 UE assignments to orchestrator
-[2025-05-28 10:55:50]     [REQUEST] UE6 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:55:50]     [RESPONSE] vBBU1 → UE6 (200)
-[2025-05-28 10:55:51]     [REQUEST] UE2 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:55:51]     [RESPONSE] vBBU1 → UE2 (200)
-[2025-05-28 10:55:52] [REPORT] Sent 10 UE assignments to orchestrator
-[2025-05-28 10:55:52]     [REQUEST] UE2 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:55:52]     [RESPONSE] vBBU1 → UE2 (200)
-[2025-05-28 10:55:52]     [REQUEST] UE6 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:55:52]     [RESPONSE] vBBU1 → UE6 (200)
-[2025-05-28 10:55:54] [REPORT] Sent 10 UE assignments to orchestrator
-[2025-05-28 10:55:54]     [REQUEST] UE2 → forwarding to vBBU1 (10.0.0.201:8080)
-[2025-05-28 10:55:54]     [RESPONSE] vBBU1 → UE2 (200)
+[2025-05-28 19:52:00] RRH command listener started on port 9200
+[2025-05-28 19:52:00] RRH proxy started on port 8000
+[2025-05-28 19:52:00] Initial UE mapping: {'10.0.0.1': '10.0.0.201:8080', '10.0.0.2': '10.0.0.201:8080', '10.0.0.3': '10.0.0.201:8080', '10.0.0.4': '10.0.0.201:8080', '10.0.0.5': '10.0.0.201:8080', '10.0.0.6': '10.0.0.201:8080', '10.0.0.7': '10.0.0.201:8080', '10.0.0.8': '10.0.0.201:8080', '10.0.0.9': '10.0.0.201:8080', '10.0.0.10': '10.0.0.201:8080'}
+[2025-05-28 19:52:00] Initial UE connection status: {'10.0.0.1': 'disconnected', '10.0.0.2': 'disconnected', '10.0.0.3': 'disconnected', '10.0.0.4': 'disconnected', '10.0.0.5': 'disconnected', '10.0.0.6': 'disconnected', '10.0.0.7': 'disconnected', '10.0.0.8': 'disconnected', '10.0.0.9': 'disconnected', '10.0.0.10': 'disconnected'}
+[2025-05-28 19:52:00] [ERROR] Failed to report assignments: [Errno 111] Connection refused
+[2025-05-28 19:52:02] [REPORT] Sent 0 UE assignments to orchestrator
+[2025-05-28 19:52:04] [REPORT] Sent 0 UE assignments to orchestrator
+[2025-05-28 19:52:06] [REPORT] Sent 0 UE assignments to orchestrator
+[2025-05-28 19:52:08] [REPORT] Sent 0 UE assignments to orchestrator
+[2025-05-28 19:52:10] [REPORT] Sent 0 UE assignments to orchestrator
+[2025-05-28 19:52:12] [REPORT] Sent 0 UE assignments to orchestrator
+[2025-05-28 19:52:14] [REPORT] Sent 0 UE assignments to orchestrator
+[2025-05-28 19:52:16] [REPORT] Sent 0 UE assignments to orchestrator
+[2025-05-28 19:52:18] [REPORT] Sent 0 UE assignments to orchestrator
+[2025-05-28 19:52:20] [REPORT] Sent 0 UE assignments to orchestrator
+[2025-05-28 19:52:22] [REPORT] Sent 0 UE assignments to orchestrator
+[2025-05-28 19:52:24] [REPORT] Sent 0 UE assignments to orchestrator
+[2025-05-28 19:52:26] [REPORT] Sent 0 UE assignments to orchestrator
+[2025-05-28 19:52:28] [REPORT] Sent 0 UE assignments to orchestrator
+[2025-05-28 19:52:30] [ORCH] UEUE1 connected
+[2025-05-28 19:52:30] [ORCH] UEUE2 connected
+[2025-05-28 19:52:30] [ORCH] UEUE3 connected
+[2025-05-28 19:52:30] [REPORT] Sent 3 UE assignments to orchestrator
+[2025-05-28 19:52:31]     [REQUEST] UE2 → forwarding to vBBU1 (10.0.0.201:8080)
+[2025-05-28 19:52:31]     [RESPONSE] vBBU1 → UE2 (200)
+[2025-05-28 19:52:32]     [REQUEST] UE1 → forwarding to vBBU1 (10.0.0.201:8080)
+[2025-05-28 19:52:32]     [RESPONSE] vBBU1 → UE1 (200)
+[2025-05-28 19:52:32] [REPORT] Sent 3 UE assignments to orchestrator
+[2025-05-28 19:52:32]     [REQUEST] UE3 → forwarding to vBBU1 (10.0.0.201:8080)
+[2025-05-28 19:52:32]     [RESPONSE] vBBU1 → UE3 (200)
+[2025-05-28 19:52:33]     [REQUEST] UE2 → forwarding to vBBU1 (10.0.0.201:8080)
+[2025-05-28 19:52:33]     [RESPONSE] vBBU1 → UE2 (200)
+[2025-05-28 19:52:34] [REPORT] Sent 3 UE assignments to orchestrator
+[2025-05-28 19:52:34]     [REQUEST] UE1 → forwarding to vBBU1 (10.0.0.201:8080)
+[2025-05-28 19:52:34]     [RESPONSE] vBBU1 → UE1 (200)
+[2025-05-28 19:52:35]     [REQUEST] UE3 → forwarding to vBBU1 (10.0.0.201:8080)
+[2025-05-28 19:52:35]     [RESPONSE] vBBU1 → UE3 (200)
+[2025-05-28 19:52:36] [REPORT] Sent 3 UE assignments to orchestrator
+[2025-05-28 19:52:36]     [REQUEST] UE2 → forwarding to vBBU1 (10.0.0.201:8080)
+[2025-05-28 19:52:36]     [RESPONSE] vBBU1 → UE2 (200)
+[2025-05-28 19:52:36]     [REQUEST] UE1 → forwarding to vBBU1 (10.0.0.201:8080)
+[2025-05-28 19:52:36]     [RESPONSE] vBBU1 → UE1 (200)
+[2025-05-28 19:52:38]     [REQUEST] UE3 → forwarding to vBBU1 (10.0.0.201:8080)
+[2025-05-28 19:52:38]     [RESPONSE] vBBU1 → UE3 (200)
+[2025-05-28 19:52:38]     [REQUEST] UE1 → forwarding to vBBU1 (10.0.0.201:8080)
+[2025-05-28 19:52:38]     [RESPONSE] vBBU1 → UE1 (200)
+[2025-05-28 19:52:38] [REPORT] Sent 3 UE assignments to orchestrator
+[2025-05-28 19:52:39]     [REQUEST] UE2 → forwarding to vBBU1 (10.0.0.201:8080)
+[2025-05-28 19:52:39]     [RESPONSE] vBBU1 → UE2 (200)
+[2025-05-28 19:52:40] [REPORT] Sent 3 UE assignments to orchestrator
+[2025-05-28 19:52:41]     [REQUEST] UE3 → forwarding to vBBU1 (10.0.0.201:8080)
+[2025-05-28 19:52:41]     [RESPONSE] vBBU1 → UE3 (200)
+[2025-05-28 19:52:41]     [REQUEST] UE1 → forwarding to vBBU1 (10.0.0.201:8080)
+[2025-05-28 19:52:41]     [RESPONSE] vBBU1 → UE1 (200)
+[2025-05-28 19:52:41]     [REQUEST] UE2 → forwarding to vBBU1 (10.0.0.201:8080)
+[2025-05-28 19:52:41]     [RESPONSE] vBBU1 → UE2 (200)
+[2025-05-28 19:52:42] [REPORT] Sent 3 UE assignments to orchestrator
+[2025-05-28 19:52:42]     [REQUEST] UE3 → forwarding to vBBU1 (10.0.0.201:8080)
+[2025-05-28 19:52:42]     [RESPONSE] vBBU1 → UE3 (200)
+[2025-05-28 19:52:43]     [REQUEST] UE2 → forwarding to vBBU1 (10.0.0.201:8080)
+[2025-05-28 19:52:43]     [RESPONSE] vBBU1 → UE2 (200)
+[2025-05-28 19:52:43]     [REQUEST] UE1 → forwarding to vBBU1 (10.0.0.201:8080)
+[2025-05-28 19:52:43]     [RESPONSE] vBBU1 → UE1 (200)
+[2025-05-28 19:52:44] [REPORT] Sent 3 UE assignments to orchestrator
+[2025-05-28 19:52:45]     [REQUEST] UE1 → forwarding to vBBU1 (10.0.0.201:8080)
+[2025-05-28 19:52:45]     [RESPONSE] vBBU1 → UE1 (200)
+[2025-05-28 19:52:45]     [REQUEST] UE3 → forwarding to vBBU1 (10.0.0.201:8080)
+[2025-05-28 19:52:45]     [RESPONSE] vBBU1 → UE3 (200)
+[2025-05-28 19:52:45]     [REQUEST] UE2 → forwarding to vBBU1 (10.0.0.201:8080)
+[2025-05-28 19:52:45]     [RESPONSE] vBBU1 → UE2 (200)
+[2025-05-28 19:52:46] [REPORT] Sent 3 UE assignments to orchestrator
+[2025-05-28 19:52:46]     [REQUEST] UE1 → forwarding to vBBU1 (10.0.0.201:8080)
+[2025-05-28 19:52:46]     [RESPONSE] vBBU1 → UE1 (200)
+[2025-05-28 19:52:47]     [REQUEST] UE2 → forwarding to vBBU1 (10.0.0.201:8080)
+[2025-05-28 19:52:47]     [RESPONSE] vBBU1 → UE2 (200)
+[2025-05-28 19:52:47]     [REQUEST] UE3 → forwarding to vBBU1 (10.0.0.201:8080)
+[2025-05-28 19:52:47]     [RESPONSE] vBBU1 → UE3 (200)
+[2025-05-28 19:52:48] [REPORT] Sent 3 UE assignments to orchestrator
+[2025-05-28 19:52:49]     [REQUEST] UE3 → forwarding to vBBU1 (10.0.0.201:8080)
+[2025-05-28 19:52:49]     [RESPONSE] vBBU1 → UE3 (200)
+[2025-05-28 19:52:49]     [REQUEST] UE2 → forwarding to vBBU1 (10.0.0.201:8080)
+[2025-05-28 19:52:49]     [RESPONSE] vBBU1 → UE2 (200)
+[2025-05-28 19:52:49]     [REQUEST] UE1 → forwarding to vBBU1 (10.0.0.201:8080)
+[2025-05-28 19:52:49]     [RESPONSE] vBBU1 → UE1 (200)
+[2025-05-28 19:52:50] [REPORT] Sent 3 UE assignments to orchestrator
+[2025-05-28 19:52:51]     [REQUEST] UE2 → forwarding to vBBU1 (10.0.0.201:8080)
+[2025-05-28 19:52:51]     [RESPONSE] vBBU1 → UE2 (200)
+[2025-05-28 19:52:51]     [REQUEST] UE1 → forwarding to vBBU1 (10.0.0.201:8080)
+[2025-05-28 19:52:51]     [RESPONSE] vBBU1 → UE1 (200)
+[2025-05-28 19:52:52]     [REQUEST] UE3 → forwarding to vBBU1 (10.0.0.201:8080)
+[2025-05-28 19:52:52]     [RESPONSE] vBBU1 → UE3 (200)
+[2025-05-28 19:52:52] [REPORT] Sent 3 UE assignments to orchestrator
+[2025-05-28 19:52:52]     [REQUEST] UE1 → forwarding to vBBU1 (10.0.0.201:8080)
+[2025-05-28 19:52:52]     [RESPONSE] vBBU1 → UE1 (200)
+[2025-05-28 19:52:53]     [REQUEST] UE3 → forwarding to vBBU1 (10.0.0.201:8080)
+[2025-05-28 19:52:53]     [RESPONSE] vBBU1 → UE3 (200)
+[2025-05-28 19:52:54]     [REQUEST] UE2 → forwarding to vBBU1 (10.0.0.201:8080)
+[2025-05-28 19:52:54]     [RESPONSE] vBBU1 → UE2 (200)
+[2025-05-28 19:52:54] [REPORT] Sent 3 UE assignments to orchestrator
+[2025-05-28 19:52:55]     [REQUEST] UE3 → forwarding to vBBU1 (10.0.0.201:8080)
+[2025-05-28 19:52:55]     [RESPONSE] vBBU1 → UE3 (200)
+[2025-05-28 19:52:55]     [REQUEST] UE1 → forwarding to vBBU1 (10.0.0.201:8080)
+[2025-05-28 19:52:55]     [RESPONSE] vBBU1 → UE1 (200)
+[2025-05-28 19:52:56]     [REQUEST] UE2 → forwarding to vBBU1 (10.0.0.201:8080)
+[2025-05-28 19:52:56]     [RESPONSE] vBBU1 → UE2 (200)
+[2025-05-28 19:52:56] [REPORT] Sent 3 UE assignments to orchestrator
+[2025-05-28 19:52:57]     [REQUEST] UE3 → forwarding to vBBU1 (10.0.0.201:8080)
+[2025-05-28 19:52:57]     [RESPONSE] vBBU1 → UE3 (200)
+[2025-05-28 19:52:57]     [REQUEST] UE2 → forwarding to vBBU1 (10.0.0.201:8080)
+[2025-05-28 19:52:57]     [RESPONSE] vBBU1 → UE2 (200)
+[2025-05-28 19:52:58] [REPORT] Sent 3 UE assignments to orchestrator
+[2025-05-28 19:52:58]     [REQUEST] UE1 → forwarding to vBBU1 (10.0.0.201:8080)
+[2025-05-28 19:52:58]     [RESPONSE] vBBU1 → UE1 (200)
+[2025-05-28 19:53:00]     [REQUEST] UE3 → forwarding to vBBU1 (10.0.0.201:8080)
+[2025-05-28 19:53:00]     [RESPONSE] vBBU1 → UE3 (200)
+[2025-05-28 19:53:00] [REPORT] Sent 3 UE assignments to orchestrator
+[2025-05-28 19:53:00]     [REQUEST] UE2 → forwarding to vBBU1 (10.0.0.201:8080)
+[2025-05-28 19:53:00]     [RESPONSE] vBBU1 → UE2 (200)
+[2025-05-28 19:53:01]     [REQUEST] UE1 → forwarding to vBBU1 (10.0.0.201:8080)
+[2025-05-28 19:53:01]     [RESPONSE] vBBU1 → UE1 (200)
+[2025-05-28 19:53:01]     [REQUEST] UE3 → forwarding to vBBU1 (10.0.0.201:8080)
+[2025-05-28 19:53:01]     [RESPONSE] vBBU1 → UE3 (200)
+[2025-05-28 19:53:02] [REPORT] Sent 3 UE assignments to orchestrator
+[2025-05-28 19:53:02]     [REQUEST] UE1 → forwarding to vBBU1 (10.0.0.201:8080)
+[2025-05-28 19:53:02]     [RESPONSE] vBBU1 → UE1 (200)
+[2025-05-28 19:53:03]     [REQUEST] UE2 → forwarding to vBBU1 (10.0.0.201:8080)
+[2025-05-28 19:53:03]     [RESPONSE] vBBU1 → UE2 (200)
+[2025-05-28 19:53:03]     [REQUEST] UE3 → forwarding to vBBU1 (10.0.0.201:8080)
+[2025-05-28 19:53:03]     [RESPONSE] vBBU1 → UE3 (200)
+[2025-05-28 19:53:04] [REPORT] Sent 3 UE assignments to orchestrator
+[2025-05-28 19:53:05]     [REQUEST] UE1 → forwarding to vBBU1 (10.0.0.201:8080)
+[2025-05-28 19:53:05]     [RESPONSE] vBBU1 → UE1 (200)
+[2025-05-28 19:53:05]     [REQUEST] UE2 → forwarding to vBBU1 (10.0.0.201:8080)
+[2025-05-28 19:53:05]     [RESPONSE] vBBU1 → UE2 (200)
+[2025-05-28 19:53:06] [REPORT] Sent 3 UE assignments to orchestrator
+[2025-05-28 19:53:06]     [REQUEST] UE3 → forwarding to vBBU1 (10.0.0.201:8080)
+[2025-05-28 19:53:06]     [RESPONSE] vBBU1 → UE3 (200)
+[2025-05-28 19:53:06]     [REQUEST] UE1 → forwarding to vBBU1 (10.0.0.201:8080)
+[2025-05-28 19:53:06]     [RESPONSE] vBBU1 → UE1 (200)
+[2025-05-28 19:53:07]     [REQUEST] UE2 → forwarding to vBBU1 (10.0.0.201:8080)
+[2025-05-28 19:53:07]     [RESPONSE] vBBU1 → UE2 (200)
+[2025-05-28 19:53:08] [REPORT] Sent 3 UE assignments to orchestrator
+[2025-05-28 19:53:09]     [REQUEST] UE3 → forwarding to vBBU1 (10.0.0.201:8080)
+[2025-05-28 19:53:09]     [RESPONSE] vBBU1 → UE3 (200)
+[2025-05-28 19:53:09]     [REQUEST] UE1 → forwarding to vBBU1 (10.0.0.201:8080)
+[2025-05-28 19:53:09]     [RESPONSE] vBBU1 → UE1 (200)
+[2025-05-28 19:53:10] [REPORT] Sent 3 UE assignments to orchestrator
+[2025-05-28 19:53:10]     [REQUEST] UE2 → forwarding to vBBU1 (10.0.0.201:8080)
+[2025-05-28 19:53:10]     [RESPONSE] vBBU1 → UE2 (200)
+[2025-05-28 19:53:11]     [REQUEST] UE1 → forwarding to vBBU1 (10.0.0.201:8080)
+[2025-05-28 19:53:11]     [RESPONSE] vBBU1 → UE1 (200)
+[2025-05-28 19:53:12]     [REQUEST] UE3 → forwarding to vBBU1 (10.0.0.201:8080)
+[2025-05-28 19:53:12]     [RESPONSE] vBBU1 → UE3 (200)
+[2025-05-28 19:53:12] [REPORT] Sent 3 UE assignments to orchestrator
+[2025-05-28 19:53:12]     [REQUEST] UE2 → forwarding to vBBU1 (10.0.0.201:8080)
+[2025-05-28 19:53:12]     [RESPONSE] vBBU1 → UE2 (200)
+[2025-05-28 19:53:13]     [REQUEST] UE3 → forwarding to vBBU1 (10.0.0.201:8080)
+[2025-05-28 19:53:13]     [RESPONSE] vBBU1 → UE3 (200)
+[2025-05-28 19:53:14]     [REQUEST] UE1 → forwarding to vBBU1 (10.0.0.201:8080)
+[2025-05-28 19:53:14]     [RESPONSE] vBBU1 → UE1 (200)
+[2025-05-28 19:53:14]     [REQUEST] UE2 → forwarding to vBBU1 (10.0.0.201:8080)
+[2025-05-28 19:53:14]     [RESPONSE] vBBU1 → UE2 (200)
+[2025-05-28 19:53:14] [REPORT] Sent 3 UE assignments to orchestrator
+[2025-05-28 19:53:15]     [REQUEST] UE1 → forwarding to vBBU1 (10.0.0.201:8080)
+[2025-05-28 19:53:15]     [RESPONSE] vBBU1 → UE1 (200)
+[2025-05-28 19:53:15]     [REQUEST] UE3 → forwarding to vBBU1 (10.0.0.201:8080)
+[2025-05-28 19:53:15]     [RESPONSE] vBBU1 → UE3 (200)
+[2025-05-28 19:53:16] [REPORT] Sent 3 UE assignments to orchestrator
+[2025-05-28 19:53:16]     [REQUEST] UE2 → forwarding to vBBU1 (10.0.0.201:8080)
+[2025-05-28 19:53:16]     [RESPONSE] vBBU1 → UE2 (200)
+[2025-05-28 19:53:17]     [REQUEST] UE3 → forwarding to vBBU1 (10.0.0.201:8080)
+[2025-05-28 19:53:17]     [RESPONSE] vBBU1 → UE3 (200)
+[2025-05-28 19:53:17] [ORCH] UEUE4 connected
+[2025-05-28 19:53:18]     [REQUEST] UE1 → forwarding to vBBU1 (10.0.0.201:8080)
+[2025-05-28 19:53:18]     [RESPONSE] vBBU1 → UE1 (200)
+[2025-05-28 19:53:18] [REPORT] Sent 4 UE assignments to orchestrator
+[2025-05-28 19:53:18]     [REQUEST] UE2 → forwarding to vBBU1 (10.0.0.201:8080)
+[2025-05-28 19:53:18]     [RESPONSE] vBBU1 → UE2 (200)
+[2025-05-28 19:53:19]     [REQUEST] UE4 → forwarding to vBBU1 (10.0.0.201:8080)
+[2025-05-28 19:53:19]     [RESPONSE] vBBU1 → UE4 (200)
+[2025-05-28 19:53:20]     [REQUEST] UE3 → forwarding to vBBU1 (10.0.0.201:8080)
+[2025-05-28 19:53:20]     [RESPONSE] vBBU1 → UE3 (200)
+[2025-05-28 19:53:20] [REPORT] Sent 4 UE assignments to orchestrator
+[2025-05-28 19:53:20]     [REQUEST] UE1 → forwarding to vBBU1 (10.0.0.201:8080)
+[2025-05-28 19:53:20]     [RESPONSE] vBBU1 → UE1 (200)
+[2025-05-28 19:53:21]     [REQUEST] UE2 → forwarding to vBBU1 (10.0.0.201:8080)
+[2025-05-28 19:53:21]     [RESPONSE] vBBU1 → UE2 (200)
+[2025-05-28 19:53:21]     [REQUEST] UE4 → forwarding to vBBU1 (10.0.0.201:8080)
+[2025-05-28 19:53:21]     [RESPONSE] vBBU1 → UE4 (200)
+[2025-05-28 19:53:22]     [REQUEST] UE3 → forwarding to vBBU1 (10.0.0.201:8080)
+[2025-05-28 19:53:22]     [RESPONSE] vBBU1 → UE3 (200)
+[2025-05-28 19:53:22] [REPORT] Sent 4 UE assignments to orchestrator
+[2025-05-28 19:53:22]     [REQUEST] UE1 → forwarding to vBBU1 (10.0.0.201:8080)
+[2025-05-28 19:53:22]     [RESPONSE] vBBU1 → UE1 (200)
+[2025-05-28 19:53:23]     [REQUEST] UE2 → forwarding to vBBU1 (10.0.0.201:8080)
+[2025-05-28 19:53:23]     [RESPONSE] vBBU1 → UE2 (200)
+[2025-05-28 19:53:24]     [REQUEST] UE4 → forwarding to vBBU1 (10.0.0.201:8080)
+[2025-05-28 19:53:24]     [RESPONSE] vBBU1 → UE4 (200)
+[2025-05-28 19:53:24] [REPORT] Sent 4 UE assignments to orchestrator
+[2025-05-28 19:53:24]     [REQUEST] UE3 → forwarding to vBBU1 (10.0.0.201:8080)
+[2025-05-28 19:53:24]     [RESPONSE] vBBU1 → UE3 (200)
+[2025-05-28 19:53:24]     [REQUEST] UE1 → forwarding to vBBU1 (10.0.0.201:8080)
+[2025-05-28 19:53:24]     [RESPONSE] vBBU1 → UE1 (200)
+[2025-05-28 19:53:26]     [REQUEST] UE2 → forwarding to vBBU1 (10.0.0.201:8080)
+[2025-05-28 19:53:26]     [RESPONSE] vBBU1 → UE2 (200)
+[2025-05-28 19:53:26]     [REQUEST] UE4 → forwarding to vBBU1 (10.0.0.201:8080)
+[2025-05-28 19:53:26]     [RESPONSE] vBBU1 → UE4 (200)
+[2025-05-28 19:53:26] [REPORT] Sent 4 UE assignments to orchestrator
+[2025-05-28 19:53:26]     [REQUEST] UE3 → forwarding to vBBU1 (10.0.0.201:8080)
+[2025-05-28 19:53:26]     [RESPONSE] vBBU1 → UE3 (200)
+[2025-05-28 19:53:26]     [REQUEST] UE1 → forwarding to vBBU1 (10.0.0.201:8080)
+[2025-05-28 19:53:26]     [RESPONSE] vBBU1 → UE1 (200)
+[2025-05-28 19:53:28]     [REQUEST] UE4 → forwarding to vBBU1 (10.0.0.201:8080)
+[2025-05-28 19:53:28]     [RESPONSE] vBBU1 → UE4 (200)
+[2025-05-28 19:53:28] [REPORT] Sent 4 UE assignments to orchestrator
+[2025-05-28 19:53:28]     [REQUEST] UE1 → forwarding to vBBU1 (10.0.0.201:8080)
+[2025-05-28 19:53:28]     [RESPONSE] vBBU1 → UE1 (200)
+[2025-05-28 19:53:28]     [REQUEST] UE2 → forwarding to vBBU1 (10.0.0.201:8080)
+[2025-05-28 19:53:28]     [RESPONSE] vBBU1 → UE2 (200)
+[2025-05-28 19:53:29]     [REQUEST] UE3 → forwarding to vBBU1 (10.0.0.201:8080)
+[2025-05-28 19:53:29]     [RESPONSE] vBBU1 → UE3 (200)
+[2025-05-28 19:53:29]     [REQUEST] UE4 → forwarding to vBBU1 (10.0.0.201:8080)
+[2025-05-28 19:53:29]     [RESPONSE] vBBU1 → UE4 (200)
+[2025-05-28 19:53:30] [REPORT] Sent 4 UE assignments to orchestrator
+[2025-05-28 19:53:30]     [REQUEST] UE1 → forwarding to vBBU1 (10.0.0.201:8080)
+[2025-05-28 19:53:30]     [RESPONSE] vBBU1 → UE1 (200)
+[2025-05-28 19:53:30]     [REQUEST] UE3 → forwarding to vBBU1 (10.0.0.201:8080)
+[2025-05-28 19:53:30]     [RESPONSE] vBBU1 → UE3 (200)
+[2025-05-28 19:53:31]     [REQUEST] UE2 → forwarding to vBBU1 (10.0.0.201:8080)
+[2025-05-28 19:53:31]     [RESPONSE] vBBU1 → UE2 (200)
+[2025-05-28 19:53:32] [REPORT] Sent 4 UE assignments to orchestrator
+[2025-05-28 19:53:32]     [REQUEST] UE4 → forwarding to vBBU1 (10.0.0.201:8080)
+[2025-05-28 19:53:32]     [RESPONSE] vBBU1 → UE4 (200)
+[2025-05-28 19:53:32]     [REQUEST] UE3 → forwarding to vBBU1 (10.0.0.201:8080)
+[2025-05-28 19:53:32]     [RESPONSE] vBBU1 → UE3 (200)
+[2025-05-28 19:53:33]     [REQUEST] UE1 → forwarding to vBBU1 (10.0.0.201:8080)
+[2025-05-28 19:53:33]     [RESPONSE] vBBU1 → UE1 (200)
+[2025-05-28 19:53:34] [REPORT] Sent 4 UE assignments to orchestrator
+[2025-05-28 19:53:34]     [REQUEST] UE2 → forwarding to vBBU1 (10.0.0.201:8080)
+[2025-05-28 19:53:34]     [RESPONSE] vBBU1 → UE2 (200)
+[2025-05-28 19:53:34]     [REQUEST] UE4 → forwarding to vBBU1 (10.0.0.201:8080)
+[2025-05-28 19:53:34]     [RESPONSE] vBBU1 → UE4 (200)
+[2025-05-28 19:53:35]     [REQUEST] UE3 → forwarding to vBBU1 (10.0.0.201:8080)
+[2025-05-28 19:53:35]     [RESPONSE] vBBU1 → UE3 (200)
+[2025-05-28 19:53:35]     [REQUEST] UE1 → forwarding to vBBU1 (10.0.0.201:8080)
+[2025-05-28 19:53:35]     [RESPONSE] vBBU1 → UE1 (200)
+[2025-05-28 19:53:36]     [REQUEST] UE4 → forwarding to vBBU1 (10.0.0.201:8080)
+[2025-05-28 19:53:36]     [RESPONSE] vBBU1 → UE4 (200)
+[2025-05-28 19:53:36] [REPORT] Sent 4 UE assignments to orchestrator
+[2025-05-28 19:53:36]     [REQUEST] UE3 → forwarding to vBBU1 (10.0.0.201:8080)
+[2025-05-28 19:53:36]     [RESPONSE] vBBU1 → UE3 (200)
+[2025-05-28 19:53:37]     [REQUEST] UE2 → forwarding to vBBU1 (10.0.0.201:8080)
+[2025-05-28 19:53:37]     [RESPONSE] vBBU1 → UE2 (200)
+[2025-05-28 19:53:37]     [REQUEST] UE1 → forwarding to vBBU1 (10.0.0.201:8080)
+[2025-05-28 19:53:37]     [RESPONSE] vBBU1 → UE1 (200)
+[2025-05-28 19:53:38]     [REQUEST] UE4 → forwarding to vBBU1 (10.0.0.201:8080)
+[2025-05-28 19:53:38]     [RESPONSE] vBBU1 → UE4 (200)
+[2025-05-28 19:53:38] [REPORT] Sent 4 UE assignments to orchestrator
+[2025-05-28 19:53:38]     [REQUEST] UE2 → forwarding to vBBU1 (10.0.0.201:8080)
+[2025-05-28 19:53:38]     [RESPONSE] vBBU1 → UE2 (200)
