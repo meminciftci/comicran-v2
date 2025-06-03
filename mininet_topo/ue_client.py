@@ -140,7 +140,7 @@ while True:
             result = response.json()
             ack = result.get('acknowledgement')
             vbbu_id = result.get('vbbu_id')
-            log_ue(f"    [RESPONSE] Ack#{value} from vBBU{vbbu_id} to UE{ue_id}")
+            log_ue(f"    [RESPONSE] Ack#{value} from {vbbu_id} to UE{ue_id}")
             value += 1
 
         except Exception as e:

@@ -91,7 +91,7 @@ class Handler(BaseHTTPRequestHandler):
             ue_last_seen[ue_id] = time.time()
 
         response = json.dumps({
-            "vbbu_id": vbbu_id[-1],
+            "vbbu_id": vbbu_id,
             "acknowledgement": f"Acknowledgement #{value}"
         })
         log_vbbu(f"    [REQUEST] Value {value} received from UE{ue_id}")

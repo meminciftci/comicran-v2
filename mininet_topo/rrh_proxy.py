@@ -129,12 +129,24 @@ def handle_orchestrator_command(conn, addr):
         elif cmd == "update_redirect":
             old = message.get("from_vbbu")
             new = message.get("to_vbbu")
+
             if old and new:
+                # Remove stale redirections that point to the current source or destination
+                to_remove = []
+                for k, v in redirected_vbbus.items():
+                    if v == old or v == new:
+                        to_remove.append(k)
+                for k in to_remove:
+                    del redirected_vbbus[k]
+
+                # Update the redirect rule
                 redirected_vbbus[old] = new
                 log_rrh(f"[ORCH] Redirect rule: {old} → {new}")
                 conn.sendall(b"[OK] Redirect rule updated\n")
+
             else:
                 conn.sendall(b"[ERROR] Missing fields in update_redirect\n")
+
         elif cmd == "ue_connect":
             ue_id = message.get("ue_id")
             if ue_id.upper().startswith("UE") and ue_id[2:].isdigit():

@@ -4,10 +4,10 @@ activateVBBU, deactivateVBBU, listUEs
 } from "./api/api.js";
 
 function VirtualVbbuView({ vbbus, triggerUpdate }) {
-  const virtualVbbu = vbbus?.data?.vbbu3
+  const virtualVbbu = vbbus?.data?.['vbbu1-prime']
   const backgroundColorNew = (connections) => {
-    const load = connections / 10;
-    if (load >= 0.7) {
+    const load = connections / 20;
+    if (load >= 1) {
       return "bg-red-500";
     } else if (load >= 0.5) {
       return "bg-amber-500";
@@ -26,7 +26,7 @@ function VirtualVbbuView({ vbbus, triggerUpdate }) {
     .map(([id]) => Number(id));
     console.log(connectedUEs)
       if (virtualVbbu.is_active) {
-        const res = await deactivateVBBU('vbbu3')
+        const res = await deactivateVBBU('vbbu1-prime')
 
 
         console.log('deactivate virtual', virtualVbbu.is_active)
@@ -35,7 +35,7 @@ function VirtualVbbuView({ vbbus, triggerUpdate }) {
         return res
       }
       if (!virtualVbbu.is_active) {
-        const res = await activateVBBU('vbbu3')
+        const res = await activateVBBU('vbbu1-prime')
         
         console.log('activate virtual', virtualVbbu.is_active)
         triggerUpdate()
@@ -56,7 +56,7 @@ function VirtualVbbuView({ vbbus, triggerUpdate }) {
             )}`}
             style={{
               // TODO: Change height
-              height: `${typeof(virtualVbbu.connections) === typeof(0) ? virtualVbbu.connections*10 : 0}%`,
+              height: `${typeof(virtualVbbu.connections) === typeof(0) ? virtualVbbu.connections*5 : 0}%`,
               transition: 'height 0.5s ease-in-out',
             }}
           >
@@ -64,7 +64,7 @@ function VirtualVbbuView({ vbbus, triggerUpdate }) {
             {/* // TODO: Change virtualVbbu */}
               {
               
-              typeof(virtualVbbu.connections) === typeof(0) ? virtualVbbu.connections*10 : 0 }%
+              typeof(virtualVbbu.connections) === typeof(0) ? virtualVbbu.connections*5 : 0 }%
             </div>
           </div>
         </div>
@@ -73,7 +73,7 @@ function VirtualVbbuView({ vbbus, triggerUpdate }) {
         
         {/* Label */}
         <span className="text-lg font-medium text-gray-800">
-          VBBU1*
+          vBBU1*
         </span>
         <button className="bg-blue-500 p-2 rounded-2xl text-white hover:bg-blue-600 w-22" onClick={()=>{
           handleActivate()

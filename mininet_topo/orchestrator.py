@@ -20,10 +20,9 @@ redirected_vbbus = {}
 
 PREDEFINED_VBBUS = {
     "vbbu1": {"ip": "10.0.0.201", "port": 8080, "is_active": True},
-    "vbbu2": {"ip": "10.0.0.202", "port": 8081, "is_active": False},
+    "vbbu1-prime": {"ip": "10.0.0.202", "port": 8081, "is_active": False},
 }
 
-NEXT_VBBU_INDEX = 3
 
 orch_log_path = "../outputs/orch_output.txt"
 if not os.path.exists("../outputs"):
@@ -169,9 +168,29 @@ def handle_handover_command(message, conn=None):
     new_port = message.get('new_vbbu_port')
     delay = random.uniform(0.3, 0.7)
     time.sleep(delay)
+
     if not all([ue_id, new_ip, new_port]):
         if conn:
             conn.sendall(b"[ERROR] Missing handover fields.\n")
+        return
+
+    # Check if the target vBBU is active
+    target_name = next(
+        (name for name, info in PREDEFINED_VBBUS.items()
+         if info["ip"] == new_ip and info["port"] == new_port),
+        None
+    )
+
+    if target_name is None:
+        log_orch(f"[HANDOVER_ERROR] No matching vBBU for {new_ip}:{new_port}.")
+        if conn:
+            conn.sendall(b"[ERROR] Unknown vBBU target.\n")
+        return
+
+    if not PREDEFINED_VBBUS[target_name]["is_active"]:
+        log_orch(f"[HANDOVER_BLOCKED] Cannot handover to inactive vBBU {target_name}.")
+        if conn:
+            conn.sendall(f"[ERROR] Target vBBU {target_name} is inactive.\n".encode())
         return
 
     ue_assignments[ue_id] = {"vbbu_ip": new_ip, "vbbu_port": new_port}
@@ -183,21 +202,25 @@ def handle_handover_command(message, conn=None):
         conn.sendall(json.dumps({"status": "ok", "message": log_text}).encode())
 
 def handle_load_report(message, vbbu_ip, conn):
-    cpu = message.get('cpu')
+    utilization = message.get('utilization')
     connections = message.get('connections')
+    current_users = message.get('current_users')
 
-    if cpu is None or connections is None:
+    if utilization is None or connections is None:
+        log_orch(f"[LOAD_ERROR] Invalid load report: {message}")
         conn.sendall(b"[ERROR] Invalid load report.\n")
         return
 
     vbbu_loads[vbbu_ip] = {
-        'cpu': cpu,
+        'cpu': utilization,  # For compatibility
         'connections': connections,
+        'current_users': current_users,
         'timestamp': time.time()
     }
 
-    log_orch(f"[LOAD] {vbbu_ip}: CPU={cpu}, Conn={connections}")
+    log_orch(f"[LOAD] {vbbu_ip}: {current_users} users, {connections} conns, {utilization:.1f}% utilization")
     conn.sendall(b"[OK] Load received.\n")
+
 
 def forward_to_rrh(message):
     try:
@@ -209,41 +232,41 @@ def forward_to_rrh(message):
         log_orch(f"[ERROR] RRH unreachable or error: {e}")
 
 def handle_full_migration(message, conn):
-    global NEXT_VBBU_INDEX
-
     from_vbbu_fqdn = message.get('from_vbbu')
+    target_vbbu_name = message.get('target_vbbu', 'vbbu1-prime')  # fallback to default if not specified
+
     if not from_vbbu_fqdn:
-        if conn: conn.sendall(json.dumps({"status": "error", "message": "from_vbbu is required."}).encode())
+        if conn:
+            conn.sendall(json.dumps({
+                "status": "error",
+                "message": "'from_vbbu' is required."
+            }).encode())
         log_orch("[MIGRATE_ERROR] 'from_vbbu' field missing in migration command.")
         return
 
-    target_vbbu_name = f"vbbu{NEXT_VBBU_INDEX}"
-
     if target_vbbu_name not in PREDEFINED_VBBUS:
-        log_orch(f"[MIGRATE_ERROR] Target vBBU {target_vbbu_name} is not predefined or no more vBBUs available. Current index: {NEXT_VBBU_INDEX}")
-        if conn: conn.sendall(json.dumps({"status": "error", "message": f"Target vBBU {target_vbbu_name} not available or limit reached."}).encode())
+        log_orch(f"[MIGRATE_ERROR] Target vBBU '{target_vbbu_name}' is not predefined.")
+        if conn:
+            conn.sendall(json.dumps({
+                "status": "error",
+                "message": f"Target vBBU '{target_vbbu_name}' not available or limit reached."
+            }).encode())
         return
-    
-    if PREDEFINED_VBBUS[target_vbbu_name]["is_active"]:
-        log_orch(f"[MIGRATE_INFO] Target vBBU {target_vbbu_name} is already considered active. Proceeding with redirection if different from source.")
 
-    new_vbbu_info = PREDEFINED_VBBUS[target_vbbu_name]
-    new_ip = new_vbbu_info["ip"]
-    new_port = new_vbbu_info["port"]
+    target_info = PREDEFINED_VBBUS[target_vbbu_name]
+    new_ip = target_info["ip"]
+    new_port = target_info["port"]
     new_vbbu_fqdn = f"{new_ip}:{new_port}"
 
     log_orch(f"[MIGRATE] Initiating migration from {from_vbbu_fqdn} to {target_vbbu_name} ({new_vbbu_fqdn}).")
-    
-    if PREDEFINED_VBBUS[target_vbbu_name]["is_active"] == False:
+
+    if not target_info["is_active"]:
         PREDEFINED_VBBUS[target_vbbu_name]["is_active"] = True
         try:
-            requests.get(f"http://{PREDEFINED_VBBUS[target_vbbu_name]['ip']}:{PREDEFINED_VBBUS[target_vbbu_name]['port']}/control?activate=1", timeout=2)
-            log_orch(f"[MIGRATE] {target_vbbu_name} ({new_vbbu_fqdn}) Activated and ready to serve.")
+            requests.get(f"http://{new_ip}:{new_port}/control?activate=1", timeout=2)
+            log_orch(f"[MIGRATE] {target_vbbu_name} ({new_vbbu_fqdn}) activated.")
         except Exception as e:
-            log_orch(f"[ERROR] Activate HTTP failed: {e}")
-    else:
-        pass
-    # NEXT_VBBU_INDEX += 1
+            log_orch(f"[ERROR] Failed to activate {target_vbbu_name}: {e}")
 
     forward_to_rrh({
         "command": "update_redirect",
@@ -252,24 +275,25 @@ def handle_full_migration(message, conn):
     })
     redirected_vbbus[from_vbbu_fqdn] = new_vbbu_fqdn
     log_orch(f"[MIGRATE] RRH notified to redirect traffic from {from_vbbu_fqdn} to {new_vbbu_fqdn}.")
-
+    to_remove = [k for k, v in redirected_vbbus.items() if v == from_vbbu_fqdn]
+    for k in to_remove:
+        del redirected_vbbus[k]
     migrated_ues_count = 0
     ue_ids_to_migrate = []
 
     for ue_id, assignment in list(ue_assignments.items()):
-        current_ue_vbbu_fqdn = f"{assignment['vbbu_ip']}:{assignment['vbbu_port']}"
-        if current_ue_vbbu_fqdn == from_vbbu_fqdn:
-            handover_cmd_for_ue = {
+        current_ue_fqdn = f"{assignment['vbbu_ip']}:{assignment['vbbu_port']}"
+        if current_ue_fqdn == from_vbbu_fqdn:
+            handle_handover_command({
                 "command": "handover",
                 "ue_id": ue_id,
                 "new_vbbu_ip": new_ip,
                 "new_vbbu_port": new_port
-            }
-            handle_handover_command(handover_cmd_for_ue)
+            })
             migrated_ues_count += 1
             ue_ids_to_migrate.append(ue_id)
 
-    response_message = f"Migration process initiated for {migrated_ues_count} UEs from {from_vbbu_fqdn} to {new_vbbu_fqdn} (using {target_vbbu_name})."
+    response_message = f"Migrated {migrated_ues_count} UEs from {from_vbbu_fqdn} to {new_vbbu_fqdn}."
     response = {
         "status": "ok",
         "message": response_message,
@@ -278,9 +302,11 @@ def handle_full_migration(message, conn):
         "new_vbbu_target": new_vbbu_fqdn,
         "activated_vbbu_name": target_vbbu_name
     }
+
     if conn:
         conn.sendall(json.dumps(response, indent=2).encode())
     log_orch(f"[MIGRATE_SUCCESS] {response_message}")
+
 
 def start_orchestrator():
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as server:
@@ -431,7 +457,7 @@ def cli_loop():
             if raw_input_str.startswith("handover"):
                 parts = raw_input_str.split()
                 if len(parts) != 3:
-                    print("[ERROR] Usage: handover <UE_ID> <TARGET_VBBU_NAME (e.g., vbbu2)>")
+                    print("[ERROR] Usage: handover <UE_ID> <TARGET_VBBU_NAME>")
                     continue
                 
                 _, ue_id_cli, target_vbbu_name_cli = parts
@@ -439,7 +465,9 @@ def cli_loop():
                 if target_vbbu_name_cli not in PREDEFINED_VBBUS:
                     print(f"[ERROR] Unknown target vBBU name: {target_vbbu_name_cli}. Available: {', '.join(PREDEFINED_VBBUS.keys())}")
                     continue
-
+                if not PREDEFINED_VBBUS[target_vbbu_name_cli]["is_active"]:
+                    log_orch(f"[HANDOVER_BLOCKED] Target vBBU {target_vbbu_name_cli} is inactive. Handover blocked.")
+                    return
                 target_info = PREDEFINED_VBBUS[target_vbbu_name_cli]
                 current = ue_assignments.get(ue_id_cli)
 
@@ -458,30 +486,46 @@ def cli_loop():
                 continue
 
             if raw_input_str.startswith("migrate"):
-                args = raw_input_str[len("migrate"):].strip().split()
-                if not (len(args) == 1 or (len(args) == 2 and args[1].lower() == "deactivate")):
-                    print("[ERROR] Usage: migrate <SOURCE_VBBU> [deactivate]")
-                    continue
-                source, *flag = args
-                deactivate_flag = bool(flag)
-                fqdn = cli_vbbu_map_to_fqdn.get(source)
-                if not fqdn:
-                    print(f"[ERROR] Unknown vBBU: {source}")
+
+                parts = raw_input_str.split()
+                if len(parts) < 2:
+                    print("[ERROR] Usage: migrate <SOURCE_VBBU> <TARGET_VBBU_NAME?> [deactivate?]")
                     continue
 
+                source = parts[1]
+                target = None
+                deactivate_flag = False
 
-                handle_full_migration({"command":"migrate","from_vbbu":fqdn}, DummyConn())
+                if len(parts) >= 3:
+                    if parts[2].lower() == "deactivate":
+                        deactivate_flag = True
+                    else:
+                        target = parts[2]
 
+                if len(parts) == 4 and parts[3].lower() == "deactivate":
+                    deactivate_flag = True
+
+                if source not in PREDEFINED_VBBUS:
+                    print(f"[ERROR] Unknown source vBBU: {source}")
+                    continue
+
+                fqdn = f"{PREDEFINED_VBBUS[source]['ip']}:{PREDEFINED_VBBUS[source]['port']}"
+                msg = {"command": "migrate", "from_vbbu": fqdn}
+                if target:
+                    if target not in PREDEFINED_VBBUS:
+                        print(f"[ERROR] Unknown target vBBU: {target}")
+                        continue
+                    msg["target_vbbu"] = target
+
+                handle_full_migration(msg, DummyConn())
 
                 if deactivate_flag:
                     info = PREDEFINED_VBBUS[source]
-
                     try:
                         resp = requests.get(f"http://{info['ip']}:{info['port']}/control?deactivate=1", timeout=2)
                         print(f"[HTTP] Deactivate request returned {resp.status_code}")
                     except Exception as e:
                         print(f"[ERROR] Deactivate HTTP failed: {e}")
-
                     info["is_active"] = False
                     print(f"[OK] {source} deactivated after migration.")
                     log_orch(f"[DEACTIVATE] {source} marked inactive via migrate flag.")
@@ -560,17 +604,25 @@ def cli_loop():
                 if not active_vbbus:
                     print("[INFO] No active vBBUs.")
                 else:
-                    print("Current vBBU Loads:")
+                    print("\nCurrent vBBU Loads:")
+                    print("================================================================")
+                    print(f"{'vBBU':<8} {'IP:Port':<22} {'Users':>8} {'Conns':>8} {'Util%':>8}")
+                    print("---------------------------------------------------------------")
                     for name in active_vbbus:
                         info = PREDEFINED_VBBUS[name]
                         ip, port = info["ip"], info["port"]
                         load = vbbu_loads.get(ip)
                         if load:
-                            cpu = load.get('cpu', 'N/A')
+                            users = load.get('current_users', 'N/A')
                             conns = load.get('connections', 'N/A')
-                            print(f"  {name} ({ip}:{port}) -> CPU: {cpu}, Connections: {conns}")
+                            util = load.get('cpu', 'N/A')
+                            if isinstance(util, (float, int)):
+                                util = f"{util:.1f}"
+                            print(f"{name:<8} {f'{ip}:{port}':<22} {str(users):>8} {str(conns):>8} {str(util):>8}")
                         else:
-                            print(f"  {name} ({ip}:{port}) -> No load data yet")
+                            print(f"{name:<8} {f'{ip}:{port}':<22} {'-':>8} {'-':>8} {'-':>8}")
+                    print("---------------------------------------------------------------")
+
             elif raw_input_str == "show vbbus":
                 print("vBBU Status:")
                 for name, info in PREDEFINED_VBBUS.items():
@@ -706,16 +758,23 @@ def api_migrate():
     data = request.get_json()
     if not data or 'source_vbbu' not in data:
         return make_response(status="error", message="Missing source_vbbu in request body")
-    
+
     source = data['source_vbbu']
+    target = data.get('target_vbbu')  # Optional
     deactivate = data.get('deactivate', False)
-    
+
     if source not in PREDEFINED_VBBUS:
-        return make_response(status="error", message=f"Unknown vBBU: {source}")
-    
+        return make_response(status="error", message=f"Unknown source vBBU: {source}")
+    if target and target not in PREDEFINED_VBBUS:
+        return make_response(status="error", message=f"Unknown target vBBU: {target}")
+
     fqdn = f"{PREDEFINED_VBBUS[source]['ip']}:{PREDEFINED_VBBUS[source]['port']}"
-    response = handle_full_migration({"command": "migrate", "from_vbbu": fqdn}, DummyConn())
-    
+    msg = {"command": "migrate", "from_vbbu": fqdn}
+    if target:
+        msg["target_vbbu"] = target
+
+    response = handle_full_migration(msg, DummyConn())
+
     if deactivate:
         info = PREDEFINED_VBBUS[source]
         try:
@@ -724,8 +783,9 @@ def api_migrate():
             log_orch(f"[DEACTIVATE] {source} marked inactive via API.")
         except Exception as e:
             log_orch(f"[ERROR] Deactivate HTTP failed: {e}")
-    
+
     return make_response(data=response)
+
 
 @app.route('/api/vbbu/activate', methods=['POST'])
 def api_activate_vbbu():
