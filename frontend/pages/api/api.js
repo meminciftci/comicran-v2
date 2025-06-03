@@ -41,12 +41,10 @@ export async function handover(ue_id, target_vbbu) {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ ue_id, target_vbbu }),
   });
-  console.log('handover',ue_id,target_vbbu,res.status)
   return handleResponse(res);
 }
 
 export async function migrate(source_vbbu, target_vbbu='vbbu1-prime', deactivate = false) {
-  console.log('source', source_vbbu)
   const res = await fetch(`${API_BASE}/api/migrate`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },

@@ -8,19 +8,20 @@ function DummyVbbuView() {
       <div className="flex items-center gap-4 bg-gray-300 p-4 mt-1">
         {/* Usage Bar Container */}
         <div
-          className="w-48 h-48 border border-black relative bg-white overflow-hidden rounded-md shadow-sm"
+          className="w-48 h-32 border border-black relative bg-white overflow-hidden rounded-md shadow-sm"
           style={{
             opacity: isActive ? 1 : 0.3,
           }}
         >
           <div
-            className="absolute bottom-0 left-0 w-full"
+            className="absolute bottom-0 left-0 w-full bg-amber-500"
             style={{
               transition: "height 0.5s ease-in-out",
+              height: isActive ? 76 : 0,
             }}
           >
             <div className="text-center w-full text-md font-semibold text-black mb-1">
-              {/* Usage text here */}
+              60%
             </div>
           </div>
         </div>

@@ -5,8 +5,6 @@ import {
   listUEs,
   handover,
   migrate,
-  activateVBBU,
-  deactivateVBBU,
   getAssignments,
   getLoads,
   getVBBUs,
@@ -30,15 +28,27 @@ function App() {
   const [assignments, setAssign] = useState({});
   const [loads, setLoads] = useState({});
   const [vbbus, setVBBUs] = useState({});
-  const [inputUEs, setInputUEs] = useState("");
-  const [handoverUE, setHandoverUE] = useState("");
-  const [targetVBBU, setTargetVBBU] = useState("");
-  const [showHandoverDropdown, setShowHandoverDropdown] = useState(false);
-  
-  const [dataUpdateCount, setDataUpdateCount] = useState(0)
+  const [handoverUE, setHandoverUE] = useState("1");
+  const [sourceVBBU, setSourceVBBU] = useState("vbbu1");
+  const [targetVBBU, setTargetVBBU] = useState("vbbu1");
+  const [handoverTarget, setHandoverTarget] = useState("vbbu1");
+  const [showAssignments, setShowAssignments] = useState(false);
 
-  const triggerUpdate = () => {setDataUpdateCount(dataUpdateCount+1)}
+  const [dataUpdateCount, setDataUpdateCount] = useState(0);
+  const assignmentRef = useRef();
 
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (assignmentRef.current && !assignmentRef.current.contains(e.target)) {
+        setShowAssignments(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+  const triggerUpdate = () => {
+    setDataUpdateCount(dataUpdateCount + 1);
+  };
 
   const handleAddUEs = async (uids, onConnect) => {
     const res = onConnect ? await addUEs(uids) : await removeUEs(uids);
@@ -47,6 +57,7 @@ function App() {
     }
     getLoads().then(setLoads);
     getVBBUs().then(setVBBUs);
+    getAssignments().then(setAssign);
   };
 
   useEffect(() => {
@@ -59,9 +70,11 @@ function App() {
   useEffect(() => {
     getLoads().then(setLoads);
     getVBBUs().then(setVBBUs);
+    getAssignments().then(setAssign);
     const intervalId = setInterval(() => {
       getLoads().then(setLoads);
       getVBBUs().then(setVBBUs);
+      getAssignments().then(setAssign);
     }, 1000);
     return () => clearInterval(intervalId);
   }, []);
@@ -102,16 +115,7 @@ function App() {
     };
   }, []);
   useEffect(() => {
-    setTimeout(updatePositions, 100); // Let layout settle
-  }, []);
-  useEffect(() => {
-    const handleClickOutside = (e) => {
-      if (!e.target.closest(".handover-wrapper")) {
-        setShowHandoverDropdown(false);
-      }
-    };
-    document.addEventListener("click", handleClickOutside);
-    return () => document.removeEventListener("click", handleClickOutside);
+    setTimeout(updatePositions, 100);
   }, []);
 
   return (
@@ -194,7 +198,8 @@ function App() {
                   handleAddUEs([Number(id)], state === "disconnected");
                   console.log("ue", ueStates?.data);
                   console.log("vbbus", vbbus?.data);
-                  console.log('loads',loads)
+                  console.log("loads", loads);
+                  console.log("assignments", assignments);
                 }}
               >
                 <UEview
@@ -227,10 +232,9 @@ function App() {
                 Physical Node 1
               </div>
             </div>
-            <div className="flex flex-col items-center gap-4 bg-gray-600 p-6 w-96 h-64">
+            <div className="flex flex-col items-center gap-4 bg-gray-600 p-6 w-96 ">
               <div ref={virtualVbbuRef}>
-                
-              <VirtualVbbuView vbbus={vbbus} triggerUpdate={triggerUpdate} />
+                <VirtualVbbuView vbbus={vbbus} triggerUpdate={triggerUpdate} />
               </div>
               <div className="text-white text-2xl text-end w-full">
                 Physical Node 2
@@ -238,43 +242,166 @@ function App() {
             </div>
           </div>
         </div>
-        <div className=" px-10 ml-32 flex items-center justify-center gap-12">
-          <button
-            className="h-18 w-64 bg-blue-500 text-white p-4 text-3xl font-bold rounded-3xl hover:bg-blue-900"
-            onClick={() => {
-              migrate("vbbu1");
-            }}
-          >
-            Migrate
-          </button>
-          <div className="relative handover-wrapper">
-            <button
-              className="h-18 w-64 bg-blue-500 text-white p-4 text-3xl font-bold rounded-3xl hover:bg-blue-900"
-              onClick={() => setShowHandoverDropdown((prev) => !prev)}
-            >
-              Handover
-            </button>
-
-            {showHandoverDropdown && (
-              <div className="absolute bottom-[100%] mb-2 w-64 bg-white border border-gray-300 rounded shadow z-50 max-h-64 overflow-auto">
-                {ueStates?.data &&
-                  Object.entries(ueStates.data)
-                    .filter(([_, state]) => state === "connected")
-                    .map(([id]) => (
-                      <button
-                        key={id}
-                        className="w-full text-left px-4 py-2 hover:bg-gray-100"
-                        onClick={() => {
-                          handover(id, 'vbbu3'); // You must set `targetVBBU` somehow
-                          setShowHandoverDropdown(false);
-                        }}
-                      >
-                        UE{id}
-                      </button>
+        <div className="px-10 ml-32 flex flex-col gap-12">
+          <div className="flex gap-5">
+            {/* MIGRATE */}
+            <div className="flex items-center gap-4 border-2 p-2 rounded-md">
+              <div className="">
+                <p className="text-gray-500">Source vBBU</p>
+                {/* Source vBBU */}
+                <select
+                  className="border p-2 rounded-md w-40"
+                  onChange={(e) => setSourceVBBU(e.target.value)}
+                >
+                  {vbbus?.data &&
+                    Object.entries(vbbus.data).map(([key]) => (
+                      <option key={key} value={key}>
+                        {key}
+                      </option>
                     ))}
+                </select>
               </div>
-            )}
+
+              {/* Target vBBU (select all) */}
+              <div>
+                <p className="text-gray-500">Target vBBU</p>
+                <select
+                  className="border p-2 rounded-md w-40"
+                  onChange={(e) => setTargetVBBU(e.target.value)}
+                >
+                  <option value="" disabled hidden>
+                    Target vBBU
+                  </option>
+                  {vbbus?.data &&
+                    Object.entries(vbbus.data).map(([key]) => (
+                      <option key={key} value={key}>
+                        {key}
+                      </option>
+                    ))}
+                </select>
+              </div>
+
+              <button
+                className="w-48 bg-blue-500 text-white p-2 text-xl font-bold rounded-3xl hover:bg-blue-900"
+                onClick={() => {
+                  console.log("migrate", sourceVBBU, targetVBBU);
+                  if (targetVBBU && sourceVBBU) migrate(sourceVBBU, targetVBBU);
+                }}
+              >
+                Migrate
+              </button>
+            </div>
+
+            {/* HANDOVER */}
+            <div className="flex items-center gap-4 border-2 p-2 rounded-md ">
+              {/* Select Active UE */}
+
+              <div>
+                <p className="text-gray-500">Active UEs</p>
+                <select
+                  className="border p-2 rounded-md w-40"
+                  onChange={(e) => setHandoverUE(e.target.value)}
+                >
+                  <option value="" disabled hidden>
+                    Active UEs
+                  </option>
+                  {ueStates?.data &&
+                    Object.entries(ueStates.data)
+                      .filter(([_, state]) => state === "connected")
+                      .map(([id]) => (
+                        <option key={id} value={id}>
+                          UE{id}
+                        </option>
+                      ))}
+                </select>
+              </div>
+
+              {/* Select Target vBBU */}
+              <div>
+                <p className="text-gray-500">Target vBBU</p>
+                <select
+                  className="border p-2 rounded-md w-40"
+                  onChange={(e) => setHandoverTarget(e.target.value)}
+                >
+                  <option value="" disabled hidden>
+                    Target vBBU
+                  </option>
+                  {vbbus?.data &&
+                    Object.entries(vbbus.data).map(([key]) => (
+                      <option key={key} value={key}>
+                        {key}
+                      </option>
+                    ))}
+                </select>
+              </div>
+
+              <button
+                className="w-48 bg-blue-500 text-white p-2 text-xl font-bold rounded-3xl hover:bg-blue-900"
+                onClick={() => {
+                  const new_ue = `UE${handoverUE}`;
+                  console.log(handoverUE, new_ue, handoverTarget);
+                  if (handoverUE && handoverTarget) {
+                    handover(new_ue, handoverTarget);
+                  }
+                }}
+              >
+                Handover
+              </button>
+            </div>
           </div>
+        </div>
+      </div>
+      <div
+        ref={assignmentRef}
+        className="absolute top-4 left-3/5 transform -translate-x-1/2 z-50"
+      >
+        <div className="relative inline-block">
+          <button
+            onClick={() => setShowAssignments((prev) => !prev)}
+            className="bg-blue-500 text-white text-xl px-4 py-2 rounded-3xl shadow hover:bg-blue-700"
+          >
+            Show Assignments
+          </button>
+
+          {showAssignments && (
+            <div className="absolute mt-2 bg-white border rounded shadow-lg max-h-64 overflow-auto w-64">
+              {assignments?.data &&
+                Object.entries(assignments.data)
+                  .filter(
+                    ([ue]) =>
+                      ueStates?.data?.[ue.replace("UE", "")] === "connected"
+                  )
+                  .map(([ue, info]) => {
+                    const ip = info.vbbu_ip;
+                    let vbbuName = "Unknown";
+                    if (ip.endsWith("201")) vbbuName = "vbbu1";
+                    else if (ip.endsWith("202")) vbbuName = "vbbu1-prime";
+
+                    return (
+                      <div key={ue} className="px-4 py-2 hover:bg-gray-100">
+                        <strong>{ue}</strong> → {vbbuName}
+                      </div>
+                    );
+                  })}
+            </div>
+          )}
+        </div>
+      </div>
+      <div className="absolute top-4 left-1/5 transform -translate-x-1/2 z-50">
+        <div className="relative inline-block">
+          {/* TODO: Implement reset function */}
+          <button
+            onClick={() => console.log("reset")}
+            className="bg-blue-500 text-white text-xl px-4 py-2 rounded-3xl shadow hover:bg-blue-700"
+          >
+            Reset System
+          </button>
+        </div>
+      </div>
+      <div className="absolute top-4 left-2/5 transform -translate-x-1/2 z-50">
+        <div className="relative inline-block text-center">
+          <p className="font-bold text-2xl ">HOMIC-RAN</p>
+          <p>Handover-based Migration in Cloud-RAN</p>
         </div>
       </div>
     </div>
