@@ -725,6 +725,22 @@ def api_ue_remove():
 def api_ue_list():
     return make_response(data=ue_states)
 
+@app.route('/reset', methods=['POST'])
+def reset_topology():
+    def run_reset():
+        os.system('pkill -f vbbu_server.py')
+        os.system('pkill -f rrh_proxy.py')
+        os.system('pkill -f ue_client.py')
+        os.system('pkill -f orchestrator.py')
+        os.system('mn -c')  # clear Mininet
+        subprocess.Popen(
+            "nohup sudo python3 comicran_mininet_launcher.py > reset.log 2>&1 &",
+            shell=True
+        )
+
+    threading.Thread(target=run_reset).start()
+    return {'status': 'resetting'}, 202
+
 @app.route('/api/handover', methods=['POST'])
 def api_handover():
     data = request.get_json()

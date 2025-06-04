@@ -8,6 +8,7 @@ import {
   getAssignments,
   getLoads,
   getVBBUs,
+  reset,
 } from "./api/api.js";
 import UEview from "./UEview.jsx";
 import Vbbuview from "./Vbbuview.jsx";
@@ -387,17 +388,7 @@ function App() {
           )}
         </div>
       </div>
-      <div className="absolute top-4 left-1/5 transform -translate-x-1/2 z-50">
-        <div className="relative inline-block">
-          {/* TODO: Implement reset function */}
-          <button
-            onClick={() => console.log("reset")}
-            className="bg-blue-500 text-white text-xl px-4 py-2 rounded-3xl shadow hover:bg-blue-700"
-          >
-            Reset System
-          </button>
-        </div>
-      </div>
+
       <div className="absolute top-4 left-2/5 transform -translate-x-1/2 z-50">
         <div className="relative inline-block text-center">
           <p className="font-bold text-2xl ">HOMIC-RAN</p>

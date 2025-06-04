@@ -18,7 +18,12 @@ export async function addUEs(uids) {
   });
   return handleResponse(res);
 }
-
+export async function reset() {
+  const res = await fetch(`${API_BASE}/reset`, {
+    method: 'POST',
+  });
+  return handleResponse(res);
+}
 export async function removeUEs(uids) {
   const res = await fetch(`${API_BASE}/api/ue/remove`, {
     method: 'POST',
