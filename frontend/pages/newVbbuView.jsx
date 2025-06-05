@@ -2,38 +2,38 @@ import React from "react";
 import { removeUEs, activateVBBU, deactivateVBBU, listUEs } from "./api/api.js";
 
 function VirtualVbbuView({ vbbus, triggerUpdate }) {
-  const virtualVbbu = vbbus?.data?.["vbbu1-prime"];
+  const newVbbu = vbbus?.data?.["vbbu1-prime"];
   const backgroundColorNew = (connections) => {
-    if (virtualVbbu.cpu >= 70) {
+    if (newVbbu.cpu >= 70) {
       return "bg-red-500";
-    } else if (virtualVbbu.cpu >= 50) {
+    } else if (newVbbu.cpu >= 50) {
       return "bg-amber-500";
     } else {
       return "bg-green-500";
     }
   };
-  if (!virtualVbbu) {
+  if (!newVbbu) {
     return <></>;
   }
   const handleActivate = async () => {
-    console.log("now", virtualVbbu.is_active);
+    console.log("now", newVbbu.is_active);
     const activeUEs = await listUEs();
     const connectedUEs = Object.entries(activeUEs.data)
       .filter(([_, state]) => state === "connected")
       .map(([id]) => Number(id));
     console.log(connectedUEs);
-    if (virtualVbbu.is_active) {
+    if (newVbbu.is_active) {
       const res = await deactivateVBBU("vbbu1-prime");
 
-      console.log("deactivate virtual", virtualVbbu.is_active);
+      console.log("deactivate virtual", newVbbu.is_active);
       // console.log('remove res', res1)
       triggerUpdate();
       return res;
     }
-    if (!virtualVbbu.is_active) {
+    if (!newVbbu.is_active) {
       const res = await activateVBBU("vbbu1-prime");
 
-      console.log("activate virtual", virtualVbbu.is_active);
+      console.log("activate virtual", newVbbu.is_active);
       triggerUpdate();
       return res;
     }
@@ -44,7 +44,7 @@ function VirtualVbbuView({ vbbus, triggerUpdate }) {
       <div
         className="w-48 h-48 border border-black relative bg-white overflow-hidden rounded-md shadow-sm"
         style={{
-          opacity: virtualVbbu.is_active ? 1 : 0.3,
+          opacity: newVbbu.is_active ? 1 : 0.3,
         }}
       >
         {/* Fill based on usage */}
@@ -53,15 +53,15 @@ function VirtualVbbuView({ vbbus, triggerUpdate }) {
           style={{
             // TODO: Change height
             height: `${
-              typeof virtualVbbu.connections === typeof 0 ? virtualVbbu.cpu : 0
+              typeof newVbbu.connections === typeof 0 ? newVbbu.cpu : 0
             }%`,
             transition: "height 0.5s ease-in-out",
-            display: virtualVbbu.is_active ? "block" : "none",
+            display: newVbbu.is_active ? "block" : "none",
           }}
         >
           <div className="text-center w-full text-md font-semibold text-black -mt-1">
             {/* // TODO: Change virtualVbbu */}
-            {typeof virtualVbbu.connections === typeof 0 ? virtualVbbu.cpu : 0}%
+            {typeof newVbbu.connections === typeof 0 ? newVbbu.cpu : 0}%
           </div>
         </div>
       </div>
@@ -69,7 +69,7 @@ function VirtualVbbuView({ vbbus, triggerUpdate }) {
         {/* Label */}
         <span
           className="text-lg font-medium text-gray-800"
-          style={{ opacity: virtualVbbu.is_active ? 1 : 0.3 }}
+          style={{ opacity: newVbbu.is_active ? 1 : 0.3 }}
         >
           vBBU1*
         </span>
@@ -79,7 +79,7 @@ function VirtualVbbuView({ vbbus, triggerUpdate }) {
             handleActivate();
           }}
         >
-          {virtualVbbu.is_active ? "Deactivate" : "Activate"}
+          {newVbbu.is_active ? "Deactivate" : "Activate"}
         </button>
       </div>
     </div>

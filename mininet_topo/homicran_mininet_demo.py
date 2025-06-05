@@ -78,7 +78,7 @@ def deploy_http_services(net, topo_vbbu_config):
     rrh.cmd('python3 rrh_proxy.py &')
 
     print("[INFO] Opening orchestrator terminal...")
-    # orch.cmd('xterm -T orchestrator -e python3 orchestrator.py &')
+
     orch.cmd(
         'xterm -T orchestrator -e bash -lc "'
         'source ./venv/bin/activate && '

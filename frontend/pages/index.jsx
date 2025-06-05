@@ -8,11 +8,10 @@ import {
   getAssignments,
   getLoads,
   getVBBUs,
-  reset,
 } from "./api/api.js";
 import UEview from "./UEview.jsx";
 import Vbbuview from "./Vbbuview.jsx";
-import VirtualVbbuView from "./virtualVbbuView.jsx";
+import NewVbbuView from "./newVbbuView.jsx";
 import DummyVbbuView from "./dummyVbbuview.jsx";
 
 function App() {
@@ -20,11 +19,11 @@ function App() {
   const [uePositions, setUEPositions] = useState({});
   const antennaRef = useRef(null);
   const vbbuRef = useRef(null);
-  const virtualVbbuRef = useRef(null);
+  const newVbbuRef = useRef(null);
 
   const [antennaPos, setAntennaPos] = useState(null);
   const [vbbuPos, setVbbuPos] = useState(null);
-  const [virtualVbbuPos, setVirtualVbbuPos] = useState(null);
+  const [newVbbuPos, setNewVbbuPos] = useState(null);
 
   const [assignments, setAssign] = useState({});
   const [loads, setLoads] = useState({});
@@ -98,9 +97,9 @@ function App() {
         y: vbbuRect.bottom + (vbbuRect.top - vbbuRect.bottom) / 2,
       });
     }
-    if (virtualVbbuRef.current) {
-      const rect = virtualVbbuRef.current.getBoundingClientRect();
-      setVirtualVbbuPos({
+    if (newVbbuRef.current) {
+      const rect = newVbbuRef.current.getBoundingClientRect();
+      setNewVbbuPos({
         x: rect.left,
         y: rect.top + rect.height / 2,
       });
@@ -174,13 +173,13 @@ function App() {
           />
         )}
 
-        {/* Antenna → VirtualVbbuView */}
-        {antennaPos && virtualVbbuPos && (
+        {/* Antenna → newVbbuView */}
+        {antennaPos && newVbbuPos && (
           <line
             x1={antennaPos.x}
             y1={antennaPos.y}
-            x2={virtualVbbuPos.x}
-            y2={virtualVbbuPos.y}
+            x2={newVbbuPos.x}
+            y2={newVbbuPos.y}
             stroke="black"
             strokeWidth="3"
             markerEnd="url(#arrowhead)"
@@ -234,8 +233,8 @@ function App() {
               </div>
             </div>
             <div className="flex flex-col items-center gap-4 bg-gray-600 p-6 w-96 ">
-              <div ref={virtualVbbuRef}>
-                <VirtualVbbuView vbbus={vbbus} triggerUpdate={triggerUpdate} />
+              <div ref={newVbbuRef}>
+                <NewVbbuView vbbus={vbbus} triggerUpdate={triggerUpdate} />
               </div>
               <div className="text-white text-2xl text-end w-full">
                 Physical Node 2
